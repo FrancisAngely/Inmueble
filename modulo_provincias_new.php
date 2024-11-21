@@ -175,7 +175,7 @@
                   $.ajax({
                     data: $("#form1").serialize(),
                     method: "POST",
-                    url: "modulo_provincia_insert.php",
+                    url: "modulo_provincias_insert.php",
                     success: function(result) {
 
                       if (result > 1) {
@@ -198,7 +198,7 @@
                           }
                         }).then((result) => {
                           if (result.dismiss === Swal.DismissReason.timer) {
-                            location.href = "modulo_provincia_list.php";
+                            location.href = "modulo_provincias_list.php";
                           }
                         });
                       } else {

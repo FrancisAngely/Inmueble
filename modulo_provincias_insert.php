@@ -2,7 +2,6 @@
 include("controller.php");
 $tabla="provincias";
 
-
 $datos["provincia"]=$_POST["provincia"];
 
 $datos["created_at"]=date('Y-m-d h:i:s');
