@@ -28,17 +28,17 @@
           </div>
 
           <?php
-          $provincia = getById("provincias", $_GET["id"]);
+          $provincias = getById("provincias", $_GET["id"]);
           ?>
 
           <div class="col-4">
             <form action="#" method="post" enctype="multipart/form-data" id="form1">
-              <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $provincia["id"]; ?>">
+              <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $provincias["id"]; ?>">
 
               <div class="mb-3">
                 <label for="provincia" class="form-label">Provincias</label>
                 <span id="provincia_error" class="text-danger"></span>
-                <input type="text" class="form-control" id="provincia" name="provincia" placeholder="provincia" value="<?php echo $provincia["provincia"]; ?>">
+                <input type="text" class="form-control" id="provincia" name="provincia" placeholder="provincia" value="<?php echo $provincias["provincia"]; ?>">
               </div>
 
 

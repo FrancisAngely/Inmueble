@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Log In | Inmuebles Marco - Responsive Bootstrap 5 Admin Dashboard</title>
+    <title>Log In | Scoxe - Responsive Bootstrap 5 Admin Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Myra Studio" name="author" />
@@ -39,7 +39,7 @@
                                         </div>
 
 
-                                        <h1 class="h5 mb-1">Bienvenido!</h1>
+                                        <h1 class="h5 mb-1">Welcome Back!</h1>
 
                                         <p class="text-muted mb-4">Enter your email address and password to access admin
                                             panel.</p>
@@ -47,16 +47,16 @@
                                         <form action="#">
 
                                             <div class="form-group mb-3">
-                                                <label class="form-label" for="usuario">Usuario</label>
-                                                <input class="form-control" type="text" id="usuario" required="" name="usuario"
-                                                    placeholder="Enter your usuario">
+                                                <label class="form-label" for="username">Usuario</label>
+                                                <input class="form-control" type="text" id="username" required="" name="username"
+                                                    placeholder="Enter your username">
                                             </div>
 
                                             <div class="form-group mb-3">
                                                 <a href="pages-recoverpw.html"
                                                     class="text-muted float-end"><small></small></a>
                                                 <label class="form-label" for="pass">Password</label>
-                                                <input class="form-control" type="password" required="" id="password" name="password"
+                                                <input class="form-control" type="password" required="" id="pass" name="pass"
                                                     placeholder="Enter your password">
                                             </div>
 
@@ -133,34 +133,34 @@
 <script>
 $( document ).ready(function() {
     $("#btnValidar").click(function(){
-           let usuario=$("#usuario").val();  
-           let pass=$("#password").val();
+           let username=$("#username").val();  
+           let pass=$("#pass").val();
             let error=0;
           
-           if(usuario==""){
+           if(username==""){
                
                error=1;
-               $("#usuario_error").html("Debe introducir un nombre de usuario");
-                $("#usuario").addClass("borderError");
+               $("#username_error").html("Debe introducir un nombre de usuario");
+                $("#username").addClass("borderError");
            }
         
            if(pass==""){
                
                error=1;
-               $("#password_error").html("Debe introducir una contraseña");
-               $("#password").addClass("borderError");
+               $("#pass_error").html("Debe introducir una contraseña");
+               $("#pass").addClass("borderError");
            }
         if(error==0){
             //$("#form1").submit();
              $.ajax({
-                 data:{usuario:usuario,pass:password},
+                 data:{username:username,pass:pass},
                  method:"POST",
                  url: "verificar.php", 
                  success: function(result){
                     
                      if(result==0){
                         $("#errorV").html("usuario o contraseña incorrectos");
-                        $("#usuario").val(''); 
+                        $("#username").val(''); 
                          $("#pass").val(''); 
                      }else{
                          location.href="index.php";
@@ -171,28 +171,47 @@ $( document ).ready(function() {
          
     });
     
-   
-     $("#usuario").on('keyup', function(){
+        /*$("#username").change(function(){
+        let username=$("#username").val();  
+             $.ajax({
+                 data:{username:username},
+                 method:"POST",
+                 url: "verificarUser.php", 
+                 success: function(result){
+                     if(result==0){
+                        $("#username_error").html("usuario noexiste");
+                        $("#username").val(''); 
+                         $("#username").addClass("borderError");
+                     }else{
+                        $("#username").removeClass("borderError"); 
+                         $("#errorV").html("");
+                         //$("#username_error").html("");
+                     }
+                }
+             });
+            });*/
+    
+     $("#username").on('keyup', function(){
          $("#errorV").html("");
         var value = $(this).val().length;
         if(value>0){
-            $("#usuario_error").html("");
-            $("#usuario").removeClass("borderError");
+            $("#username_error").html("");
+            $("#username").removeClass("borderError");
         }else{
-           $("#usuario_error").html("Debe introducir un nombre de usuario");
-           $("#usuario").addClass("borderError"); 
+           $("#username_error").html("Debe introducir un nombre de usuario");
+           $("#username").addClass("borderError"); 
         }
     })
     
-    $("#password").on('keyup', function(){
+    $("#pass").on('keyup', function(){
         $("#errorV").html("");
         var value = $(this).val().length;
         if(value>0){
-            $("#password_error").html("");
-            $("#password").removeClass("borderError");
+            $("#pass_error").html("");
+            $("#pass").removeClass("borderError");
         }else{
-           $("#password_error").html("Debe introducir una password");
-           $("#password").addClass("borderError"); 
+           $("#pass_error").html("Debe introducir una pass");
+           $("#pass").addClass("borderError"); 
         }
     })
     
