@@ -23,128 +23,138 @@
                     <?php include("breadcrumb.php"); ?>
                     <div
                         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Usuarios - Editar</h1>
-                        <a href="modulo_usuarios_list.php" class="btn btn-primary">Volver</a>
+                        <h1 class="h2">Callejero - Nuevo</h1>
+                        <a href="modulo_callejero_list.php" class="btn btn-primary">Volver</a>
                     </div>
-
-                    <?php
-          $user = getById("usuarios", $_GET["id"]);
-          ?>
 
                     <div class="col-4">
                         <form action="#" method="post" enctype="multipart/form-data" id="form1">
-                            <input type="hidden" class="form-control" id="id" name="id"
-                                value="<?php echo $user["id"]; ?>">
 
                             <div class="mb-3">
-                                <label for="usuario" class="form-label">Usuario</label>
-                                <span id="usuario_error" class="text-danger"></span>
-                                <input type="text" class="form-control" id="usuario" name="usuario"
-                                    placeholder="usuario" value="<?php echo $user["usuario"]; ?>">
-                            </div>
-
-
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Contraseña</label>
-                                <span id="password_error" class="text-danger"></span>
-                                <input type="text" class="form-control" id="password" name="password"
-                                    placeholder="Contraseña" value="<?php echo $user["password"]; ?>">
-                            </div>
-
-
-                            <div class="mb-3">
-                                <label for="email" class="form-label">E-mail</label>
-                                <span id="email_error" class="text-danger"></span>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="E-mail"
-                                    value="<?php echo $user["email"]; ?>">
+                                <label for="id_localidades" class="form-label">Id Localidades</label>
+                                <span id="id_localidades_error" class="text-danger"></span>
+                                <input type="text" class="form-control" id="id_localidades" name="id_localidades"
+                                    placeholder="Id Localidades">
                             </div>
 
                             <div class="mb-3">
-                                <label for="id_roles" class="form-label">Role</label>
-                                <span id="id_roles_error" class="text-danger"></span>
-                                <select class="form-control" id="id_roles" name="id_roles">
-                                    <option></option>
-                                    <?php echo SelectOptionsIdSel("roles", "role", $user["id_roles"]); ?>
-                                </select>
+                                <label for="tipo_via" class="form-label">Tipo Via</label>
+                                <span id="tipo_via_error" class="text-danger"></span>
+                                <input type="text" class="form-control" id="tipo_via" name="tipo_via"
+                                    placeholder="Tipo de Via">
                             </div>
 
                             <div class="mb-3">
-                                <input type="submit" class="form-control" value="Aceptar" id="btnform1">
+                                <label for="denominacion" class="form-label">Denominacion</label>
+                                <span id="denominacion_error" class="text-danger"></span>
+                                <input type="text" class="form-control" id="denominacion" name="denominacion"
+                                    placeholder="Denominacion">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="nombre_literal" class="form-label">Nombre Literal</label>
+                                <span id="nombre_literal_error" class="text-danger"></span>
+                                <input type="text" class="form-control" id="nombre_literal" name="nombre_literal"
+                                    placeholder="Nombre literal">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="cp" class="form-label">CP</label>
+                                <span id="cp_error" class="text-danger"></span>
+                                <input type="text" class="form-control" id="cp" name="cp" placeholder="Codigo Postal">
+                            </div>
+
+                            <div class="mb-3">
+                                <input type="submit" class="form-control" value="Aceptar" id="btnform11">
                             </div>
 
                         </form>
                     </div>
-
                 </div> <!-- content -->
-
                 <?php include("footer.php"); ?>
-
             </div>
         </div>
 
         <?php include("scripts.php"); ?>
-
         <script>
         $(document).ready(function() {
 
             $("#form1").validate({
                 rules: {
-                    usuario: {
+                    id_localidades: {
                         required: true,
                         maxlength: 200,
                         minlength: 3
                     },
-                    password: {
+                    tipo_via: {
                         required: true,
                         maxlength: 200,
                         minlength: 3
                     },
-                    email: {
+                    denominacion: {
                         required: true,
                         maxlength: 200,
                         minlength: 3
                     },
-                    id_roles: {
-                        required: true
-
+                    nombre_literal: {
+                        required: true,
+                        maxlength: 200,
+                        minlength: 3
+                    },
+                    cp: {
+                        required: true,
+                        maxlength: 200,
+                        minlength: 3
                     }
                 },
                 messages: {
-                    usuario: {
-                        required: "Introduce el nombre de usuario",
+                    id_localidades: {
+                        required: "Introduce el id de la localidad",
                         maxlength: "No puede superar 20 carácteres",
                         minlength: "Mínimo 3 caracteres"
                     },
-                    password: {
-                        required: "Introduce una contraseña",
+                    tipo_via: {
+                        required: "Introduce el tipo de via",
                         maxlength: "No puede superar 20 carácteres",
                         minlength: "Mínimo 3 caracteres"
                     },
-                    email: {
-                        required: "Introduce un email",
+                    denominacion: {
+                        required: "Introduce la denominacion",
                         maxlength: "No puede superar 20 carácteres",
                         minlength: "Mínimo 3 caracteres"
                     },
-                    id_roles: {
-                        required: "Selecciona un rol",
+                    nombre_literal: {
+                        required: "Introduce el nombre literal",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
+                    },
+                    cp: {
+                        required: "Introduce el codigo postal",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
                     }
                 },
                 submitHandler: function(form) {
-                    let id_roles = $("#id_roles").val();
-                    let usuario = $("#usuario").val();
-                    let password = $("#password").val();
-                    let email = $("#email").val();
+                    let id_localidades = $("#id_localidades").val();
+                    let tipo_via = $("#tipo_via").val();
+                    let denominacion = $("#denominacion").val();
+                    let nombre_literal = $("#nombre_literal").val();
+                    let cp = $("#cp").val();
 
-                    let tabla = "usuarios";
-                    let campo = "id_roles";
-                    let campo2 = "usuario";
-                    let campo3 = "password";
-                    let campo4 = "email";
+
+
+                    let tabla = "callejero";
+                    let campo = "id_localidades";
+                    let campo2 = "tipo_via";
+                    let campo3 = "denominacion";
+                    let campo4 = "nombre_literal";
+                    let campo5 = "cp";
+
                     let error = 0;
 
                     $.ajax({
                         data: {
-                            valor: usuario,
+                            valor: callejero,
                             tabla: tabla,
                             campo: campo
                         },
@@ -153,18 +163,18 @@
 
                         success: function(result) {
                             if (result == 0) {
-                                $("#usuario_error").html("Usuario existe");
-                                $("#usuario").val('');
-                                $("#usuario").addClass("borderError");
+                                $("#id_localidades_error").html("id localidad existe");
+                                $("#id_localidades").val('');
+                                $("#id_localidades").addClass("borderError");
                             } else {
                                 console.log($("#form1").serialize());
-                                $("#usuario").removeClass("borderError");
-                                $("#usuario_error").html("");
+                                $("#localidad").removeClass("borderError");
+                                $("#localidad_error").html("");
 
                                 $.ajax({
                                     data: $("#form1").serialize(),
                                     method: "POST",
-                                    url: "modulo_usuarios_insert.php",
+                                    url: "modulo_callejero_insert.php",
                                     success: function(result) {
                                         if (result > 1) {
                                             //alert("Datos insertados correctamente!");
@@ -208,7 +218,7 @@
                                                     .DismissReason
                                                     .timer) {
                                                     location.href =
-                                                        "modulo_usuarios_list.php";
+                                                        "modulo_callejero_list.php";
                                                 }
                                             });
                                         } else {

@@ -1,8 +1,10 @@
 <?php
 include("controller.php");
-$tabla = "provincias";
+$tabla = "localidades";
 
-$datos["provincia"] = $_POST["provincia"];
+$datos["cmun"] = $_POST["cmun"];
+$datos["localidad"] = $_POST["localidad"];
+$datos["dc"] = $_POST["dc"];
 
 $datos["created_at"] = date('Y-m-d h:i:s');
 $datos["updated_at"] = date('Y-m-d h:i:s');

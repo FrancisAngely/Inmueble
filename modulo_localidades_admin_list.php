@@ -1,90 +1,85 @@
 <!DOCTYPE html>
 <html lang="es" data-bs-theme="light" data-menu-color="light" data-topbar-color="dark">
 
-<?php include("head.php"); ?>
-
 <body>
-    <div class="layout-wrapper">
-
-        <?php include("leftsidebar.php"); ?>
+    <div class="admin_page">
 
 
-        <div class="page-content">
+        <!-- Start Content-->
+        <div class="container-fluid">
 
 
-            <?php include("topbar.php"); ?>
-
-            <div class="px-3">
-
-                <!-- Start Content-->
-                <div class="container-fluid">
-
-
-                    <?php include("breadcrumb.php"); ?>
-                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap  pt-3 pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Roles</h1>
-                        &nbsp;<a href="modulo_roles_new.php" class="btn btn-primary">Nuevo</a>
-                        &nbsp;&nbsp;
-                        <a href="#" class="btn btn-success" id="exportar">Exportar&nbsp;<i
-                                class="fa-regular fa-file-excel"></i></a>
-                    </div>
-                    <?php
-          $excel = ' <table><thead><tr><th>Id</th> <th>Role</th></tr></thead><tbody>';
-          ?>
-                    <table class="table" id="tabla">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Role</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-
-              $roles = getAllV("roles");
-
-              if (count($roles) > 0) {
-                foreach ($roles as $r) {
-              ?>
-                            <tr>
-                                <td><?php echo $r["id"]; ?></td>
-                                <td><?php echo $r["role"]; ?></td>
-                                <td><a href="modulo_roles_edit.php?id=<?php echo $r["id"]; ?>"><i
-                                            class="fa-solid fa-pen-to-square fa-2x"></i></a>
-                                    &nbsp;&nbsp;
-                                    <a href="#" data-id="<?php echo $r["id"]; ?>" class="borrar"><i
-                                            class="fa-solid fa-trash text-danger"></i>
-
-                                        <a href="modulo_roles_print.php?id=<?php echo $r["id"]; ?>"><i
-                                                class="fa-solid fa-print"></i></a>
-                                        &nbsp;&nbsp;
-                                    </a>
-                                </td>
-                            </tr>
-                            <?php
-
-                  $excel .= '<tr>';
-                  $excel .= '<td>' . $r["id"] . '</td>';
-                  $excel .= '<td>' . $r["role"] . '</td>';
-                  $excel .= '</tr>';
-                }
-              }
-              ?>
-                        </tbody>
-                    </table>
-
-                </div> <!-- content -->
-
-
-                <?php include("footer.php"); ?>
-
-
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap  pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Localidades</h1>
+                &nbsp;<a href="modulo_localidades_new.php" class="btn btn-primary">Nuevo</a>
+                &nbsp;&nbsp;
+                <a href="#" class="btn btn-success" id="exportar">Exportar&nbsp;<i
+                        class="fa-regular fa-file-excel"></i></a>
             </div>
-        </div>
-        <div id="exceldiv"></div>
+            <?php
+            $excel = ' <table>
+          <thead>
+          <tr>
+            <th>Id</th>
+            <th>Cmun</th>
+            <th>DC</th>
+            <th>Localidad</th>
+          </tr>
+          </thead>
+          <tbody>';
+            ?>
+            <table class="table" id="tabla">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Cmun</th>
+                        <th>DC</th>
+                        <th>Localidad</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <?php
+                    echo "<h3> User: " . $_SESSION["role"] . "</h3>";
+                    $localidades = getAllV("localidades");
+
+                    if (count($localidades) > 0) {
+                        foreach ($localidades as $r) {
+                    ?>
+                    <tr>
+                        <td><?php echo $r["id"]; ?></td>
+                        <td><?php echo $r["cmun"]; ?></td>
+                        <td><?php echo $r["dc"]; ?></td>
+                        <td><?php echo $r["localidad"]; ?></td>
+                        <td><a href="modulo_localidades_edit.php?id=<?php echo $r["id"]; ?>"><i
+                                    class="fa-solid fa-pen-to-square fa-2x"></i></a>
+                            &nbsp;&nbsp;
+                            <a href="#" data-id="<?php echo $r["id"]; ?>" class="borrar"><i
+                                    class="fa-solid fa-trash text-danger"></i>
+
+                                <a href="modulo_localidades_print.php?id=<?php echo $r["id"]; ?>"><i
+                                        class="fa-solid fa-print"></i></a>
+                                &nbsp;&nbsp;
+                            </a>
+                        </td>
+                    </tr>
+                    <?php
+                            $excel .= '<tr>';
+                            $excel .= '<td>' . $r["id"] . '</td>';
+                            $excel .= '<td>' . $r["cmun"] . '</td>';
+                            $excel .= '<td>' . $r["dc"] . '</td>';
+                            $excel .= '<td>' . $r["localidad"] . '</td>';
+                            $excel .= '</tr>';
+                        }
+                    }
+                    ?>
+                </tbody>
+            </table>
+
+        </div> <!-- content -->
         <form action="ficheroExcel.php" method="post" enctype="multipart/form-data" id="formExportar">
-            <input type="hidden" value="Roles" name="nombreFichero">
+            <input type="hidden" value="Localidades" name="nombreFichero">
             <input type="hidden" value="<?php echo $excel; ?>" name="datos_a_enviar">
         </form>
 
@@ -124,7 +119,7 @@
                             processData: false,
                             contentType: false,
                             cache: false,
-                            url: "modulo_roles_importar.php",
+                            url: "modulo_localidades_importar.php",
                             success: function(result) {
                                 //alert(result);
                                 if (result == 1) {
@@ -144,41 +139,11 @@
                             }
                         });
                     } else if (
-                        /* Read more about handling dismissals below */
                         result.dismiss === Swal.DismissReason.cancel
-                    ) {
-                        /*   swalWithBootstrapButtons.fire({
-                             title: "Cancelled",
-                             text: "Your imaginary file is safe :)",
-                             icon: "error"
-                           });*/
-                    }
+                    ) {}
                 });
             });
 
-            $("#exportar2").click(function() {
-                let nombreFichero = "Roles";
-                let datos_a_enviar = '<?php echo $excel; ?>';
-                $.ajax({
-                    data: {
-                        nombreFichero: nombreFichero,
-                        datos_a_enviar: datos_a_enviar
-                    },
-                    method: "POST",
-                    url: "ficheroExcel.php",
-                    success: function(result) {
-                        alert(result);
-                        WinId = window.open('ficheroExcel2.php', '_blank', '');
-                        // WinId.document.open('ficheroExcel2.php');
-                        WinId.document.write('<?php echo $excel; ?>');
-                        //WinId.document.close();
-                        //WinId.focus();
-                        WinId.print();
-                        //WinId.close();
-
-                    }
-                });
-            });
 
             $(".borrar").click(function() {
                 let id = $(this).attr('data-id');
@@ -191,7 +156,7 @@
                     buttonsStyling: false
                 });
                 swalWithBootstrapButtons.fire({
-                    title: "Desea eliminar el role?",
+                    title: "Desea eliminar la localidad?",
                     text: "no hay vuelta atrás!",
                     icon: "warning",
                     showCancelButton: true,
@@ -206,26 +171,25 @@
                                 id: id
                             },
                             method: "POST",
-                            url: "modulo_roles_delete.php",
+                            url: "modulo_localidades_delete.php",
                             success: function(result) {
                                 if (result == 1) {
                                     swalWithBootstrapButtons.fire({
                                         title: "Eliminado!",
-                                        text: "Rol dado de baja",
+                                        text: "Localidad dada de baja",
                                         icon: "success"
                                     });
                                     padre.hide();
                                 } else {
                                     swalWithBootstrapButtons.fire({
                                         title: "No Eliminado!",
-                                        text: "Rol NO dado de baja",
+                                        text: "Localidad NO dada de baja",
                                         icon: "error"
                                     });
                                 }
                             }
                         });
                     } else if (
-                        /* Read more about handling dismissals below */
                         result.dismiss === Swal.DismissReason.cancel
                     ) {}
                 });
@@ -259,7 +223,7 @@
             });
         });
         </script>
-
+    </div>
 </body>
 
 </html>

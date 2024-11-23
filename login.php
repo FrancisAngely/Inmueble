@@ -13,6 +13,7 @@
 
     <!-- App css -->
     <link href="assets/css/style.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
     <script src="assets/js/config.js"></script>
 </head>
@@ -48,16 +49,17 @@
 
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="username">Usuario</label>
-                                                <input class="form-control" type="text" id="username" required="" name="username"
-                                                    placeholder="Enter your username">
+                                                <input class="form-control" type="text" id="username" required=""
+                                                    name="username" placeholder="Enter your username">
+                                                <div id="username_error" class="text-danger"></div>
                                             </div>
 
                                             <div class="form-group mb-3">
                                                 <a href="pages-recoverpw.html"
                                                     class="text-muted float-end"><small></small></a>
                                                 <label class="form-label" for="pass">Password</label>
-                                                <input class="form-control" type="password" required="" id="pass" name="pass"
-                                                    placeholder="Enter your password">
+                                                <input class="form-control" type="password" required="" id="pass"
+                                                    name="pass" placeholder="Enter your password">
                                             </div>
 
                                             <div class="form-group mb-3">
@@ -70,7 +72,8 @@
                                             </div>
 
                                             <div class="form-group mb-0 text-center">
-                                                <button class="btn btn-primary w-100" type="button" id="btnValidar"> Log In </button>
+                                                <button class="btn btn-primary w-100" type="button" id="btnValidar"> Log
+                                                    In </button>
                                             </div>
                                         </form>
 
@@ -130,47 +133,49 @@
     <!-- App js -->
     <script src="assets/js/vendor.min.js"></script>
     <script src="assets/js/app.js"></script>
-<script>
-$( document ).ready(function() {
-    $("#btnValidar").click(function(){
-           let username=$("#username").val();  
-           let pass=$("#pass").val();
-            let error=0;
-          
-           if(username==""){
-               
-               error=1;
-               $("#username_error").html("Debe introducir un nombre de usuario");
+    <script>
+    $(document).ready(function() {
+        $("#btnValidar").click(function() {
+            let username = $("#username").val();
+            let pass = $("#pass").val();
+            let error = 0;
+
+            if (username == "") {
+                error = 1;
+                $("#username_error").html("Debe introducir un nombre de usuario");
                 $("#username").addClass("borderError");
-           }
-        
-           if(pass==""){
-               
-               error=1;
-               $("#pass_error").html("Debe introducir una contraseña");
-               $("#pass").addClass("borderError");
-           }
-        if(error==0){
-            //$("#form1").submit();
-             $.ajax({
-                 data:{username:username,pass:pass},
-                 method:"POST",
-                 url: "verificar.php", 
-                 success: function(result){
-                    
-                     if(result==0){
-                        $("#errorV").html("usuario o contraseña incorrectos");
-                        $("#username").val(''); 
-                         $("#pass").val(''); 
-                     }else{
-                         location.href="index.php";
-                     }
-                }
-             });
-        }
-         
-    });
-    
+            }
+
+            if (pass == "") {
+
+                error = 1;
+                $("#pass_error").html("Debe introducir una contraseña");
+                $("#pass").addClass("borderError");
+            }
+            if (error == 0) {
+                //$("#form1").submit();
+                $.ajax({
+                    data: {
+                        username: username,
+                        pass: pass
+                    },
+                    method: "POST",
+                    url: "verificar.php",
+                    success: function(result) {
+
+                        if (result == 0) {
+                            $("#errorV").html("usuario o contraseña incorrectos");
+                            $("#username").val('');
+                            $("#pass").val('');
+                        } else {
+                            location.href = "index.php";
+                        }
+                    }
+                });
+            }
+
+        });
+
         /*$("#username").change(function(){
         let username=$("#username").val();  
              $.ajax({
@@ -190,34 +195,33 @@ $( document ).ready(function() {
                 }
              });
             });*/
-    
-     $("#username").on('keyup', function(){
-         $("#errorV").html("");
-        var value = $(this).val().length;
-        if(value>0){
-            $("#username_error").html("");
-            $("#username").removeClass("borderError");
-        }else{
-           $("#username_error").html("Debe introducir un nombre de usuario");
-           $("#username").addClass("borderError"); 
-        }
-    })
-    
-    $("#pass").on('keyup', function(){
-        $("#errorV").html("");
-        var value = $(this).val().length;
-        if(value>0){
-            $("#pass_error").html("");
-            $("#pass").removeClass("borderError");
-        }else{
-           $("#pass_error").html("Debe introducir una pass");
-           $("#pass").addClass("borderError"); 
-        }
-    })
-    
-});      
-      
-</script>
+
+        $("#username").on('keyup', function() {
+            $("#errorV").html("");
+            var value = $(this).val().length;
+            if (value > 0) {
+                $("#username_error").html("");
+                $("#username").removeClass("borderError");
+            } else {
+                $("#username_error").html("Debe introducir un nombre de usuario");
+                $("#username").addClass("borderError");
+            }
+        })
+
+        $("#pass").on('keyup', function() {
+            $("#errorV").html("");
+            var value = $(this).val().length;
+            if (value > 0) {
+                $("#pass_error").html("");
+                $("#pass").removeClass("borderError");
+            } else {
+                $("#pass_error").html("Debe introducir una pass");
+                $("#pass").addClass("borderError");
+            }
+        })
+
+    });
+    </script>
 </body>
 
 </html>
