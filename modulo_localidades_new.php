@@ -31,6 +31,13 @@
                         <form action="#" method="post" enctype="multipart/form-data" id="form1">
 
                             <div class="mb-3">
+                                <label for="id_provincias" class="form-label">Id Provincias</label>
+                                <span id="id_provincias_error" class="text-danger"></span>
+                                <input type="text" class="form-control" id="id_provincias" name="id_provincias"
+                                    placeholder="Id Provincias">
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="cmun" class="form-label">Cmun</label>
                                 <span id="cmun_error" class="text-danger"></span>
                                 <input type="text" class="form-control" id="cmun" name="cmun" placeholder="cmun">
@@ -64,137 +71,148 @@
 
 
         <script>
-        $(document).ready(function() {
+            $(document).ready(function() {
 
-            $("#form1").validate({
-                rules: {
-                    cmun: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    dc: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    localidad: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    }
-                },
-                messages: {
-                    cmun: {
-                        required: "Introduce el Cmin de la localidad",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    dc: {
-                        required: "Introduce el Dc de la localidad",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    localidad: {
-                        required: "Introduce el nombre de la localidad",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    }
-                },
-                submitHandler: function(form) {
-                    let cmun = $("#cmun").val();
-                    let dc = $("#dc").val();
-                    let localidades = $("#localidad").val();
+                $("#form1").validate({
+                    rules: {
+                        id_provincias: {
+                            required: true
 
-                    let tabla = "localidades";
-                    let campo = "cmun";
-                    let campo2 = "dc";
-                    let campo3 = "localidad";
-                    let error = 0;
-
-                    $.ajax({
-                        data: {
-                            valor: localidad,
-                            tabla: tabla,
-                            campo: campo
                         },
-                        method: "POST",
-                        url: "verificarUnico.php",
-
-                        success: function(result) {
-                            if (result == 0) {
-                                $("#localidad_error").html("localidad existe");
-                                $("#localidad").val('');
-                                $("#localidad").addClass("borderError");
-                            } else {
-                                console.log($("#form1").serialize());
-                                $("#localidad").removeClass("borderError");
-                                $("#localidad_error").html("");
-
-                                $.ajax({
-                                    data: $("#form1").serialize(),
-                                    method: "POST",
-                                    url: "modulo_localidades_insert.php",
-                                    success: function(result) {
-                                        if (result > 1) {
-                                            //alert("Datos insertados correctamente!");
-                                            let timerInterval;
-                                            Swal.fire({
-                                                title: "Datos insertados correctamente!",
-                                                html: "",
-                                                timer: 2000,
-                                                timerProgressBar: true,
-                                                didOpen: () => {
-                                                    Swal
-                                                        .showLoading();
-                                                    const
-                                                        timer =
-                                                        Swal
-                                                        .getPopup()
-                                                        .querySelector(
-                                                            "b"
-                                                        );
-                                                    timerInterval
-                                                        =
-                                                        setInterval(
-                                                            () => {
-                                                                timer
-                                                                    .textContent =
-                                                                    `${Swal.getTimerLeft()}`;
-                                                            },
-                                                            100
-                                                        );
-                                                },
-                                                willClose: () => {
-                                                    clearInterval
-                                                        (
-                                                            timerInterval
-                                                        );
-                                                }
-                                            }).then((result) => {
-                                                if (result
-                                                    .dismiss ===
-                                                    Swal
-                                                    .DismissReason
-                                                    .timer) {
-                                                    location.href =
-                                                        "modulo_localidades_list.php";
-                                                }
-                                            });
-                                        } else {
-                                            Swal.fire(
-                                                "No Insertado correctamente!"
-                                            );
-
-                                        }
-                                    }
-                                });
-                            }
+                        cmun: {
+                            required: true
+                        },
+                        dc: {
+                            required: true
+                        },
+                        localidad: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 3
                         }
-                    });
-                }
+                    },
+                    messages: {
+                        id_provincias: {
+                            required: "Introduce el id provincias de la localidad"
+                        },
+                        cmun: {
+                            required: "Introduce el Cmin de la localidad"
+                        },
+                        dc: {
+                            required: "Introduce el Dc de la localidad"
+                        },
+                        localidad: {
+                            required: "Introduce el nombre de la localidad",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        }
+                    },
+                    submitHandler: function(form) {
+                        let id_provincias = $("#id_provincias").val();
+                        let cmun = $("#cmun").val();
+                        let dc = $("#dc").val();
+                        let localidades = $("#localidad").val();
+
+                        let tabla = "localidades";
+                        let campo = "cmun";
+                        let campo2 = "dc";
+                        let campo3 = "localidad";
+                        let campo4 = "id_provincias";
+                        let error = 0;
+
+                        //console.log(localidades);
+
+                        $.ajax({
+                            data: {
+                                tabla: tabla,
+                                valor1: cmun,
+                                campo1: campo,
+                                valor2: dc,
+                                campo2: campo2,
+                                valor3: localidades,
+                                campo3: campo3,
+                                valor4: id_provincias,
+                                campo4: campo4
+                            },
+                            method: "POST",
+                            url: "verificarUnicoLocalidad.php",
+
+                            success: function(result) {
+                                if (result == 0) {
+                                    $("#localidad_error").html("localidad existe");
+                                    $("#localidad").val('');
+                                    $("#localidad").addClass("borderError");
+                                } else {
+                                    console.log($("#form1").serialize());
+                                    $("#localidad").removeClass("borderError");
+                                    $("#localidad_error").html("");
+
+                                    $.ajax({
+                                        data: $("#form1").serialize(),
+                                        method: "POST",
+                                        url: "modulo_localidades_insert.php",
+                                        success: function(result) {
+                                            if (result > 1) {
+                                                let timerInterval;
+                                                Swal.fire({
+                                                    title: "Datos insertados correctamente!",
+                                                    html: "",
+                                                    timer: 2000,
+                                                    timerProgressBar: true,
+                                                    didOpen: () => {
+                                                        Swal
+                                                            .showLoading();
+                                                        const
+                                                            timer =
+                                                            Swal
+                                                            .getPopup()
+                                                            .querySelector(
+                                                                "b"
+                                                            );
+                                                        timerInterval
+                                                            =
+                                                            setInterval(
+                                                                () => {
+                                                                    timer
+                                                                        .textContent =
+                                                                        `${Swal.getTimerLeft()}`;
+                                                                },
+                                                                100
+                                                            );
+                                                    },
+                                                    willClose: () => {
+                                                        clearInterval
+                                                            (
+                                                                timerInterval
+                                                            );
+                                                    }
+                                                }).then((result) => {
+                                                    if (result
+                                                        .dismiss ===
+                                                        Swal
+                                                        .DismissReason
+                                                        .timer) {
+                                                        location.href =
+                                                            "modulo_localidades_list.php";
+                                                    }
+                                                });
+                                            } else {
+                                                Swal.fire(
+                                                    "No Insertado correctamente!"
+                                                );
+
+                                            }
+                                        }
+                                    });
+                                }
+                            },
+                            error: function(error) {
+                                console.log(error);
+                            }
+                        });
+                    }
+                });
             });
-        });
         </script>
 </body>
 

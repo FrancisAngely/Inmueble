@@ -3,12 +3,11 @@ include("controller.php");
 $tabla = "localidades";
 
 
+$datos["id_provincias"] = $_POST["id_provincias"];
 $datos["cmun"] = $_POST["cmun"];
-$datos["localidad"] = $_POST["localidad"];
 $datos["dc"] = $_POST["dc"];
-
+$datos["localidad"] = $_POST["localidad"];
+$datos["activo"] = 1;
 $datos["updated_at"] = date('Y-m-d h:i:s');
-
-
 
 echo updateById($tabla, $datos, $_POST["id"]);

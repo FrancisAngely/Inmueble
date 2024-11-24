@@ -40,7 +40,7 @@
                             <div class="mb-3">
                                 <label for="tipo_via" class="form-label">Tipo Via</label>
                                 <span id="tipo_via_error" class="text-danger"></span>
-                                <input type="text" class="form-control" id="tipo_via" name="tipo_via"
+                                <input type="tipo_via" class="form-control" id="tipo_via" name="tipo_via"
                                     placeholder="Tipo de Via">
                             </div>
 
@@ -65,7 +65,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <input type="submit" class="form-control" value="Aceptar" id="btnform11">
+                                <input type="submit" class="form-control" value="Aceptar" id="btnform1">
                             </div>
 
                         </form>
@@ -76,165 +76,172 @@
         </div>
 
         <?php include("scripts.php"); ?>
+
         <script>
-        $(document).ready(function() {
+            $(document).ready(function() {
 
-            $("#form1").validate({
-                rules: {
-                    id_localidades: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    tipo_via: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    denominacion: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    nombre_literal: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    cp: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    }
-                },
-                messages: {
-                    id_localidades: {
-                        required: "Introduce el id de la localidad",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    tipo_via: {
-                        required: "Introduce el tipo de via",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    denominacion: {
-                        required: "Introduce la denominacion",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    nombre_literal: {
-                        required: "Introduce el nombre literal",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    cp: {
-                        required: "Introduce el codigo postal",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    }
-                },
-                submitHandler: function(form) {
-                    let id_localidades = $("#id_localidades").val();
-                    let tipo_via = $("#tipo_via").val();
-                    let denominacion = $("#denominacion").val();
-                    let nombre_literal = $("#nombre_literal").val();
-                    let cp = $("#cp").val();
-
-
-
-                    let tabla = "callejero";
-                    let campo = "id_localidades";
-                    let campo2 = "tipo_via";
-                    let campo3 = "denominacion";
-                    let campo4 = "nombre_literal";
-                    let campo5 = "cp";
-
-                    let error = 0;
-
-                    $.ajax({
-                        data: {
-                            valor: callejero,
-                            tabla: tabla,
-                            campo: campo
+                $("#form1").validate({
+                    rules: {
+                        id_localidades: {
+                            required: true,
+                            maxlength: 200
                         },
-                        method: "POST",
-                        url: "verificarUnico.php",
-
-                        success: function(result) {
-                            if (result == 0) {
-                                $("#id_localidades_error").html("id localidad existe");
-                                $("#id_localidades").val('');
-                                $("#id_localidades").addClass("borderError");
-                            } else {
-                                console.log($("#form1").serialize());
-                                $("#localidad").removeClass("borderError");
-                                $("#localidad_error").html("");
-
-                                $.ajax({
-                                    data: $("#form1").serialize(),
-                                    method: "POST",
-                                    url: "modulo_callejero_insert.php",
-                                    success: function(result) {
-                                        if (result > 1) {
-                                            //alert("Datos insertados correctamente!");
-                                            let timerInterval;
-                                            Swal.fire({
-                                                title: "Datos insertados correctamente!",
-                                                html: "",
-                                                timer: 2000,
-                                                timerProgressBar: true,
-                                                didOpen: () => {
-                                                    Swal
-                                                        .showLoading();
-                                                    const
-                                                        timer =
-                                                        Swal
-                                                        .getPopup()
-                                                        .querySelector(
-                                                            "b"
-                                                        );
-                                                    timerInterval
-                                                        =
-                                                        setInterval(
-                                                            () => {
-                                                                timer
-                                                                    .textContent =
-                                                                    `${Swal.getTimerLeft()}`;
-                                                            },
-                                                            100
-                                                        );
-                                                },
-                                                willClose: () => {
-                                                    clearInterval
-                                                        (
-                                                            timerInterval
-                                                        );
-                                                }
-                                            }).then((result) => {
-                                                if (result
-                                                    .dismiss ===
-                                                    Swal
-                                                    .DismissReason
-                                                    .timer) {
-                                                    location.href =
-                                                        "modulo_callejero_list.php";
-                                                }
-                                            });
-                                        } else {
-                                            Swal.fire(
-                                                "No Insertado correctamente!"
-                                            );
-
-                                        }
-                                    }
-                                });
-                            }
+                        tipo_via: {
+                            required: true,
+                            maxlength: 10,
+                        },
+                        denominacion: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 3
+                        },
+                        nombre_literal: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 3
+                        },
+                        cp: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 3
                         }
-                    });
-                }
+                    },
+                    messages: {
+                        id_localidades: {
+                            required: "Introduce el id de la localidad",
+                            maxlength: "No puede contener mas de 10 carácteres",
+                        },
+                        tipo_via: {
+                            required: "Introduce el tipo de via",
+                            maxlength: "No puede superar 10 carácteres",
+                        },
+                        denominacion: {
+                            required: "Introduce la denominacion",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        },
+                        nombre_literal: {
+                            required: "Introduce el nombre literal",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        },
+                        cp: {
+                            required: "Introduce el codigo postal",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        }
+                    },
+                    submitHandler: function(form) {
+                        console.log("clic");
+                        let id_localidades = $("#id_localidades").val();
+                        let tipo_via = $("#tipo_via").val();
+                        let denominacion = $("#denominacion").val();
+                        let nombre_literal = $("#nombre_literal").val();
+                        let cp = $("#cp").val();
+
+                        let tabla = "callejero";
+                        let campo = "id_localidades";
+                        let campo2 = "tipo_via";
+                        let campo3 = "denominacion";
+                        let campo4 = "nombre_literal";
+                        let campo5 = "cp";
+                        let error = 0;
+
+
+                        $.ajax({
+                            data: {
+                                tabla: tabla,
+                                valor1: id_localidades,
+                                campo1: campo,
+                                valor2: tipo_via,
+                                campo2: campo2,
+                                valor3: denominacion,
+                                campo3: campo3,
+                                valor4: nombre_literal,
+                                campo4: campo4,
+                                valor5: cp,
+                                campo5: campo5
+                            },
+                            method: "POST",
+                            url: "verificarUnicoCallejero.php",
+
+                            success: function(result) {
+                                if (result == 0) {
+                                    $("#id_localidades_error").html("id localidad existe");
+                                    $("#id_localidades").val('');
+                                    $("#id_localidades").addClass("borderError");
+                                } else {
+                                    console.log($("#form1").serialize());
+                                    $("#id_localidades").removeClass("borderError");
+                                    $("#id_localidades_error").html("");
+
+                                    $.ajax({
+                                        data: $("#form1").serialize(),
+                                        method: "POST",
+                                        url: "modulo_callejero_insert.php",
+                                        success: function(result) {
+                                            if (result > 1) {
+                                                //alert("Datos insertados correctamente!");
+                                                let timerInterval;
+                                                Swal.fire({
+                                                    title: "Datos insertados correctamente!",
+                                                    html: "",
+                                                    timer: 2000,
+                                                    timerProgressBar: true,
+                                                    didOpen: () => {
+                                                        Swal
+                                                            .showLoading();
+                                                        const
+                                                            timer =
+                                                            Swal
+                                                            .getPopup()
+                                                            .querySelector(
+                                                                "b"
+                                                            );
+                                                        timerInterval
+                                                            =
+                                                            setInterval(
+                                                                () => {
+                                                                    timer
+                                                                        .textContent =
+                                                                        `${Swal.getTimerLeft()}`;
+                                                                },
+                                                                100
+                                                            );
+                                                    },
+                                                    willClose: () => {
+                                                        clearInterval
+                                                            (
+                                                                timerInterval
+                                                            );
+                                                    }
+                                                }).then((result) => {
+                                                    if (result
+                                                        .dismiss ===
+                                                        Swal
+                                                        .DismissReason
+                                                        .timer) {
+                                                        location.href =
+                                                            "modulo_callejero_list.php";
+                                                    }
+                                                });
+                                            } else {
+                                                Swal.fire(
+                                                    "No Insertado correctamente!"
+                                                );
+
+                                            }
+                                        }
+                                    });
+                                }
+                            },
+                            error: function(error) {
+                                console.log(error);
+                            }
+                        });
+                    }
+                });
             });
-        });
         </script>
 </body>
 

@@ -23,330 +23,508 @@
                     <?php include("breadcrumb.php"); ?>
                     <div
                         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Participantes - Nuevo</h1>
-                        <a href="modulo_participantes_list.php" class="btn btn-primary">Volver</a>
+                        <h1 class="h2">Inmuebles - Nuevo</h1>
+                        <a href="modulo_inmuebles_list.php" class="btn btn-primary">Volver</a>
                     </div>
 
-                    <div class="col-12">
+                    <div class="col-4">
                         <form action="#" method="post" enctype="multipart/form-data" id="form1">
-                            <div class="row border border-primary rounded p-3 m-5">
-                                <div class="col-md-6 mb-3">
-                                    <label for="id_eventos" class="form-label">Evento</label>
-                                    <span id="id_eventos_error" class="text-danger"></span>
-                                    <select class="form-control" id="id_eventos" name="id_eventos">
-                                        <option></option>
-                                        <?php //echo SelectOptionsId("roles","role");
-                    ?>
-                                        <?php echo SelectOptions("eventos", "id", "evento"); ?>
-                                    </select>
-                                </div>
 
-                                <div class="col-md-6 mb-3">
-                                    <label for="id_entradas" class="form-label">Entrada</label>
-                                    <span id="id_entradas_error" class="text-danger"></span>
-                                    <select class="form-control" id="id_entradas" name="id_entradas">
-                                        <option></option>
-                                        <?php //echo SelectOptionsId("roles","role");
-                    ?>
-                                        <?php //echo SelectOptions("entradas","id","entrada");
-                    ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class=" bg-secondary  rounded p-3 text-white" id="datosparticipante">
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <label for="nombre" class="form-label">Nombre</label>
-                                        <span id="nombre_error" class="text-danger"></span>
-                                        <input type="text" class="form-control" id="nombre" name="nombre"
-                                            placeholder="Nombre">
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label for="apellidos" class="form-label">Apellidos</label>
-                                        <span id="apellidos_error" class="text-danger"></span>
-                                        <input type="text" class="form-control" id="apellidos" name="apellidos"
-                                            placeholder="apellidos">
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label for="email" class="form-label">E-mail</label>
-                                        <span id="email_error" class="text-danger"></span>
-                                        <input type="email" class="form-control" id="email" name="email"
-                                            placeholder="E-mail">
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <label for="nif_nie" class="form-label">nif_nie</label>
-                                        <span id="nif_nie_error" class="text-danger"></span>
-                                        <input type="text" class="form-control" id="nif_nie" name="nif_nie"
-                                            placeholder="nif_nie">
-                                    </div>
-
-
-                                    <div class="col-md-4">
-                                        <label for="telefono" class="form-label">telefono</label>
-                                        <span id="telefono_error" class="text-danger"></span>
-                                        <input type="tel" class="form-control" id="telefono" name="telefono"
-                                            placeholder="telefono">
-                                    </div>
-                                </div>
-
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <span id="nombre_error" class="text-danger"></span>
+                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre">
                             </div>
 
-
-                            <div class="row d-flex justify-content-center">
-                                <div class="col-md-4 mb-3 ">
-                                    <input type="submit" class="form-control btn btn-primary btn-sm" value="Aceptar"
-                                        id="btnform11">
-                                </div>
+                            <div class="mb-3">
+                                <label for="id_provincias" class="form-label">Id Provincias</label>
+                                <span id="id_provincias_error" class="text-danger"></span>
+                                <input type="text" class="form-control" id="id_provincias" name="id_provincias"
+                                    placeholder="Id Provincias">
                             </div>
+
+                            <div class="mb-3">
+                                <label for="id_localidades" class="form-label">Id Localidades</label>
+                                <span id="id_localidades_error" class="text-danger"></span>
+                                <input type="text" class="form-control" id="id_localidades" name="id_localidades"
+                                    placeholder="Id Localidades">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="tipo_via" class="form-label">Tipo Via</label>
+                                <span id="tipo_via_error" class="text-danger"></span>
+                                <input type="tipo_via" class="form-control" id="tipo_via" name="tipo_via"
+                                    placeholder="Tipo de Via">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="direccion" class="form-label">Direccion</label>
+                                <span id="direccion_error" class="text-danger"></span>
+                                <input type="text" class="form-control" id="direccion" name="direccion"
+                                    placeholder="Direccion">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="cp" class="form-label">CP</label>
+                                <span id="cp_error" class="text-danger"></span>
+                                <input type="text" class="form-control" id="cp" name="cp" placeholder="Codigo Postal">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="numero" class="form-label">Numero</label>
+                                <span id="numero_error" class="text-danger"></span>
+                                <input type="text" class="form-control" id="numero" name="numero" placeholder="Numero">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="piso" class="form-label">Piso</label>
+                                <span id="piso_error" class="text-danger"></span>
+                                <input type="text" class="form-control" id="piso" name="piso" placeholder="Piso">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="letra" class="form-label">Letra</label>
+                                <span id="letra_error" class="text-danger"></span>
+                                <input type="text" class="form-control" id="letra" name="letra" placeholder="Letra">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="escalera" class="form-label">Escalera</label>
+                                <span id="escalera_error" class="text-danger"></span>
+                                <input type="escalera" class="form-control" id="escalera" name="escalera"
+                                    placeholder="Escalera">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="precio" class="form-label">Precio</label>
+                                <span id="precio_error" class="text-danger"></span>
+                                <input type="text" class="form-control" id="precio" name="precio" placeholder="Precio">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="habitaciones" class="form-label">Habitaciones</label>
+                                <span id="habitaciones_error" class="text-danger"></span>
+                                <input type="text" class="form-control" id="habitaciones" name="habitaciones"
+                                    placeholder="Habitaciones">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="metros_cuadrados" class="form-label">Metros Cuadrados</label>
+                                <span id="metros_cuadrados_error" class="text-danger"></span>
+                                <input type="text" class="form-control" id="metros_cuadrados" name="metros_cuadrados"
+                                    placeholder="Metros Cuadrados">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="exterior" class="form-label">Exterior</label>
+                                <span id="exterior_error" class="text-danger"></span>
+                                <input type="text" class="form-control" id="exterior" name="exterior"
+                                    placeholder="Exterior">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="aseos" class="form-label">Aseos</label>
+                                <span id="aseos_error" class="text-danger"></span>
+                                <input type="aseos" class="form-control" id="aseos" name="aseos" placeholder="Aseos">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="terraza" class="form-label">Terraza</label>
+                                <span id="terraza_error" class="text-danger"></span>
+                                <input type="text" class="form-control" id="terraza" name="terraza"
+                                    placeholder="Terraza">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="balcon" class="form-label">Balcon</label>
+                                <span id="balcon_error" class="text-danger"></span>
+                                <input type="text" class="form-control" id="balcon" name="balcon" placeholder="Balcon">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="orientacion" class="form-label">Orientacion</label>
+                                <span id="orientacion_error" class="text-danger"></span>
+                                <input type="text" class="form-control" id="orientacion" name="orientacion"
+                                    placeholder="Orientacion">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="ascensor" class="form-label">Ascensor</label>
+                                <span id="ascensor_error" class="text-danger"></span>
+                                <input type="text" class="form-control" id="ascensor" name="ascensor"
+                                    placeholder="Ascensor">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="descripcion" class="form-label">Descripcion</label>
+                                <span id="descripcion_error" class="text-danger"></span>
+                                <input type="descripcion" class="form-control" id="descripcion" name="descripcion"
+                                    placeholder="Descripcion">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="foto" class="form-label">Foto</label>
+                                <span id="foto_error" class="text-danger"></span>
+                                <input type="text" class="form-control" id="foto" name="foto" placeholder="Foto">
+                            </div>
+
+                            <div class="mb-3">
+                                <input type="submit" class="form-control" value="Aceptar" id="btnform1">
+                            </div>
+
                         </form>
                     </div>
-
-
-                </div> <!-- container -->
-
-            </div> <!-- content -->
-
-
-            <?php include("footer.php"); ?>
-
-
+                </div> <!-- content -->
+                <?php include("footer.php"); ?>
+            </div>
         </div>
-    </div>
 
-    <?php include("scripts.php"); ?>
+        <?php include("scripts.php"); ?>
 
+        <script>
+        $(document).ready(function() {
 
-    <script>
-    $(document).ready(function() {
-
-        $.validator.addMethod("realmadrid", function(value, element) {
-            "use strict";
-
-            if (this.optional(element)) {
-                return true;
-            }
-
-            value = value.toUpperCase();
-
-            if (value != "REAL MADRID")
-                return false;
-            else return true;
-
-        }, "Introduce el mejor equipo.");
-
-        $.validator.addMethod("nif_nieES", function(value, element) {
-            "use strict";
-
-            if (this.optional(element)) {
-                return true;
-            }
-
-            value = value.toUpperCase();
-
-            // Basic format test
-            if (!value.match(
-                    "((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)")) {
-                return false;
-            }
-
-            // Test NIF
-            if (/^[0-9]{8}[A-Z]{1}$/.test(value)) {
-                return ("TRWAGMYFPDXBNJZSQVHLCKE".charAt(value.substring(8, 0) % 23) === value.charAt(
-                    8));
-            }
-
-            // Test specials NIF (starts with K, L or M)
-            if (/^[KLM]{1}/.test(value)) {
-                return (value[8] === "TRWAGMYFPDXBNJZSQVHLCKE".charAt(value.substring(8, 1) % 23));
-            }
-            //COMPRUEBO SI ES NIE
-            var nieRegEx = new RegExp(/^[MXYZ]{1}[0-9]{7,8}[TRWAGMYFPDXBNJZSQVHLCKET]{1}$/gi);
-            var validChars = "TRWAGMYFPDXBNJZSQVHLCKET",
-                letter = value.substr(value.length - 1).toUpperCase(),
-                number;
-
-            value = value.toString().toUpperCase();
-
-            // Quick format test
-            if (value.length > 10 || value.length < 9 || !nieRegEx.test(value)) {
-                return false;
-            }
-
-            // X means same number
-            // Y means number + 10000000
-            // Z means number + 20000000
-            value = value.replace(/^[X]/, "0")
-                .replace(/^[Y]/, "1")
-                .replace(/^[Z]/, "2");
-
-            number = value.length === 9 ? value.substr(0, 8) : value.substr(0, 9);
-
-            return validChars.charAt(parseInt(number, 10) % 23) === letter;
-
-            return false;
-
-        }, "Please specify a valid NIF number.");
-
-        $("#form1").validate({
-            rules: {
-                id_eventos: {
-                    required: true,
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                nif_nie: {
-                    required: true,
-                    nif_nieES: true
-                },
-                nombre: {
-                    required: true,
-                    realmadrid: true
-                }
-            },
-            messages: {
-                id_eventos: {
-                    required: "Selecciones un evento",
-
-                },
-                email: {
-                    required: "Introduce un email",
-                    email: "Introduce un email válido",
-                },
-                nif_nie: {
-                    required: "Introduce un nif o nie",
-                    nifES: "Introduce un nif válido",
-                }
-            },
-            submitHandler: function(form) {
-                alert("valido");
-            }
-        });
-
-
-        $("#btnform1").click(function() {
-            // Swal.fire("SweetAlert2 is working!");
-
-
-            // $("#btnform1").prop('disabled', true);
-
-            let id_eventos = $("#id_eventos").val();
-            let id_entradas = $("#id_entradas").val();
-            let nombre = $("#nombre").val();
-            let apellidos = $("#apellidos").val();
-            let email = $("#email").val();
-            let nif_nie = $("#nif_nie").val();
-            let telefono = $("#telefono").val();
-            let error = 0;
-
-
-            if (id_eventos == "") {
-                error = 1;
-                $("#id_eventos_error").html("Debe seleccionar un evento");
-                $("#id_eventos").addClass("borderError");
-            }
-            if (id_entradas == "") {
-                error = 1;
-                $("#id_entradas_error").html("Debe seleccionar una  entrada");
-                $("#id_entradas").addClass("borderError");
-            }
-
-            if (nombre == "") {
-                error = 1;
-                $("#nombre_error").html("Debe introducir un nombre");
-                $("#nombre").addClass("borderError");
-            }
-
-
-
-            if (apellidos == "") {
-                error = 1;
-                $("#apellidos_error").html("Debe introducir sus apellidos");
-                $("#apellidos").addClass("borderError");
-            }
-
-            if (email == "") {
-                error = 1;
-                $("#email_error").html("Debe introducir un email");
-                $("#email").addClass("borderError");
-            }
-            if (nif_nie == "") {
-                error = 1;
-                $("#nif_nie_error").html("Debe introducir un nif o nie");
-                $("#nif_nie").addClass("borderError");
-            }
-
-
-
-            if (error == 0) {
-                //$("#form1").submit();
-                $.ajax({
-                    data: $("#form1").serialize(),
-                    method: "POST",
-                    url: "modulo_participantes_insert.php",
-                    success: function(result) {
-
-                        if (result >= 1) {
-                            //alert("Datos insertados correctamente!");
-                            let timerInterval;
-                            Swal.fire({
-                                title: "Datos insertados correctamente!",
-                                html: "",
-                                timer: 2000,
-                                timerProgressBar: true,
-                                didOpen: () => {
-                                    Swal.showLoading();
-                                    const timer = Swal.getPopup().querySelector(
-                                        "b");
-                                    timerInterval = setInterval(() => {
-                                        timer.textContent =
-                                            `${Swal.getTimerLeft()}`;
-                                    }, 100);
-                                },
-                                willClose: () => {
-                                    clearInterval(timerInterval);
-                                }
-                            }).then((result) => {
-                                /* Read more about handling dismissals below */
-                                if (result.dismiss === Swal.DismissReason.timer) {
-                                    location.href = "modulo_participantes_list.php";
-                                }
-                            });
-                            //location.href="clientes.php";
-                        } else {
-                            Swal.fire("No Insertado correctamente!");
-
-                        }
+            $("#form1").validate({
+                rules: {
+                    nombre: {
+                        required: true
+                    },
+                    id_provincias: {
+                        required: true
+                    },
+                    dc: {
+                        required: true
+                    },
+                    id_localidades: {
+                        required: true,
+                        maxlength: 200,
+                        minlength: 3
+                    },
+                    tipo_via: {
+                        required: true,
+                        maxlength: 200,
+                        minlength: 3
+                    },
+                    direccion: {
+                        required: true,
+                        maxlength: 200,
+                        minlength: 3
+                    },
+                    cp: {
+                        required: true,
+                        maxlength: 200,
+                        minlength: 3
+                    },
+                    numero: {
+                        required: true,
+                        maxlength: 200,
+                        minlength: 3
+                    },
+                    piso: {
+                        required: true,
+                        maxlength: 200,
+                        minlength: 3
+                    },
+                    letra: {
+                        required: true,
+                        maxlength: 200,
+                        minlength: 3
+                    },
+                    escalera: {
+                        required: true,
+                        maxlength: 200,
+                        minlength: 3
+                    },
+                    precio: {
+                        required: true,
+                        maxlength: 200,
+                        minlength: 3
+                    },
+                    habitaciones: {
+                        required: true,
+                        maxlength: 200,
+                        minlength: 3
+                    },
+                    metros_cuadrados: {
+                        required: true,
+                        maxlength: 200,
+                        minlength: 3
+                    },
+                    exterior: {
+                        required: true,
+                        maxlength: 200,
+                        minlength: 3
+                    },
+                    aseos: {
+                        required: true,
+                        maxlength: 200,
+                        minlength: 3
+                    },
+                    terraza: {
+                        required: true,
+                        maxlength: 200,
+                        minlength: 3
+                    },
+                    balcon: {
+                        required: true,
+                        maxlength: 200,
+                        minlength: 3
+                    },
+                    orientacion: {
+                        required: true,
+                        maxlength: 200,
+                        minlength: 3
+                    },
+                    ascensor: {
+                        required: true,
+                        maxlength: 200,
+                        minlength: 3
+                    },
+                    descripcion: {
+                        required: true,
+                        maxlength: 200,
+                        minlength: 3
+                    },
+                    foto: {
+                        required: true,
+                        maxlength: 200,
+                        minlength: 3
                     }
-                });
-            }
-
-        });
-
-        $("#id_eventos").change(function() {
-            let id_eventos = $("#id_eventos").val();
-            $.ajax({
-                data: {
-                    id_eventos: id_eventos
                 },
-                method: "POST",
-                url: "getEntradasEvento.php",
-                success: function(result) {
-                    $("#id_entradas").html(result);
+                messages: {
+                    nombre: {
+                        required: "Introduce un nombre",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
+                    },
+                    id_provincias: {
+                        required: "Introduce el id de la provincia",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
+                    },
+                    dc: {
+                        required: "Introduce un DC",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
+                    },
+                    id_localidades: {
+                        required: "Introduce  el id de la localidad",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
+                    },
+                    tipo_via: {
+                        required: "Introduce el tipo de via",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
+                    },
+                    direccion: {
+                        required: "Introduce una direccion",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
+                    },
+                    cp: {
+                        required: "Introduce un codigo postal",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
+                    },
+                    numero: {
+                        required: "Introduce el numero del inmueble",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
+                    },
+                    piso: {
+                        required: "Introduce el piso",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
+                    },
+                    letra: {
+                        required: "Introduce la letra",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
+                    },
+                    escalera: {
+                        required: "Introduce la escalera",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
+                    },
+                    precio: {
+                        required: "Introduce el precio",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
+                    },
+                    habitaciones: {
+                        required: "Introduce el numero de las habitaciones",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
+                    },
+                    metros_cuadrados: {
+                        required: "Introduce el numero de metros cuadrados",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
+                    },
+                    exterior: {
+                        required: "Introduce el exterior",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
+                    },
+                    aseos: {
+                        required: "Introduce el aseo",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
+                    },
+                    terraza: {
+                        required: "Introduce si tiene terraza",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
+                    },
+                    balcon: {
+                        required: "Introduce si tiene terraza",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
+                    },
+                    orientacion: {
+                        required: "Introduce la orientacion",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
+                    },
+                    ascensor: {
+                        required: "Introduce si tiene ascensor",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
+                    },
+                    descripcion: {
+                        required: "Introduce una descripcion",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
+                    },
+                    foto: {
+                        required: "Sube una foto",
+                        maxlength: "No puede superar 20 carácteres",
+                        minlength: "Mínimo 3 caracteres"
+                    }
+                },
+                submitHandler: function(form) {
+                    console.log("clic");
+                    let id_localidades = $("#id_localidades").val();
+                    let tipo_via = $("#tipo_via").val();
+                    let denominacion = $("#denominacion").val();
+                    let nombre_literal = $("#nombre_literal").val();
+                    let cp = $("#cp").val();
 
+
+
+
+
+
+
+
+
+
+
+                    let tabla = "callejero";
+                    let campo = "id_localidades";
+                    let campo2 = "tipo_via";
+                    let campo3 = "denominacion";
+                    let campo4 = "nombre_literal";
+                    let campo5 = "cp";
+                    let error = 0;
+
+
+                    $.ajax({
+                        data: {
+                            tabla: tabla,
+                            valor1: id_localidades,
+                            campo1: campo,
+                            valor2: tipo_via,
+                            campo2: campo2,
+                            valor3: denominacion,
+                            campo3: campo3,
+                            valor4: nombre_literal,
+                            campo4: campo4,
+                            valor5: cp,
+                            campo5: campo5
+                        },
+                        method: "POST",
+                        url: "verificarUnicoCallejero.php",
+
+                        success: function(result) {
+                            if (result == 0) {
+                                $("#id_localidades_error").html("id localidad existe");
+                                $("#id_localidades").val('');
+                                $("#id_localidades").addClass("borderError");
+                            } else {
+                                console.log($("#form1").serialize());
+                                $("#id_localidades").removeClass("borderError");
+                                $("#id_localidades_error").html("");
+
+                                $.ajax({
+                                    data: $("#form1").serialize(),
+                                    method: "POST",
+                                    url: "modulo_inmuebles_insert.php",
+                                    success: function(result) {
+                                        if (result > 1) {
+                                            //alert("Datos insertados correctamente!");
+                                            let timerInterval;
+                                            Swal.fire({
+                                                title: "Datos insertados correctamente!",
+                                                html: "",
+                                                timer: 2000,
+                                                timerProgressBar: true,
+                                                didOpen: () => {
+                                                    Swal
+                                                        .showLoading();
+                                                    const
+                                                        timer =
+                                                        Swal
+                                                        .getPopup()
+                                                        .querySelector(
+                                                            "b"
+                                                        );
+                                                    timerInterval
+                                                        =
+                                                        setInterval(
+                                                            () => {
+                                                                timer
+                                                                    .textContent =
+                                                                    `${Swal.getTimerLeft()}`;
+                                                            },
+                                                            100
+                                                        );
+                                                },
+                                                willClose: () => {
+                                                    clearInterval
+                                                        (
+                                                            timerInterval
+                                                        );
+                                                }
+                                            }).then((result) => {
+                                                if (result
+                                                    .dismiss ===
+                                                    Swal
+                                                    .DismissReason
+                                                    .timer) {
+                                                    location.href =
+                                                        "modulo_inmuebles_list.php";
+                                                }
+                                            });
+                                        } else {
+                                            Swal.fire(
+                                                "No Insertado correctamente!"
+                                            );
+
+                                        }
+                                    }
+                                });
+                            }
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
                 }
             });
         });
-
-
-    });
-    </script>
+        </script>
 </body>
 
 </html>

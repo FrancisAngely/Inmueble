@@ -7,6 +7,8 @@ $datos["tipo_via"] = $_POST["tipo_via"];
 $datos["denominacion"] = $_POST["denominacion"];
 $datos["nombre_literal"] = $_POST["nombre_literal"];
 $datos["cp"] = $_POST["cp"];
+$datos["barrio_rural"] = 'algo';
+
 
 $datos["created_at"] = date('Y-m-d h:i:s');
 $datos["updated_at"] = date('Y-m-d h:i:s');

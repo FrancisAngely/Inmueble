@@ -29,20 +29,20 @@
             </li>
             <li class="menu-title">Inmuebles</li>
             <li class="menu-item">
-                <a class="menu-link waves-effect" href="modulo_eventos_list.php">
+                <a class="menu-link waves-effect" href="modulo_inmuebles_new.php">
                     <span class="menu-icon"><i class="fa-solid fa-newspaper"></i></span> <span class="menu-text">
                         Nuevo</span>
                 </a>
             </li>
 
             <li class="menu-item">
-                <a class="menu-link waves-effect" href="modulo_entradas_list.php">
+                <a class="menu-link waves-effect" href="modulo_inmuebles_list.php">
                     <span class="menu-icon"><i class="fa-solid fa-list"></i></span> <span class="menu-text">
                         Listado</span>
                 </a>
             </li>
             <li class="menu-item">
-                <a class="menu-link waves-effect" href="modulo_participantes_list.php">
+                <a class="menu-link waves-effect" href="modulo_graficas.php">
                     <span class="menu-icon"><i class="fa-solid fa-chart-simple"></i></span> <span class="menu-text">
                         Gráfica</span>
                 </a>

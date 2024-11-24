@@ -22,11 +22,13 @@
 
           <?php include("breadcrumb.php"); ?>
 
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Configuración</h1>
             <a href="modulo_usuarios_new.php" class="btn btn-primary">Nuevo</a>
             &nbsp;&nbsp;
-            <a href="#" class="btn btn-success" id="exportar">Exportar&nbsp;<i class="fa-regular fa-file-excel"></i></a>
+            <a href="#" class="btn btn-success" id="exportar">Exportar&nbsp;<i
+                class="fa-regular fa-file-excel"></i></a>
           </div>
 
           <?php
@@ -64,10 +66,13 @@
                     <td><?php echo $u["usuario"]; ?></td>
                     <td><?php echo $u["email"]; ?></td>
                     <td><?php echo $u["role"]; ?></td>
-                    <td><a href="modulo_usuarios_edit.php?id=<?php echo $u["id1"]; ?>"><i class="fa-solid fa-pen-to-square fa-2x"></i></a>
+                    <td><a href="modulo_usuarios_edit.php?id=<?php echo $u["id1"]; ?>"><i
+                          class="fa-solid fa-pen-to-square fa-2x"></i></a>
                       &nbsp;&nbsp;
-                      <a href="#" data-id="<?php echo $u["id1"]; ?>" class="borrar"><i class="fa-solid fa-trash text-danger"></i></a>
-                      <a href="modulo_usuarios_print.php?id=<?php echo $u["id1"]; ?>"><i class="fa-solid fa-print"></i></a>
+                      <a href="#" data-id="<?php echo $u["id1"]; ?>" class="borrar"><i
+                          class="fa-solid fa-trash text-danger"></i></a>
+                      <a href="modulo_usuarios_print.php?id=<?php echo $u["id1"]; ?>"><i
+                          class="fa-solid fa-print"></i></a>
                       &nbsp;&nbsp;
                     </td>
                   </tr> <?php
@@ -153,7 +158,7 @@
           } else if (
             result.dismiss === Swal.DismissReason.cancel
           ) {
-    
+
           }
         });
       });

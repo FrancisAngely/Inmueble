@@ -29,8 +29,8 @@
                                 class="fa-regular fa-file-excel"></i></a>
                     </div>
                     <?php
-          $excel = ' <table><thead><tr><th>Id</th> <th>Role</th></tr></thead><tbody>';
-          ?>
+                    $excel = ' <table><thead><tr><th>Id</th> <th>Role</th></tr></thead><tbody>';
+                    ?>
                     <table class="table" id="tabla">
                         <thead>
                             <tr>
@@ -42,35 +42,35 @@
                         <tbody>
                             <?php
 
-              $roles = getAllV("roles");
+                            $roles = getAllV("roles");
 
-              if (count($roles) > 0) {
-                foreach ($roles as $r) {
-              ?>
-                            <tr>
-                                <td><?php echo $r["id"]; ?></td>
-                                <td><?php echo $r["role"]; ?></td>
-                                <td><a href="modulo_roles_edit.php?id=<?php echo $r["id"]; ?>"><i
-                                            class="fa-solid fa-pen-to-square fa-2x"></i></a>
-                                    &nbsp;&nbsp;
-                                    <a href="#" data-id="<?php echo $r["id"]; ?>" class="borrar"><i
-                                            class="fa-solid fa-trash text-danger"></i>
+                            if (count($roles) > 0) {
+                                foreach ($roles as $r) {
+                            ?>
+                                    <tr>
+                                        <td><?php echo $r["id"]; ?></td>
+                                        <td><?php echo $r["role"]; ?></td>
+                                        <td><a href="modulo_roles_edit.php?id=<?php echo $r["id"]; ?>"><i
+                                                    class="fa-solid fa-pen-to-square fa-2x"></i></a>
+                                            &nbsp;&nbsp;
+                                            <a href="#" data-id="<?php echo $r["id"]; ?>" class="borrar"><i
+                                                    class="fa-solid fa-trash text-danger"></i>
 
-                                        <a href="modulo_roles_print.php?id=<?php echo $r["id"]; ?>"><i
-                                                class="fa-solid fa-print"></i></a>
-                                        &nbsp;&nbsp;
-                                    </a>
-                                </td>
-                            </tr>
+                                                <a href="modulo_roles_print.php?id=<?php echo $r["id"]; ?>"><i
+                                                        class="fa-solid fa-print"></i></a>
+                                                &nbsp;&nbsp;
+                                            </a>
+                                        </td>
+                                    </tr>
                             <?php
 
-                  $excel .= '<tr>';
-                  $excel .= '<td>' . $r["id"] . '</td>';
-                  $excel .= '<td>' . $r["role"] . '</td>';
-                  $excel .= '</tr>';
-                }
-              }
-              ?>
+                                    $excel .= '<tr>';
+                                    $excel .= '<td>' . $r["id"] . '</td>';
+                                    $excel .= '<td>' . $r["role"] . '</td>';
+                                    $excel .= '</tr>';
+                                }
+                            }
+                            ?>
                         </tbody>
                     </table>
 
@@ -90,174 +90,168 @@
 
         <?php include("scripts.php"); ?>
         <script>
-        $(document).ready(function() {
+            $(document).ready(function() {
 
-            $("#exportar").click(function() {
-                $("#formExportar").submit();
-            });
-
-            $("#importar").click(function() {
-                const swalWithBootstrapButtons = Swal.mixin({
-                    customClass: {
-                        confirmButton: "btn btn-success",
-                        cancelButton: "btn btn-danger"
-                    },
-                    buttonsStyling: false
+                $("#exportar").click(function() {
+                    $("#formExportar").submit();
                 });
-                swalWithBootstrapButtons.fire({
-                    title: "Desea importar los datos?",
-                    text: "Se borrarán los datos existentes!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonText: "Si, importar!",
-                    cancelButtonText: "No!",
-                    reverseButtons: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        let fileExcel = $("#fileExcel")[0].files[0];
-                        var formData = new FormData();
-                        formData.append("fileExcel", fileExcel);
 
-                        $.ajax({
-                            data: formData,
-                            method: "POST",
-                            processData: false,
-                            contentType: false,
-                            cache: false,
-                            url: "modulo_roles_importar.php",
-                            success: function(result) {
-                                //alert(result);
-                                if (result == 1) {
-                                    swalWithBootstrapButtons.fire({
-                                        title: "Importación!",
-                                        text: "Datos importados correctamente",
-                                        icon: "success"
-                                    });
-                                    location.reload();
-                                } else {
-                                    swalWithBootstrapButtons.fire({
-                                        title: "Importación fallida!",
-                                        text: "Datos no importados",
-                                        icon: "error"
-                                    });
+                $("#importar").click(function() {
+                    const swalWithBootstrapButtons = Swal.mixin({
+                        customClass: {
+                            confirmButton: "btn btn-success",
+                            cancelButton: "btn btn-danger"
+                        },
+                        buttonsStyling: false
+                    });
+                    swalWithBootstrapButtons.fire({
+                        title: "Desea importar los datos?",
+                        text: "Se borrarán los datos existentes!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Si, importar!",
+                        cancelButtonText: "No!",
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            let fileExcel = $("#fileExcel")[0].files[0];
+                            var formData = new FormData();
+                            formData.append("fileExcel", fileExcel);
+
+                            $.ajax({
+                                data: formData,
+                                method: "POST",
+                                processData: false,
+                                contentType: false,
+                                cache: false,
+                                url: "modulo_roles_importar.php",
+                                success: function(result) {
+                                    //alert(result);
+                                    if (result == 1) {
+                                        swalWithBootstrapButtons.fire({
+                                            title: "Importación!",
+                                            text: "Datos importados correctamente",
+                                            icon: "success"
+                                        });
+                                        location.reload();
+                                    } else {
+                                        swalWithBootstrapButtons.fire({
+                                            title: "Importación fallida!",
+                                            text: "Datos no importados",
+                                            icon: "error"
+                                        });
+                                    }
                                 }
-                            }
-                        });
-                    } else if (
-                        /* Read more about handling dismissals below */
-                        result.dismiss === Swal.DismissReason.cancel
-                    ) {
-                        /*   swalWithBootstrapButtons.fire({
-                             title: "Cancelled",
-                             text: "Your imaginary file is safe :)",
-                             icon: "error"
-                           });*/
-                    }
+                            });
+                        } else if (
+                            /* Read more about handling dismissals below */
+                            result.dismiss === Swal.DismissReason.cancel
+                        ) {}
+                    });
                 });
-            });
 
-            $("#exportar2").click(function() {
-                let nombreFichero = "Roles";
-                let datos_a_enviar = '<?php echo $excel; ?>';
-                $.ajax({
-                    data: {
-                        nombreFichero: nombreFichero,
-                        datos_a_enviar: datos_a_enviar
-                    },
-                    method: "POST",
-                    url: "ficheroExcel.php",
-                    success: function(result) {
-                        alert(result);
-                        WinId = window.open('ficheroExcel2.php', '_blank', '');
-                        // WinId.document.open('ficheroExcel2.php');
-                        WinId.document.write('<?php echo $excel; ?>');
-                        //WinId.document.close();
-                        //WinId.focus();
-                        WinId.print();
-                        //WinId.close();
+                $("#exportar2").click(function() {
+                    let nombreFichero = "Roles";
+                    let datos_a_enviar = '<?php echo $excel; ?>';
+                    $.ajax({
+                        data: {
+                            nombreFichero: nombreFichero,
+                            datos_a_enviar: datos_a_enviar
+                        },
+                        method: "POST",
+                        url: "ficheroExcel.php",
+                        success: function(result) {
+                            alert(result);
+                            WinId = window.open('ficheroExcel2.php', '_blank', '');
+                            // WinId.document.open('ficheroExcel2.php');
+                            WinId.document.write('<?php echo $excel; ?>');
+                            //WinId.document.close();
+                            //WinId.focus();
+                            WinId.print();
+                            //WinId.close();
 
-                    }
+                        }
+                    });
                 });
-            });
 
-            $(".borrar").click(function() {
-                let id = $(this).attr('data-id');
-                let padre = $(this).parent().parent();
-                const swalWithBootstrapButtons = Swal.mixin({
-                    customClass: {
-                        confirmButton: "btn btn-success",
-                        cancelButton: "btn btn-danger"
-                    },
-                    buttonsStyling: false
-                });
-                swalWithBootstrapButtons.fire({
-                    title: "Desea eliminar el role?",
-                    text: "no hay vuelta atrás!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonText: "Si, borrar!",
-                    cancelButtonText: "No, mantener!",
-                    reverseButtons: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
+                $(".borrar").click(function() {
+                    let id = $(this).attr('data-id');
+                    let padre = $(this).parent().parent();
+                    const swalWithBootstrapButtons = Swal.mixin({
+                        customClass: {
+                            confirmButton: "btn btn-success",
+                            cancelButton: "btn btn-danger"
+                        },
+                        buttonsStyling: false
+                    });
+                    swalWithBootstrapButtons.fire({
+                        title: "Desea eliminar el role?",
+                        text: "no hay vuelta atrás!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Si, borrar!",
+                        cancelButtonText: "No, mantener!",
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
 
-                        $.ajax({
-                            data: {
-                                id: id
-                            },
-                            method: "POST",
-                            url: "modulo_roles_delete.php",
-                            success: function(result) {
-                                if (result == 1) {
-                                    swalWithBootstrapButtons.fire({
-                                        title: "Eliminado!",
-                                        text: "Rol dado de baja",
-                                        icon: "success"
-                                    });
-                                    padre.hide();
-                                } else {
-                                    swalWithBootstrapButtons.fire({
-                                        title: "No Eliminado!",
-                                        text: "Rol NO dado de baja",
-                                        icon: "error"
-                                    });
+                            $.ajax({
+                                data: {
+                                    id: id
+                                },
+                                method: "POST",
+                                url: "modulo_roles_delete.php",
+                                success: function(result) {
+                                    if (result == 1) {
+                                        swalWithBootstrapButtons.fire({
+                                            title: "Eliminado!",
+                                            text: "Rol dado de baja",
+                                            icon: "success"
+                                        });
+                                        padre.hide();
+                                    } else {
+                                        swalWithBootstrapButtons.fire({
+                                            title: "No Eliminado!",
+                                            text: "Rol NO dado de baja",
+                                            icon: "error"
+                                        });
+                                    }
                                 }
-                            }
-                        });
-                    } else if (
-                        /* Read more about handling dismissals below */
-                        result.dismiss === Swal.DismissReason.cancel
-                    ) {}
+                            });
+                        } else if (
+                            /* Read more about handling dismissals below */
+                            result.dismiss === Swal.DismissReason.cancel
+                        ) {}
+                    });
+                });
+
+                $("#tabla").DataTable({
+                    language: {
+                        "decimal": "",
+                        "emptyTable": "No hay información",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Mostrar _MENU_ Entradas",
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "search": "Buscar:",
+                        "zeroRecords": "Sin resultados encontrados",
+                        "paginate": {
+                            "first": "Primero",
+                            "last": "Ultimo",
+                            previous: "<i class='mdi mdi-chevron-left'>",
+                            next: "<i class='mdi mdi-chevron-right'>"
+                        }
+                    },
+                    drawCallback: function() {
+                        $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
+                    }
+
                 });
             });
-
-            $("#tabla").DataTable({
-                language: {
-                    "decimal": "",
-                    "emptyTable": "No hay información",
-                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-                    "infoPostFix": "",
-                    "thousands": ",",
-                    "lengthMenu": "Mostrar _MENU_ Entradas",
-                    "loadingRecords": "Cargando...",
-                    "processing": "Procesando...",
-                    "search": "Buscar:",
-                    "zeroRecords": "Sin resultados encontrados",
-                    "paginate": {
-                        "first": "Primero",
-                        "last": "Ultimo",
-                        previous: "<i class='mdi mdi-chevron-left'>",
-                        next: "<i class='mdi mdi-chevron-right'>"
-                    }
-                },
-                drawCallback: function() {
-                    $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
-                }
-
-            });
-        });
         </script>
 
 </body>

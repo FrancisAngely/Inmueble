@@ -36,7 +36,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <input type="submit" class="form-control" value="Aceptar" id="btnform11">
+                                <input type="submit" class="form-control" value="Aceptar" id="btnform1">
                             </div>
 
                         </form>
@@ -54,111 +54,111 @@
 
 
         <script>
-        $(document).ready(function() {
+            $(document).ready(function() {
 
-            $("#form1").validate({
-                rules: {
-                    role: {
-                        required: true,
-                        maxlength: 20,
-                        minlength: 3
-                    }
-                },
-                messages: {
-                    role: {
-                        required: "Introduce el nombre de role",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    }
-                },
-                submitHandler: function(form) {
-                    let role = $("#role").val();
-                    let tabla = "roles";
-                    let campo = "role";
-                    $.ajax({
-                        data: {
-                            valor: role,
-                            tabla: tabla,
-                            campo: campo
-                        },
-                        method: "POST",
-                        url: "verificarUnico.php",
-                        success: function(result) {
-                            if (result == 0) {
-                                $("#role_error").html("role existe");
-                                $("#role").val('');
-                                $("#role").addClass("borderError");
-                            } else {
-                                $("#role").removeClass("borderError");
-                                $("#role_error").html("");
-
-                                $.ajax({
-                                    data: $("#form1").serialize(),
-                                    method: "POST",
-                                    url: "modulo_roles_insert.php",
-                                    success: function(result) {
-
-                                        if (result > 1) {
-                                            //alert("Datos insertados correctamente!");
-                                            let timerInterval;
-                                            Swal.fire({
-                                                title: "Datos insertados correctamente!",
-                                                html: "",
-                                                timer: 2000,
-                                                timerProgressBar: true,
-                                                didOpen: () => {
-                                                    Swal
-                                                        .showLoading();
-                                                    const
-                                                        timer =
-                                                        Swal
-                                                        .getPopup()
-                                                        .querySelector(
-                                                            "b"
-                                                        );
-                                                    timerInterval
-                                                        =
-                                                        setInterval(
-                                                            () => {
-                                                                timer
-                                                                    .textContent =
-                                                                    `${Swal.getTimerLeft()}`;
-                                                            },
-                                                            100
-                                                        );
-                                                },
-                                                willClose: () => {
-                                                    clearInterval
-                                                        (
-                                                            timerInterval
-                                                        );
-                                                }
-                                            }).then((result) => {
-                                                /* Read more about handling dismissals below */
-                                                if (result
-                                                    .dismiss ===
-                                                    Swal
-                                                    .DismissReason
-                                                    .timer) {
-                                                    location.href =
-                                                        "modulo_roles_list.php";
-                                                }
-                                            });
-                                            //location.href="clientes.php";
-                                        } else {
-                                            Swal.fire(
-                                                "No Insertado correctamente!"
-                                            );
-
-                                        }
-                                    }
-                                });
-                            }
+                $("#form1").validate({
+                    rules: {
+                        role: {
+                            required: true,
+                            maxlength: 20,
+                            minlength: 3
                         }
-                    });
-                }
+                    },
+                    messages: {
+                        role: {
+                            required: "Introduce el nombre de role",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        }
+                    },
+                    submitHandler: function(form) {
+                        let role = $("#role").val();
+                        let tabla = "roles";
+                        let campo = "role";
+                        $.ajax({
+                            data: {
+                                valor: role,
+                                tabla: tabla,
+                                campo: campo
+                            },
+                            method: "POST",
+                            url: "verificarUnico.php",
+                            success: function(result) {
+                                if (result == 0) {
+                                    $("#role_error").html("role existe");
+                                    $("#role").val('');
+                                    $("#role").addClass("borderError");
+                                } else {
+                                    $("#role").removeClass("borderError");
+                                    $("#role_error").html("");
+
+                                    $.ajax({
+                                        data: $("#form1").serialize(),
+                                        method: "POST",
+                                        url: "modulo_roles_insert.php",
+                                        success: function(result) {
+
+                                            if (result > 1) {
+                                                //alert("Datos insertados correctamente!");
+                                                let timerInterval;
+                                                Swal.fire({
+                                                    title: "Datos insertados correctamente!",
+                                                    html: "",
+                                                    timer: 2000,
+                                                    timerProgressBar: true,
+                                                    didOpen: () => {
+                                                        Swal
+                                                            .showLoading();
+                                                        const
+                                                            timer =
+                                                            Swal
+                                                            .getPopup()
+                                                            .querySelector(
+                                                                "b"
+                                                            );
+                                                        timerInterval
+                                                            =
+                                                            setInterval(
+                                                                () => {
+                                                                    timer
+                                                                        .textContent =
+                                                                        `${Swal.getTimerLeft()}`;
+                                                                },
+                                                                100
+                                                            );
+                                                    },
+                                                    willClose: () => {
+                                                        clearInterval
+                                                            (
+                                                                timerInterval
+                                                            );
+                                                    }
+                                                }).then((result) => {
+                                                    /* Read more about handling dismissals below */
+                                                    if (result
+                                                        .dismiss ===
+                                                        Swal
+                                                        .DismissReason
+                                                        .timer) {
+                                                        location.href =
+                                                            "modulo_roles_list.php";
+                                                    }
+                                                });
+                                                //location.href="clientes.php";
+                                            } else {
+                                                Swal.fire(
+                                                    "No Insertado correctamente!"
+                                                );
+
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    }
+                });
             });
-        });
         </script>
 </body>
 

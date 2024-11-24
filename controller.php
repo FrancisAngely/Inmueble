@@ -37,6 +37,48 @@ function getByColum2($tabla, $column1, $valor1, $column2, $valor2)
     }
 }
 
+//obtiene un registro de la tabla donde coinciden 4 valores de busqueda
+function getByColum4($tabla, $column1, $valor1, $column2, $valor2, $column3, $valor3, $column4, $valor4)
+{
+    include("db.php");
+    $sql = "SELECT * FROM `" . $tabla . "`";
+    $sql .= " WHERE 1 ";
+    $sql .= " and `" . $column1 . "`='" . $valor1 . "'";
+    $sql .= " and `" . $column2 . "`='" . $valor2 . "'";
+    $sql .= " and `" . $column3 . "`='" . $valor3 . "'";
+    $sql .= " and `" . $column4 . "`='" . $valor4 . "'";
+    $query = $mysqli->query($sql);
+    if ($query->num_rows > 0) {
+        //usuario valido
+        $fila = $query->fetch_assoc();
+        return $fila;
+    } else {
+        return 0;
+    }
+}
+
+//obtiene un registro de la tabla donde coinciden 5 valores de busqueda
+function getByColum5($tabla, $column1, $valor1, $column2, $valor2, $column3, $valor3, $column4, $valor4, $column5, $valor5)
+{
+    include("db.php");
+    $sql = "SELECT * FROM `" . $tabla . "`";
+    $sql .= " WHERE 1 ";
+    $sql .= " and `" . $column1 . "`='" . $valor1 . "'";
+    $sql .= " and `" . $column2 . "`='" . $valor2 . "'";
+    $sql .= " and `" . $column3 . "`='" . $valor3 . "'";
+    $sql .= " and `" . $column4 . "`='" . $valor4 . "'";
+    $sql .= " and `" . $column5 . "`='" . $valor5 . "'";
+
+    $query = $mysqli->query($sql);
+    if ($query->num_rows > 0) {
+        //usuario valido
+        $fila = $query->fetch_assoc();
+        return $fila;
+    } else {
+        return 0;
+    }
+}
+
 //obtiene un registro de la tabla donde coincide un valor
 function getByColum($tabla, $column1, $valor1)
 {
@@ -514,7 +556,7 @@ function SelectProvincias()
     if ($resultProv->num_rows > 0) {
         while ($filaProv = $resultProv->fetch_assoc()) {
 ?>
-<option value="<?php echo $filaProv["id"]; ?>"><?php echo $filaProv["provincia"]; ?></option>
+            <option value="<?php echo $filaProv["id"]; ?>"><?php echo $filaProv["provincia"]; ?></option>
 <?php
         }
     }

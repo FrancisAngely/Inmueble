@@ -17,7 +17,6 @@
                 }
                 ?>
             </div> <!-- content -->
-            <?php include("scripts.php"); ?>
             <?php include("footer.php"); ?>
         </div>
     </div>

@@ -30,27 +30,26 @@
                     <div class="col-4">
                         <form action="#" method="post" enctype="multipart/form-data" id="form1">
                             <div class="mb-3">
-                                <label for="provincia" class="form-label">Provincias</label>
-                                <span id="provincia_error" class="text-danger"></span>
+                                <label for="provincias" class="form-label">Provincias</label>
+                                <span id="provincias_error" class="text-danger"></span>
                                 <input type="text" class="form-control" id="provincia" name="provincia"
-                                    placeholder="provincia">
+                                    placeholder="Provincias">
                             </div>
 
                             <div class="mb-3">
-                                <input type="submit" class="form-control" value="Aceptar" id="btnform11">
+                                <input type="submit" class="form-control" value="Aceptar" id="btnform1">
                             </div>
 
                         </form>
                     </div>
-                </div> <!-- content -->
-                <?php include("footer.php"); ?>
-            </div>
+                </div> <!-- container -->
+            </div> <!-- content -->
+            <?php include("footer.php"); ?>
         </div>
+    </div>
 
-        <?php include("scripts.phsp"); ?>
-
-
-        <script>
+    <?php include("scripts.php"); ?>
+    <script>
         $(document).ready(function() {
 
             $("#form1").validate({
@@ -80,22 +79,22 @@
                         },
                         method: "POST",
                         url: "verificarUnico.php",
-
                         success: function(result) {
                             if (result == 0) {
-                                $("#provincia_error").html("Provincia existe");
-                                $("#provincia").val('');
-                                $("#provincia").addClass("borderError");
+                                $("#provincias_error").html("Provincia existe");
+                                $("#provincias").val('');
+                                $("#provincias").addClass("borderError");
                             } else {
                                 console.log($("#form1").serialize());
-                                $("#provincia").removeClass("borderError");
-                                $("#provincia_error").html("");
+                                $("#provincias").removeClass("borderError");
+                                $("#provincias_error").html("");
 
                                 $.ajax({
                                     data: $("#form1").serialize(),
                                     method: "POST",
                                     url: "modulo_provincias_insert.php",
                                     success: function(result) {
+
                                         if (result > 1) {
                                             //alert("Datos insertados correctamente!");
                                             let timerInterval;
@@ -132,7 +131,6 @@
                                                         );
                                                 }
                                             }).then((result) => {
-                                                /* Read more about handling dismissals below */
                                                 if (result
                                                     .dismiss ===
                                                     Swal
@@ -142,7 +140,7 @@
                                                         "modulo_provincias_list.php";
                                                 }
                                             });
-                                            //location.href="clientes.php";
+
                                         } else {
                                             Swal.fire(
                                                 "No Insertado correctamente!"
@@ -157,7 +155,7 @@
                 }
             });
         });
-        </script>
+    </script>
 </body>
 
 </html>

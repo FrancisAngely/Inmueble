@@ -1,15 +1,8 @@
 <?php
 include("controller.php");
-$user = getById("usuarios", $_GET["id"]);
-$usuarios = getAllVInner("usuarios", "roles", "id_roles", "id");
-
-if (count($usuarios) > 0) {
-    foreach ($usuarios as $u) {
-        echo $u["role"];
-    }
-}
-
+$callejero = getById("callejero", $_GET["id"]);
 ?>
+
 <?php
 include("files_dompdf/config.php");
 ob_start();
@@ -51,27 +44,29 @@ ob_start();
                 <table class="ficha" cellspacing=0 cellpadding=0>
                     <tr>
                         <th>Id:</th>
-                        <td><?php echo $user["id"]; ?></td>
+                        <td><?php echo $callejero["id"]; ?></td>
                     </tr>
                     <tr>
-                        <th>Usuario:</th>
-                        <td><?php echo $user["usuario"]; ?></td>
+                        <th>Id localidades:</th>
+                        <td><?php echo $callejero["id_localidades"]; ?></td>
                     </tr>
                     <tr>
-                        <th>E-mail:</th>
-                        <td><?php echo $user["email"]; ?></td>
+                        <th>Tipo de via:</th>
+                        <td><?php echo $callejero["tipo_via"]; ?></td>
                     </tr>
                     <tr>
-                        <th>Id Role:</th>
-                        <td><?php echo $user["id_roles"]; ?></td>
+                        <th>Denominacion:</th>
+                        <td><?php echo $callejero["denominacion"]; ?></td>
                     </tr>
                     <tr>
-                        <th>Role:</th>
-                        <td><?php echo $u["role"]; ?></td>
+                        <th>Nombre Literal:</th>
+                        <td><?php echo $callejero["nombre_literal"]; ?></td>
+                    </tr>
+                    <tr>
+                        <th>Codigo Postal:</th>
+                        <td><?php echo $callejero["cp"]; ?></td>
                     </tr>
                 </table>
-
-
             </td>
         </tr>
         <?php include("files_dompdf/pie.php"); ?>
