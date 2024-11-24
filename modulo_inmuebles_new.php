@@ -37,17 +37,20 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="id_provincias" class="form-label">Id Provincias</label>
+                                <label for="id_provincias" class="form-label">Provincias</label>
                                 <span id="id_provincias_error" class="text-danger"></span>
-                                <input type="text" class="form-control" id="id_provincias" name="id_provincias"
-                                    placeholder="Id Provincias">
+                                <select class="form-control" id="id_provincias" name="id_provincias">
+                                    <option></option>
+                                    <?php echo SelectOptions("provincias", "id", "provincia"); ?>
+                                </select>
                             </div>
 
                             <div class="mb-3">
-                                <label for="id_localidades" class="form-label">Id Localidades</label>
-                                <span id="id_localidades_error" class="text-danger"></span>
-                                <input type="text" class="form-control" id="id_localidades" name="id_localidades"
-                                    placeholder="Id Localidades">
+                                <label for="id_localidades" class="form-label">Localidades</label>
+                                <span id="id_provincias_error" class="text-danger"></span>
+                                <select class="form-control" id="id_localidades" name="id_localidades">
+                                    <option></option>
+                                </select>
                             </div>
 
                             <div class="mb-3">
@@ -182,348 +185,364 @@
         <?php include("scripts.php"); ?>
 
         <script>
-        $(document).ready(function() {
+            $(document).ready(function() {
 
-            $("#form1").validate({
-                rules: {
-                    nombre: {
-                        required: true
+                $("#form1").validate({
+                    rules: {
+                        nombre: {
+                            required: true
+                        },
+                        id_provincias: {
+                            required: true
+                        },
+                        dc: {
+                            required: true
+                        },
+                        id_localidades: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 3
+                        },
+                        tipo_via: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 3
+                        },
+                        direccion: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 3
+                        },
+                        cp: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 3
+                        },
+                        numero: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 3
+                        },
+                        piso: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 3
+                        },
+                        letra: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 3
+                        },
+                        escalera: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 3
+                        },
+                        precio: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 3
+                        },
+                        habitaciones: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 3
+                        },
+                        metros_cuadrados: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 3
+                        },
+                        exterior: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 3
+                        },
+                        aseos: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 3
+                        },
+                        terraza: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 3
+                        },
+                        balcon: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 3
+                        },
+                        orientacion: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 3
+                        },
+                        ascensor: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 3
+                        },
+                        descripcion: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 3
+                        },
+                        foto: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 3
+                        }
                     },
-                    id_provincias: {
-                        required: true
+                    messages: {
+                        nombre: {
+                            required: "Introduce un nombre",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        },
+                        id_provincias: {
+                            required: "Introduce el id de la provincia",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        },
+                        dc: {
+                            required: "Introduce un DC",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        },
+                        id_localidades: {
+                            required: "Introduce  el id de la localidad",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        },
+                        tipo_via: {
+                            required: "Introduce el tipo de via",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        },
+                        direccion: {
+                            required: "Introduce una direccion",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        },
+                        cp: {
+                            required: "Introduce un codigo postal",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        },
+                        numero: {
+                            required: "Introduce el numero del inmueble",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        },
+                        piso: {
+                            required: "Introduce el piso",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        },
+                        letra: {
+                            required: "Introduce la letra",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        },
+                        escalera: {
+                            required: "Introduce la escalera",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        },
+                        precio: {
+                            required: "Introduce el precio",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        },
+                        habitaciones: {
+                            required: "Introduce el numero de las habitaciones",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        },
+                        metros_cuadrados: {
+                            required: "Introduce el numero de metros cuadrados",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        },
+                        exterior: {
+                            required: "Introduce el exterior",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        },
+                        aseos: {
+                            required: "Introduce el aseo",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        },
+                        terraza: {
+                            required: "Introduce si tiene terraza",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        },
+                        balcon: {
+                            required: "Introduce si tiene terraza",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        },
+                        orientacion: {
+                            required: "Introduce la orientacion",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        },
+                        ascensor: {
+                            required: "Introduce si tiene ascensor",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        },
+                        descripcion: {
+                            required: "Introduce una descripcion",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        },
+                        foto: {
+                            required: "Sube una foto",
+                            maxlength: "No puede superar 20 carácteres",
+                            minlength: "Mínimo 3 caracteres"
+                        }
                     },
-                    dc: {
-                        required: true
-                    },
-                    id_localidades: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    tipo_via: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    direccion: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    cp: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    numero: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    piso: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    letra: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    escalera: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    precio: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    habitaciones: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    metros_cuadrados: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    exterior: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    aseos: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    terraza: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    balcon: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    orientacion: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    ascensor: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    descripcion: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
-                    },
-                    foto: {
-                        required: true,
-                        maxlength: 200,
-                        minlength: 3
+                    submitHandler: function(form) {
+                        console.log("clic");
+                        let id_localidades = $("#id_localidades").val();
+                        let tipo_via = $("#tipo_via").val();
+                        let denominacion = $("#denominacion").val();
+                        let nombre_literal = $("#nombre_literal").val();
+                        let cp = $("#cp").val();
+
+
+
+
+
+
+
+
+
+
+
+                        let tabla = "callejero";
+                        let campo = "id_localidades";
+                        let campo2 = "tipo_via";
+                        let campo3 = "denominacion";
+                        let campo4 = "nombre_literal";
+                        let campo5 = "cp";
+                        let error = 0;
+
+
+                        $.ajax({
+                            data: {
+                                tabla: tabla,
+                                valor1: id_localidades,
+                                campo1: campo,
+                                valor2: tipo_via,
+                                campo2: campo2,
+                                valor3: denominacion,
+                                campo3: campo3,
+                                valor4: nombre_literal,
+                                campo4: campo4,
+                                valor5: cp,
+                                campo5: campo5
+                            },
+                            method: "POST",
+                            url: "verificarUnicoCallejero.php",
+
+                            success: function(result) {
+                                if (result == 0) {
+                                    $("#id_localidades_error").html("id localidad existe");
+                                    $("#id_localidades").val('');
+                                    $("#id_localidades").addClass("borderError");
+                                } else {
+                                    console.log($("#form1").serialize());
+                                    $("#id_localidades").removeClass("borderError");
+                                    $("#id_localidades_error").html("");
+
+                                    $.ajax({
+                                        data: $("#form1").serialize(),
+                                        method: "POST",
+                                        url: "modulo_inmuebles_insert.php",
+                                        success: function(result) {
+                                            if (result > 1) {
+                                                //alert("Datos insertados correctamente!");
+                                                let timerInterval;
+                                                Swal.fire({
+                                                    title: "Datos insertados correctamente!",
+                                                    html: "",
+                                                    timer: 2000,
+                                                    timerProgressBar: true,
+                                                    didOpen: () => {
+                                                        Swal
+                                                            .showLoading();
+                                                        const
+                                                            timer =
+                                                            Swal
+                                                            .getPopup()
+                                                            .querySelector(
+                                                                "b"
+                                                            );
+                                                        timerInterval
+                                                            =
+                                                            setInterval(
+                                                                () => {
+                                                                    timer
+                                                                        .textContent =
+                                                                        `${Swal.getTimerLeft()}`;
+                                                                },
+                                                                100
+                                                            );
+                                                    },
+                                                    willClose: () => {
+                                                        clearInterval
+                                                            (
+                                                                timerInterval
+                                                            );
+                                                    }
+                                                }).then((result) => {
+                                                    if (result
+                                                        .dismiss ===
+                                                        Swal
+                                                        .DismissReason
+                                                        .timer) {
+                                                        location.href =
+                                                            "modulo_inmuebles_list.php";
+                                                    }
+                                                });
+                                            } else {
+                                                Swal.fire(
+                                                    "No Insertado correctamente!"
+                                                );
+
+                                            }
+                                        }
+                                    });
+                                }
+                            },
+                            error: function(error) {
+                                console.log(error);
+                            }
+                        });
                     }
-                },
-                messages: {
-                    nombre: {
-                        required: "Introduce un nombre",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    id_provincias: {
-                        required: "Introduce el id de la provincia",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    dc: {
-                        required: "Introduce un DC",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    id_localidades: {
-                        required: "Introduce  el id de la localidad",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    tipo_via: {
-                        required: "Introduce el tipo de via",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    direccion: {
-                        required: "Introduce una direccion",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    cp: {
-                        required: "Introduce un codigo postal",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    numero: {
-                        required: "Introduce el numero del inmueble",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    piso: {
-                        required: "Introduce el piso",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    letra: {
-                        required: "Introduce la letra",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    escalera: {
-                        required: "Introduce la escalera",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    precio: {
-                        required: "Introduce el precio",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    habitaciones: {
-                        required: "Introduce el numero de las habitaciones",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    metros_cuadrados: {
-                        required: "Introduce el numero de metros cuadrados",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    exterior: {
-                        required: "Introduce el exterior",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    aseos: {
-                        required: "Introduce el aseo",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    terraza: {
-                        required: "Introduce si tiene terraza",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    balcon: {
-                        required: "Introduce si tiene terraza",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    orientacion: {
-                        required: "Introduce la orientacion",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    ascensor: {
-                        required: "Introduce si tiene ascensor",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    descripcion: {
-                        required: "Introduce una descripcion",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    },
-                    foto: {
-                        required: "Sube una foto",
-                        maxlength: "No puede superar 20 carácteres",
-                        minlength: "Mínimo 3 caracteres"
-                    }
-                },
-                submitHandler: function(form) {
-                    console.log("clic");
-                    let id_localidades = $("#id_localidades").val();
-                    let tipo_via = $("#tipo_via").val();
-                    let denominacion = $("#denominacion").val();
-                    let nombre_literal = $("#nombre_literal").val();
-                    let cp = $("#cp").val();
+                });
 
-
-
-
-
-
-
-
-
-
-
-                    let tabla = "callejero";
-                    let campo = "id_localidades";
-                    let campo2 = "tipo_via";
-                    let campo3 = "denominacion";
-                    let campo4 = "nombre_literal";
-                    let campo5 = "cp";
-                    let error = 0;
-
-
+                $("#id_provincias").change(function() {
+                    let id_provincias = $("#id_provincias").val();
+                    console.log(id_provincias);
                     $.ajax({
                         data: {
-                            tabla: tabla,
-                            valor1: id_localidades,
-                            campo1: campo,
-                            valor2: tipo_via,
-                            campo2: campo2,
-                            valor3: denominacion,
-                            campo3: campo3,
-                            valor4: nombre_literal,
-                            campo4: campo4,
-                            valor5: cp,
-                            campo5: campo5
+                            id_provincias: id_provincias
                         },
                         method: "POST",
-                        url: "verificarUnicoCallejero.php",
-
+                        url: "getLocalidadesProvincia.php",
                         success: function(result) {
-                            if (result == 0) {
-                                $("#id_localidades_error").html("id localidad existe");
-                                $("#id_localidades").val('');
-                                $("#id_localidades").addClass("borderError");
-                            } else {
-                                console.log($("#form1").serialize());
-                                $("#id_localidades").removeClass("borderError");
-                                $("#id_localidades_error").html("");
+                            $("#id_localidades").html(result);
 
-                                $.ajax({
-                                    data: $("#form1").serialize(),
-                                    method: "POST",
-                                    url: "modulo_inmuebles_insert.php",
-                                    success: function(result) {
-                                        if (result > 1) {
-                                            //alert("Datos insertados correctamente!");
-                                            let timerInterval;
-                                            Swal.fire({
-                                                title: "Datos insertados correctamente!",
-                                                html: "",
-                                                timer: 2000,
-                                                timerProgressBar: true,
-                                                didOpen: () => {
-                                                    Swal
-                                                        .showLoading();
-                                                    const
-                                                        timer =
-                                                        Swal
-                                                        .getPopup()
-                                                        .querySelector(
-                                                            "b"
-                                                        );
-                                                    timerInterval
-                                                        =
-                                                        setInterval(
-                                                            () => {
-                                                                timer
-                                                                    .textContent =
-                                                                    `${Swal.getTimerLeft()}`;
-                                                            },
-                                                            100
-                                                        );
-                                                },
-                                                willClose: () => {
-                                                    clearInterval
-                                                        (
-                                                            timerInterval
-                                                        );
-                                                }
-                                            }).then((result) => {
-                                                if (result
-                                                    .dismiss ===
-                                                    Swal
-                                                    .DismissReason
-                                                    .timer) {
-                                                    location.href =
-                                                        "modulo_inmuebles_list.php";
-                                                }
-                                            });
-                                        } else {
-                                            Swal.fire(
-                                                "No Insertado correctamente!"
-                                            );
-
-                                        }
-                                    }
-                                });
-                            }
-                        },
-                        error: function(error) {
-                            console.log(error);
                         }
                     });
-                }
+                });
             });
-        });
         </script>
 </body>
 
