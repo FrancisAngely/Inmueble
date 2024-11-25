@@ -2,6 +2,7 @@
 include("controller.php");
 $tabla = "inmuebles";
 
+$datos["id"] = $_POST["id"];
 $datos["nombre"] = $_POST["nombre"];
 $datos["id_provincias"] = $_POST["id_provincias"];
 $datos["id_localidades"] = $_POST["id_localidades"];
@@ -25,7 +26,5 @@ $datos["descripcion"] = $_POST["descripcion"];
 $datos["foto"] = $_POST["foto"];
 
 $datos["updated_at"] = date('Y-m-d h:i:s');
-
-
 
 echo updateById($tabla, $datos, $_POST["id"]);

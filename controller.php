@@ -79,6 +79,91 @@ function getByColum5($tabla, $column1, $valor1, $column2, $valor2, $column3, $va
     }
 }
 
+//obtiene un registro de la tabla donde coinciden 22 valores de busqueda
+function getByColum21(
+    $tabla,
+    $column1,
+    $valor1,
+    $column2,
+    $valor2,
+    $column3,
+    $valor3,
+    $column4,
+    $valor4,
+    $column5,
+    $valor5,
+    $column6,
+    $valor6,
+    $column7,
+    $valor7,
+    $column8,
+    $valor8,
+    $column9,
+    $valor9,
+    $column10,
+    $valor10,
+    $column11,
+    $valor11,
+    $column12,
+    $valor12,
+    $column13,
+    $valor13,
+    $column14,
+    $valor14,
+    $column15,
+    $valor15,
+    $column16,
+    $valor16,
+    $column17,
+    $valor17,
+    $column18,
+    $valor18,
+    $column19,
+    $valor19,
+    $column20,
+    $valor20,
+    $column21,
+    $valor21,
+    $column22,
+    $valor22
+) {
+    include("db.php");
+    $sql = "SELECT * FROM `" . $tabla . "`";
+    $sql .= " WHERE 1 ";
+    $sql .= " and `" . $column1 . "`='" . $valor1 . "'";
+    $sql .= " and `" . $column2 . "`='" . $valor2 . "'";
+    $sql .= " and `" . $column3 . "`='" . $valor3 . "'";
+    $sql .= " and `" . $column4 . "`='" . $valor4 . "'";
+    $sql .= " and `" . $column5 . "`='" . $valor5 . "'";
+    $sql .= " and `" . $column6 . "`='" . $valor6 . "'";
+    $sql .= " and `" . $column7 . "`='" . $valor7 . "'";
+    $sql .= " and `" . $column8 . "`='" . $valor8 . "'";
+    $sql .= " and `" . $column9 . "`='" . $valor9 . "'";
+    $sql .= " and `" . $column10 . "`='" . $valor10 . "'";
+    $sql .= " and `" . $column11 . "`='" . $valor11 . "'";
+    $sql .= " and `" . $column12 . "`='" . $valor12 . "'";
+    $sql .= " and `" . $column13 . "`='" . $valor13 . "'";
+    $sql .= " and `" . $column14 . "`='" . $valor14 . "'";
+    $sql .= " and `" . $column15 . "`='" . $valor15 . "'";
+    $sql .= " and `" . $column16 . "`='" . $valor16 . "'";
+    $sql .= " and `" . $column17 . "`='" . $valor17 . "'";
+    $sql .= " and `" . $column18 . "`='" . $valor18 . "'";
+    $sql .= " and `" . $column19 . "`='" . $valor19 . "'";
+    $sql .= " and `" . $column20 . "`='" . $valor20 . "'";
+    $sql .= " and `" . $column21 . "`='" . $valor21 . "'";
+    $sql .= " and `" . $column22 . "`='" . $valor22 . "'";
+
+
+    $query = $mysqli->query($sql);
+    if ($query->num_rows > 0) {
+        //usuario valido
+        $fila = $query->fetch_assoc();
+        return $fila;
+    } else {
+        return 0;
+    }
+}
+
 //obtiene un registro de la tabla donde coincide un valor
 function getByColum($tabla, $column1, $valor1)
 {
@@ -824,6 +909,26 @@ function SelectOptionsByColumn($tabla, $value, $mostrar, $column, $valor)
             $options .= '<option value="' . $fila[$value] . '">' . $fila[$mostrar] . '</option>';
         }
     }
+    return $options;
+}
+//Consulta para usar SELECT DISTINCT
+
+function SelectOptionsByColumnDistint($tabla, $value, $mostrar, $column, $valor)
+{
+    include("db.php");
+    $options = "<option></option>";
+
+    $sql = "SELECT DISTINCT `" . $value . "`, `" . $mostrar . "` FROM `" . $tabla . "`";
+    $sql .= " WHERE `" . $column . "` = '" . $valor . "'";
+
+    $query = $mysqli->query($sql);
+
+    if ($query->num_rows > 0) {
+        while ($fila = $query->fetch_assoc()) {
+            $options .= '<option value="' . $fila[$value] . '">' . $fila[$mostrar] . '</option>';
+        }
+    }
+
     return $options;
 }
 
