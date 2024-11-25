@@ -24,7 +24,7 @@
                     <div
                         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                         <h1 class="h2">Inmuebles - Nuevo</h1>
-                        <a href="modulo_inmuebles_list.php" class="btn btn-primary">Volver</a>
+                        <!--<a href="modulo_inmuebles_list.php" class="btn btn-primary">Volver</a>-->
                     </div>
 
                     <div class="col-4">
@@ -56,8 +56,10 @@
                             <div class="mb-3">
                                 <label for="tipo_via" class="form-label">Tipo Via</label>
                                 <span id="tipo_via_error" class="text-danger"></span>
-                                <input type="tipo_via" class="form-control" id="tipo_via" name="tipo_via"
-                                    placeholder="Tipo de Via">
+                                <select class="form-control" id="tipo_via" name="tipo_via">
+                                    <option></option>
+                                    <?php echo SelectOptions("callejero", "id", "tipo_via"); ?>
+                                </select>
                             </div>
 
                             <div class="mb-3">
@@ -70,19 +72,22 @@
                             <div class="mb-3">
                                 <label for="cp" class="form-label">CP</label>
                                 <span id="cp_error" class="text-danger"></span>
-                                <input type="text" class="form-control" id="cp" name="cp" placeholder="Codigo Postal">
+                                <select class="form-control" id="cp" name="cp">
+                                    <option></option>
+                                </select>
                             </div>
 
                             <div class="mb-3">
                                 <label for="numero" class="form-label">Numero</label>
                                 <span id="numero_error" class="text-danger"></span>
-                                <input type="text" class="form-control" id="numero" name="numero" placeholder="Numero">
+                                <input type="number" class="form-control" id="numero" name="numero"
+                                    placeholder="Numero">
                             </div>
 
                             <div class="mb-3">
                                 <label for="piso" class="form-label">Piso</label>
                                 <span id="piso_error" class="text-danger"></span>
-                                <input type="text" class="form-control" id="piso" name="piso" placeholder="Piso">
+                                <input type="number" class="form-control" id="piso" name="piso" placeholder="Piso">
                             </div>
 
                             <div class="mb-3">
@@ -101,7 +106,8 @@
                             <div class="mb-3">
                                 <label for="precio" class="form-label">Precio</label>
                                 <span id="precio_error" class="text-danger"></span>
-                                <input type="text" class="form-control" id="precio" name="precio" placeholder="Precio">
+                                <input type="number" class="form-control" id="precio" name="precio"
+                                    placeholder="Precio">
                             </div>
 
                             <div class="mb-3">
@@ -160,15 +166,14 @@
 
                             <div class="mb-3">
                                 <label for="descripcion" class="form-label">Descripcion</label>
-                                <span id="descripcion_error" class="text-danger"></span>
-                                <input type="descripcion" class="form-control" id="descripcion" name="descripcion"
-                                    placeholder="Descripcion">
+                                <textarea class="form-control" id="descripcion" name="descripcion"
+                                    placeholder="Introduce una descripción"></textarea>
                             </div>
 
                             <div class="mb-3">
                                 <label for="foto" class="form-label">Foto</label>
                                 <span id="foto_error" class="text-danger"></span>
-                                <input type="text" class="form-control" id="foto" name="foto" placeholder="Foto">
+                                <input type="file" class="form-control" id="foto" name="foto" placeholder="Foto">
                             </div>
 
                             <div class="mb-3">
@@ -187,101 +192,123 @@
         <script>
             $(document).ready(function() {
 
+                tinymce.init({
+                    selector: '#descripcion',
+                    language: 'es',
+                    height: 500,
+                    plugins: [
+                        'advlist', 'autolink', 'lists', 'link', 'image', 'charmap',
+                        'anchor', 'searchreplace', 'visualblocks', 'code',
+                        'insertdatetime', 'media', 'table', 'help', 'wordcount'
+                    ],
+                    toolbar: 'undo redo | blocks | ' +
+                        'bold italic backcolor | alignleft aligncenter ' +
+                        'alignright alignjustify | bullist numlist outdent indent | ' +
+                        'removeformat ',
+                    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+                });
+
                 $("#form1").validate({
                     rules: {
                         nombre: {
-                            required: true
+                            required: true,
+                            maxlength: 200,
+                            minlength: 0
                         },
                         id_provincias: {
-                            required: true
+                            required: true,
+                            maxlength: 200,
+                            minlength: 0
                         },
                         dc: {
-                            required: true
+                            required: true,
+                            maxlength: 200,
+                            minlength: 0
                         },
                         id_localidades: {
                             required: true,
                             maxlength: 200,
-                            minlength: 3
+                            minlength: 0
                         },
                         tipo_via: {
                             required: true,
                             maxlength: 200,
-                            minlength: 3
+                            minlength: 0
                         },
                         direccion: {
                             required: true,
                             maxlength: 200,
-                            minlength: 3
+                            minlength: 0
                         },
                         cp: {
                             required: true,
                             maxlength: 200,
-                            minlength: 3
+                            minlength: 0
                         },
                         numero: {
                             required: true,
                             maxlength: 200,
-                            minlength: 3
+                            minlength: 0
                         },
                         piso: {
                             required: true,
                             maxlength: 200,
-                            minlength: 3
+                            minlength: 0
                         },
                         letra: {
                             required: true,
                             maxlength: 200,
-                            minlength: 3
+                            minlength: 0
                         },
                         escalera: {
                             required: true,
                             maxlength: 200,
-                            minlength: 3
+                            minlength: 0
                         },
                         precio: {
                             required: true,
                             maxlength: 200,
-                            minlength: 3
+                            minlength: 0
                         },
                         habitaciones: {
                             required: true,
                             maxlength: 200,
-                            minlength: 3
+                            minlength: 0
                         },
                         metros_cuadrados: {
                             required: true,
                             maxlength: 200,
-                            minlength: 3
+                            minlength: 0
                         },
                         exterior: {
                             required: true,
                             maxlength: 200,
-                            minlength: 3
+                            minlength: 0
                         },
                         aseos: {
                             required: true,
                             maxlength: 200,
-                            minlength: 3
+                            minlength: 0
                         },
                         terraza: {
                             required: true,
                             maxlength: 200,
-                            minlength: 3
+                            minlength: 0
                         },
                         balcon: {
                             required: true,
                             maxlength: 200,
-                            minlength: 3
+                            minlength: 0
                         },
                         orientacion: {
                             required: true,
                             maxlength: 200,
-                            minlength: 3
+                            minlength: 0
                         },
                         ascensor: {
                             required: true,
                             maxlength: 200,
-                            minlength: 3
+                            minlength: 0
                         },
                         descripcion: {
                             required: true,
@@ -291,7 +318,7 @@
                         foto: {
                             required: true,
                             maxlength: 200,
-                            minlength: 3
+                            minlength: 0
                         }
                     },
                     messages: {
@@ -303,7 +330,7 @@
                         id_provincias: {
                             required: "Introduce el id de la provincia",
                             maxlength: "No puede superar 20 carácteres",
-                            minlength: "Mínimo 3 caracteres"
+                            minlength: "Mínimo caracteres"
                         },
                         dc: {
                             required: "Introduce un DC",
@@ -397,151 +424,153 @@
                         },
                         descripcion: {
                             required: "Introduce una descripcion",
-                            maxlength: "No puede superar 20 carácteres",
-                            minlength: "Mínimo 3 caracteres"
                         },
                         foto: {
-                            required: "Sube una foto",
-                            maxlength: "No puede superar 20 carácteres",
-                            minlength: "Mínimo 3 caracteres"
+                            required: "Carga una imagen",
                         }
                     },
-                    submitHandler: function(form) {
-                        console.log("clic");
-                        let id_localidades = $("#id_localidades").val();
-                        let tipo_via = $("#tipo_via").val();
-                        let denominacion = $("#denominacion").val();
-                        let nombre_literal = $("#nombre_literal").val();
-                        let cp = $("#cp").val();
+                    /*submitHandler: function(form) {
+                         console.log("clic");
+                         let id_localidades = $("#id_localidades").val();
+                         let tipo_via = $("#tipo_via").val();
+                         let denominacion = $("#denominacion").val();
+                         let nombre_literal = $("#nombre_literal").val();
+                         let cp = $("#cp").val();
+                         let tabla = "callejero";
+                         let campo = "id_localidades";
+                         let campo2 = "tipo_via";
+                         let campo3 = "denominacion";
+                         let campo4 = "nombre_literal";
+                         let campo5 = "cp";
+                         let error = 0;
 
 
+                         $.ajax({
+                             data: {
+                                 tabla: tabla,
+                                 valor1: id_localidades,
+                                 campo1: campo,
+                                 valor2: tipo_via,
+                                 campo2: campo2,
+                                 valor3: denominacion,
+                                 campo3: campo3,
+                                 valor4: nombre_literal,
+                                 campo4: campo4,
+                                 valor5: cp,
+                                 campo5: campo5
+                             },*/
+                    method: "POST",
+                    url: ".php",
 
+                    success: function(result) {
+                        if (result == 0) {
+                            $("#id_localidades_error").html("id localidad existe");
+                            $("#id_localidades").val('');
+                            $("#id_localidades").addClass("borderError");
+                        } else {
+                            console.log($("#form1").serialize());
+                            $("#id_localidades").removeClass("borderError");
+                            $("#id_localidades_error").html("");
 
-
-
-
-
-
-
-
-                        let tabla = "callejero";
-                        let campo = "id_localidades";
-                        let campo2 = "tipo_via";
-                        let campo3 = "denominacion";
-                        let campo4 = "nombre_literal";
-                        let campo5 = "cp";
-                        let error = 0;
-
-
-                        $.ajax({
-                            data: {
-                                tabla: tabla,
-                                valor1: id_localidades,
-                                campo1: campo,
-                                valor2: tipo_via,
-                                campo2: campo2,
-                                valor3: denominacion,
-                                campo3: campo3,
-                                valor4: nombre_literal,
-                                campo4: campo4,
-                                valor5: cp,
-                                campo5: campo5
-                            },
-                            method: "POST",
-                            url: "verificarUnicoCallejero.php",
-
-                            success: function(result) {
-                                if (result == 0) {
-                                    $("#id_localidades_error").html("id localidad existe");
-                                    $("#id_localidades").val('');
-                                    $("#id_localidades").addClass("borderError");
-                                } else {
-                                    console.log($("#form1").serialize());
-                                    $("#id_localidades").removeClass("borderError");
-                                    $("#id_localidades_error").html("");
-
-                                    $.ajax({
-                                        data: $("#form1").serialize(),
-                                        method: "POST",
-                                        url: "modulo_inmuebles_insert.php",
-                                        success: function(result) {
-                                            if (result > 1) {
-                                                //alert("Datos insertados correctamente!");
-                                                let timerInterval;
-                                                Swal.fire({
-                                                    title: "Datos insertados correctamente!",
-                                                    html: "",
-                                                    timer: 2000,
-                                                    timerProgressBar: true,
-                                                    didOpen: () => {
-                                                        Swal
-                                                            .showLoading();
-                                                        const
-                                                            timer =
-                                                            Swal
-                                                            .getPopup()
-                                                            .querySelector(
-                                                                "b"
-                                                            );
+                            $.ajax({
+                                data: $("#form1").serialize(),
+                                method: "POST",
+                                url: "modulo_inmuebles_insert.php",
+                                success: function(result) {
+                                    if (result > 1) {
+                                        //alert("Datos insertados correctamente!");
+                                        let timerInterval;
+                                        Swal.fire({
+                                            title: "Datos insertados correctamente!",
+                                            html: "",
+                                            timer: 2000,
+                                            timerProgressBar: true,
+                                            didOpen: () => {
+                                                Swal
+                                                    .showLoading();
+                                                const
+                                                    timer =
+                                                    Swal
+                                                    .getPopup()
+                                                    .querySelector(
+                                                        "b"
+                                                    );
+                                                timerInterval
+                                                    =
+                                                    setInterval(
+                                                        () => {
+                                                            timer
+                                                                .textContent =
+                                                                `${Swal.getTimerLeft()}`;
+                                                        },
+                                                        100
+                                                    );
+                                            },
+                                            willClose: () => {
+                                                clearInterval
+                                                    (
                                                         timerInterval
-                                                            =
-                                                            setInterval(
-                                                                () => {
-                                                                    timer
-                                                                        .textContent =
-                                                                        `${Swal.getTimerLeft()}`;
-                                                                },
-                                                                100
-                                                            );
-                                                    },
-                                                    willClose: () => {
-                                                        clearInterval
-                                                            (
-                                                                timerInterval
-                                                            );
-                                                    }
-                                                }).then((result) => {
-                                                    if (result
-                                                        .dismiss ===
-                                                        Swal
-                                                        .DismissReason
-                                                        .timer) {
-                                                        location.href =
-                                                            "modulo_inmuebles_list.php";
-                                                    }
-                                                });
-                                            } else {
-                                                Swal.fire(
-                                                    "No Insertado correctamente!"
-                                                );
-
+                                                    );
                                             }
-                                        }
-                                    });
+                                        }).then((result) => {
+                                            if (result
+                                                .dismiss ===
+                                                Swal
+                                                .DismissReason
+                                                .timer) {
+                                                location.href =
+                                                    "modulo_inmuebles_list.php";
+                                            }
+                                        });
+                                    } else {
+                                        Swal.fire(
+                                            "No Insertado correctamente!"
+                                        );
+
+                                    }
                                 }
-                            },
-                            error: function(error) {
-                                console.log(error);
-                            }
-                        });
+                            });
+                        }
+                    },
+                    error: function(error) {
+                        console.log(error);
                     }
                 });
+            }
+            });
 
-                $("#id_provincias").change(function() {
-                    let id_provincias = $("#id_provincias").val();
-                    console.log(id_provincias);
-                    $.ajax({
-                        data: {
-                            id_provincias: id_provincias
-                        },
-                        method: "POST",
-                        url: "getLocalidadesProvincia.php",
-                        success: function(result) {
-                            $("#id_localidades").html(result);
+            $("#id_provincias").change(function() {
+                let id_provincias = $("#id_provincias").val();
+                console.log(id_provincias);
+                $.ajax({
+                    data: {
+                        id_provincias: id_provincias
+                    },
+                    method: "POST",
+                    url: "getLocalidadesProvincia.php",
+                    success: function(result) {
+                        $("#id_localidades").html(result);
 
-                        }
-                    });
+                    }
                 });
+            });
+
+            $("#id_localidades").change(function() {
+            let id_localidades = $("#id_localidades").val();
+            console.log(id_localidades);
+            $.ajax({
+                data: {
+                    id_localidades: id_localidades
+                },
+                method: "POST",
+                url: "getLocalidadesCp.php",
+                success: function(result) {
+                    $("#cp").html(result);
+
+                }
+            });
+            });
+
             });
         </script>
 </body>

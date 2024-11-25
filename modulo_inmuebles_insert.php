@@ -2,7 +2,7 @@
 include("controller.php");
 $tabla = "inmuebles";
 
-
+$datos["id"] = $_POST["id"];
 $datos["nombre"] = $_POST["nombre"];
 $datos["id_provincias"] = $_POST["id_provincias"];
 $datos["id_localidades"] = $_POST["id_localidades"];
