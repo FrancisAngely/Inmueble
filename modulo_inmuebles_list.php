@@ -63,7 +63,7 @@
                             <tr>
                                 <th>Id</th>
                                 <th>nombre</th>
-                                <th>id_provincias</th>
+                                <th>Provincia</th>
                                 <th>id_localidades</th>
                                 <th>tipo_via</th>
                                 <th>direccion</th>
@@ -91,6 +91,9 @@
                             <?php
                             echo "<h3> User: " . $_SESSION["role"] . "</h3>";
                             $inmuebles = getAllV("inmuebles");
+                            $provincias = getAllV("provincias");
+                            $localidades = getAllV("localidades");
+
 
                             if (count($inmuebles) > 0) {
                                 foreach ($inmuebles as $r) {
@@ -98,8 +101,14 @@
                                     <tr>
                                         <td><?php echo $r["id"]; ?></td>
                                         <td><?php echo $r["nombre"]; ?></td>
-                                        <td><?php echo $r["id_provincias"]; ?></td>
-                                        <td><?php echo $r["id_localidades"]; ?></td>
+                                        <td><?php
+                                            $found_key = array_search($r["id_provincias"], array_column($provincias, 'id'));
+                                            echo $provincias[$found_key]['provincia']; ?></td>
+
+                                        <td><?php
+                                            $key = array_search($r["id_localidades"], array_column($localidades, 'id'));
+                                            echo $localidades[$key]['localidad'];
+                                            ?></td>
                                         <td><?php echo $r["tipo_via"]; ?></td>
                                         <td><?php echo $r["direccion"]; ?></td>
                                         <td><?php echo $r["cp"]; ?></td>

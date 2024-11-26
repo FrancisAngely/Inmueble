@@ -2,7 +2,6 @@
 include("controller.php");
 $tabla = "inmuebles";
 
-$datos["id"] = $_POST["id"];
 $datos["nombre"] = $_POST["nombre"];
 $datos["id_provincias"] = $_POST["id_provincias"];
 $datos["id_localidades"] = $_POST["id_localidades"];
@@ -23,9 +22,22 @@ $datos["balcon"] = $_POST["balcon"];
 $datos["orientacion"] = $_POST["orientacion"];
 $datos["ascensor"] = $_POST["ascensor"];
 $datos["descripcion"] = $_POST["descripcion"];
-$datos["foto"] = $_POST["foto"];
+
+
 
 $datos["created_at"] = date('Y-m-d h:i:s');
 $datos["updated_at"] = date('Y-m-d h:i:s');
 
-echo saveV($tabla, $datos);
+
+$inmuebleId = saveV($tabla, $datos);
+
+
+$upload = UploadFile($_FILES["foto"], "inmuebles", "inmueble_" . $inmuebleId);
+
+
+if ($upload != "error") {
+    $datos["foto"] = $upload;
+    echo updateById($tabla, $datos, $inmuebleId);
+} else {
+    echo 0;
+}

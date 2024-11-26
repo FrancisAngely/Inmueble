@@ -19,6 +19,24 @@ function VerificarUsuario($username, $passMd5)
     }
 }
 
+function verificarNombreInmueble($nombre)
+{
+    include("db.php");
+    $sql = "SELECT `id` FROM `inmuebles`";
+    $sql .= " WHERE 1 AND";
+    $sql .= "`nombre`='" . $nombre . "'";
+    echo $sql;
+
+    $query = $mysqli->query($sql);
+    if ($query->num_rows > 0) {
+        //usuario valido
+        $fila = $query->fetch_assoc();
+        return $fila;
+    } else {
+        return 0;
+    }
+}
+
 //obtiene un registro de la tabla donde coinciden dos valores de busqueda
 function getByColum2($tabla, $column1, $valor1, $column2, $valor2)
 {
@@ -984,7 +1002,6 @@ function UploadFile($file, $carpeta, $nombre)
         if (file_exists($target_file)) {
             unlink($target_file);
         }
-
         //subir el archivo y actualizar campo imagen en la tabla
         if (move_uploaded_file($file["tmp_name"], $target_file)) {
             return $target_file;

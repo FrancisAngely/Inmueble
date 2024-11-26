@@ -189,7 +189,7 @@
         <?php include("scripts.php"); ?>
 
         <script>
-            (document).ready(function() {
+            $(document).ready(function() {
 
                 tinymce.init({
                     selector: '#descripcion',
@@ -424,124 +424,41 @@
                         descripcion: {
                             required: "Introduce una descripcion",
                         },
-                        foto: {
-                            required: "Carga una imagen",
-                        }
                     },
-                    submitHandler: function(form) {
+                    submitHandler: function(form, event) {
+                        event.preventDefault();
                         console.log("clic");
-                        let nombre = $("#nombre").val();
-                        let id_provincias = $("#id_provincias").val();
-                        let id_localidades = $("#id_localidades").val();
-                        let tipo_via = $("#tipo_via").val();
-                        let cp = $("#cp").val();
-                        let numero = $("#numero").val();
-                        let piso = $("#piso").val();
-                        let letra = $("#letra").val();
-                        let escalera = $("#escalera").val();
-                        let precio = $("#precio").val();
-                        let habitaciones = $("#habitaciones").val();
-                        let metros_cuadrados = $("#metros_cuadrados").val();
-                        let exterior = $("#exterior").val();
-                        let aseos = $("#aseos").val();
-                        let terraza = $("#terraza").val();
-                        let balcon = $("#balcon").val();
-                        let orientacion = $("#orientacion").val();
-                        let ascensor = $("#ascensor").val();
-                        let descripcion = $("#descripcion").val();
-                        let foto = $("#foto").val();
 
-                        let tabla = "inmuebles";
-                        let campo = "nombre";
-                        let campo2 = "id_provincias";
-                        let campo3 = "id_localidades";
-                        let campo4 = "tipo_via";
-                        let campo5 = "direccion";
-                        let campo6 = "cp";
-                        let campo7 = "numero";
-                        let campo8 = "piso";
-                        let campo9 = "letra";
-                        let campo10 = "escalera";
-                        let campo11 = "precio";
-                        let campo12 = "habitaciones";
-                        let campo13 = "metros_cuadrados";
-                        let campo14 = "exterior";
-                        let campo15 = "aseos";
-                        let campo16 = "terraza";
-                        let campo17 = "balcon";
-                        let campo18 = "orientacion";
-                        let campo19 = "ascensor";
-                        let campo20 = "descripcion";
-                        let campo21 = "foto";
+
+                        let nombre = $("#nombre").val();
+
 
                         let error = 0;
-                        //console.log(inmuebles);
                         $.ajax({
                             data: {
-                                tabla: tabla,
-                                valor1: nombre,
-                                campo1: campo,
-                                valor2: id_provincias,
-                                campo2: campo2,
-                                valor3: id_localidades,
-                                campo3: campo3,
-                                valor4: tipo_via,
-                                campo4: campo4,
-                                valor5: direccion,
-                                campo5: campo5,
-                                $valor6: cp,
-                                $campo6: campo6,
-                                $valor7: numero,
-                                $campo7: campo7,
-                                $valor8: piso,
-                                $campo8: campo8,
-                                $valor9: letra,
-                                $campo9: campo9,
-                                $valor10: escalera,
-                                $campo10: campo10,
-                                $valor11: precio,
-                                $campo11: campo11,
-                                $valor12: habitaciones,
-                                $campo12: campo12,
-                                $valor13: metros_cuadrados,
-                                $campo13: campo13,
-                                $valor14: exterior,
-                                $campo14: campo14,
-                                $valor15: aseos,
-                                $campo15: campo15,
-                                $valor16: terraza,
-                                $campo16: campo16,
-                                $valor17: balcon,
-                                $campo17: campo17,
-                                $valor18: orientacion,
-                                $campo18: campo18,
-                                $valor19: ascensor,
-                                $campo19: campo19,
-                                $valor20: descripcion,
-                                $campo20: campo20,
-                                $valor21: foto,
-                                $campo21: campo21
+                                nombre: nombre
                             },
                             method: "POST",
                             url: "verificarInmueble.php",
 
                             success: function(result) {
                                 if (result == 0) {
-                                    $("#id_provincias_error").html("id localidad existe");
-                                    $("#id_provincias").val('');
-                                    $("#id_provincias").addClass("borderError");
+                                    $("#nombre").html(
+                                        "El inmueble ya existe");
+                                    $("#nombre").val('');
+                                    $("#nombre").addClass("borderError");
                                 } else {
-                                    console.log($("#form1").serialize());
-                                    $("#id_provincias").removeClass("borderError");
-                                    $("#id_provincias_error").html("");
 
+                                    let formData = new FormData($('#form1')[0]);
                                     $.ajax({
-                                        data: $("#form1").serialize(),
+                                        data: formData,
                                         method: "POST",
+                                        processData: false,
+                                        contentType: false,
+                                        cache: false,
                                         url: "modulo_inmuebles_insert.php",
                                         success: function(result) {
-                                            console.log(result);
-                                            if (result > 1) {
+                                            if (result == 1) {
                                                 //alert("Datos insertados correctamente!");
                                                 let timerInterval;
                                                 Swal.fire({
