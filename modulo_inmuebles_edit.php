@@ -25,7 +25,7 @@
           <div
             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Localidad - Editar</h1>
-            <a href="modulo_localidades_list.php" class="btn btn-primary">Volver</a>
+            <a href="modulo_inmuebles_list.php" class="btn btn-primary">Volver</a>
           </div>
 
           <?php $inmuebles = getById("inmuebles", $_GET["id"]); ?>
@@ -180,8 +180,7 @@
               <div class="mb-3">
                 <label for="foto" class="form-label">Foto</label>
                 <span id="foto_error" class="text-danger"></span>
-                <input type="text" class="form-control" id="foto" name="foto" placeholder="Foto"
-                  value="<?php echo $inmuebles["foto"]; ?>">
+                <input type="file" class="form-control" id="foto" name="foto" value="<?php echo $inmuebles["foto"]; ?>">
               </div>
 
               <div class="mb-3">
@@ -200,112 +199,125 @@
   <script>
     $(document).ready(function() {
 
+      tinymce.init({
+        selector: '#descripcion',
+        language: 'es',
+        height: 500,
+        plugins: [
+          'advlist', 'autolink', 'lists', 'link', 'image', 'charmap',
+          'anchor', 'searchreplace', 'visualblocks', 'code',
+          'insertdatetime', 'media', 'table', 'help', 'wordcount'
+        ],
+        toolbar: 'undo redo | blocks | ' +
+          'bold italic backcolor | alignleft aligncenter ' +
+          'alignright alignjustify | bullist numlist outdent indent | ' +
+          'removeformat ',
+        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+      });
+
       $(" #form1").validate({
         rules: {
           nombre: {
             required: true,
             maxlength: 200,
-            minlength: 3
+            minlength: 0
           },
           id_provincias: {
             required: true,
             maxlength: 200,
-            minlength: 3
+            minlength: 0
           },
           dc: {
-            required: true
+            required: true,
+            maxlength: 200,
+            minlength: 0
           },
           id_localidades: {
             required: true,
             maxlength: 200,
-            minlength: 3
+            minlength: 0
           },
           tipo_via: {
             required: true,
             maxlength: 200,
-            minlength: 3
+            minlength: 0
           },
           direccion: {
             required: true,
             maxlength: 200,
-            minlength: 3
+            minlength: 0
           },
           cp: {
             required: true,
             maxlength: 200,
-            minlength: 3
+            minlength: 0
           },
           numero: {
             required: true,
             maxlength: 200,
-            minlength: 3
+            minlength: 0
           },
           piso: {
             required: true,
             maxlength: 200,
-            minlength: 3
+            minlength: 0
           },
           letra: {
             required: true,
             maxlength: 200,
-            minlength: 3
+            minlength: 0
           },
           escalera: {
             required: true,
             maxlength: 200,
-            minlength: 3
+            minlength: 0
           },
           precio: {
             required: true,
             maxlength: 200,
-            minlength: 3
+            minlength: 0
           },
           habitaciones: {
             required: true,
             maxlength: 200,
-            minlength: 3
+            minlength: 0
           },
           metros_cuadrados: {
             required: true,
             maxlength: 200,
-            minlength: 3
+            minlength: 0
           },
           exterior: {
             required: true,
             maxlength: 200,
-            minlength: 3
+            minlength: 0
           },
           aseos: {
             required: true,
             maxlength: 200,
-            minlength: 3
+            minlength: 0
           },
           terraza: {
             required: true,
             maxlength: 200,
-            minlength: 3
+            minlength: 0
           },
           balcon: {
             required: true,
             maxlength: 200,
-            minlength: 3
+            minlength: 0
           },
           orientacion: {
             required: true,
             maxlength: 200,
-            minlength: 3
+            minlength: 0
           },
           ascensor: {
             required: true,
             maxlength: 200,
-            minlength: 3
+            minlength: 0
           },
           descripcion: {
-            required: true,
-            maxlength: 200,
-            minlength: 3
-          },
-          foto: {
             required: true,
             maxlength: 200,
             minlength: 3
@@ -320,7 +332,7 @@
           id_provincias: {
             required: "Introduce el id de la provincia",
             maxlength: "No puede superar 20 carácteres",
-            minlength: "Mínimo 3 caracteres"
+            minlength: "Mínimo caracteres"
           },
           dc: {
             required: "Introduce un DC",
@@ -414,14 +426,7 @@
           },
           descripcion: {
             required: "Introduce una descripcion",
-            maxlength: "No puede superar 20 carácteres",
-            minlength: "Mínimo 3 caracteres"
           },
-          foto: {
-            required: "Sube una foto",
-            maxlength: "No puede superar 20 carácteres",
-            minlength: "Mínimo 3 caracteres"
-          }
         },
         submitHandler: function(form) {
           $.ajax({
@@ -459,6 +464,9 @@
                 Swal.fire("No actualizados correctamente!");
 
               }
+            },
+            error: function(error) {
+              console.log(error);
             }
           });
 

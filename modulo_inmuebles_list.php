@@ -93,7 +93,11 @@
                             $inmuebles = getAllV("inmuebles");
                             $provincias = getAllV("provincias");
                             $localidades = getAllV("localidades");
+                            $callejero = getAllV("callejero");
+                            $callejeros = getAllV("callejero");
 
+
+                           //print_r($callejeros);
 
                             if (count($inmuebles) > 0) {
                                 foreach ($inmuebles as $r) {
@@ -108,9 +112,26 @@
                                         <td><?php
                                             $key = array_search($r["id_localidades"], array_column($localidades, 'id'));
                                             echo $localidades[$key]['localidad'];
-                                            ?></td>
-                                        <td><?php echo $r["tipo_via"]; ?></td>
-                                        <td><?php echo $r["direccion"]; ?></td>
+                                            ?>
+                                        </td>
+
+                                        <td><?php
+                                            $key2 = array_search($r["id_localidades"], array_column($callejero, 'id'));
+                                            echo $callejero[$key2]['tipo_via'];
+                                            ?>
+                                        </td>
+
+                                        <td><?php
+                                            $key3 = array_search($r["id_localidades"], array_column($callejeros, 'id_localidades'));
+                                            echo $callejeros[$key3]['nombre_literal'];
+                                            ?>
+                                        </td>
+                                        <td><?php
+                                            $key3 = array_search($r["id_localidades"], array_column($callejeros, 'id_localidades'));
+                                            echo $callejeros[$key3]['cp'];
+                                            ?>
+                                        </td>
+
                                         <td><?php echo $r["cp"]; ?></td>
                                         <td><?php echo $r["numero"]; ?></td>
                                         <td><?php echo $r["piso"]; ?></td>
@@ -139,17 +160,6 @@
                                                 &nbsp;&nbsp;
                                             </a>
                                         </td>
-                                        <!--
-                    SELECT `id`, `nombre`, `id_provincias`, `id_localidades`, `tipo_via`, 
-
-                    `direccion`, `cp`, `numero`, `piso`, `letra`, `escalera`, `precio`, 
-
-                    `habitaciones`, `metros_cuadrados`, `exterior`, `aseos`, `terraza`, 
-
-                    `balcon`, `orientacion`, `ascensor`, `descripcion`, `foto`, 
-
-                    `created_at`, `updated_at` FROM `inmuebles` WHERE 1     
-                    -->
                                     </tr>
                             <?php
                                     $excel .= '<tr>';
@@ -308,7 +318,7 @@
                 });
             });
 
-            $("#tabla").DataTable({
+         /*   $("#tabla").DataTable({
                 language: {
                     "decimal": "",
                     "emptyTable": "No hay información",
@@ -333,7 +343,7 @@
                     $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
                 }
 
-            });
+            });*/
         });
     </script>
     </div>

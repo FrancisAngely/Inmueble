@@ -64,8 +64,9 @@
                             <div class="mb-3">
                                 <label for="direccion" class="form-label">Direccion</label>
                                 <span id="direccion_error" class="text-danger"></span>
-                                <input type="text" class="form-control" id="direccion" name="direccion"
-                                    placeholder="Direccion">
+                                <select class="form-control" id="direccion" name="direccion">
+                                <option></option>
+                                </select>
                             </div>
 
                             <div class="mb-3">
@@ -313,11 +314,6 @@
                             required: true,
                             maxlength: 200,
                             minlength: 3
-                        },
-                        foto: {
-                            required: true,
-                            maxlength: 200,
-                            minlength: 0
                         }
                     },
                     messages: {
@@ -568,8 +564,26 @@
                     });
                 });
 
+                $("#id_localidades").change(function() {
+                    let id_localidades = $("#id_localidades").val();
+                    console.log(id_localidades);
+                    $.ajax({
+                        data: {
+                            id_localidades: id_localidades
+                        },
+                        method: "POST",
+                        url: "getLocalidadesDireccion.php",
+                        success: function(result) {
+                            $("#direccion").html(result);
+
+                        }
+                    });
+                });
+
 
             });
+
+            
         </script>
 </body>
 
