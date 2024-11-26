@@ -33,35 +33,50 @@
                             <div class="mb-3">
                                 <label for="id_localidades" class="form-label">Id Localidades</label>
                                 <span id="id_localidades_error" class="text-danger"></span>
-                                <input type="text" class="form-control" id="id_localidades" name="id_localidades"
-                                    placeholder="Id Localidades">
+                                <select class="form-control" id="id_localidades" name="id_localidades">
+                                    <option></option>
+                                    <?php echo SelectOptions("callejero", "id", "id_localidades"); ?>
+
+                                </select>
+
                             </div>
 
                             <div class="mb-3">
                                 <label for="tipo_via" class="form-label">Tipo Via</label>
                                 <span id="tipo_via_error" class="text-danger"></span>
-                                <input type="tipo_via" class="form-control" id="tipo_via" name="tipo_via"
-                                    placeholder="Tipo de Via">
+                                <select class="form-control" id="tipo_via" name="tipo_via">
+                                    <option></option>
+                                    <?php echo SelectOptions("callejero", "id", "tipo_via"); ?>
+                                </select>
                             </div>
 
                             <div class="mb-3">
                                 <label for="denominacion" class="form-label">Denominacion</label>
                                 <span id="denominacion_error" class="text-danger"></span>
-                                <input type="text" class="form-control" id="denominacion" name="denominacion"
-                                    placeholder="Denominacion">
+                                <select class="form-control" id="denominacion" name="denominacion">
+                                    <option></option>
+                                    <?php echo SelectOptions("callejero", "id", "denominacion"); ?>
+
+                                </select>
                             </div>
 
                             <div class="mb-3">
                                 <label for="nombre_literal" class="form-label">Nombre Literal</label>
                                 <span id="nombre_literal_error" class="text-danger"></span>
-                                <input type="text" class="form-control" id="nombre_literal" name="nombre_literal"
-                                    placeholder="Nombre literal">
+                                <select class="form-control" id="nombre_literal" name="nombre_literal">
+                                    <option></option>
+                                    <?php echo SelectOptions("callejero", "id", "nombre_literal"); ?>
+                                </select>
                             </div>
 
                             <div class="mb-3">
                                 <label for="cp" class="form-label">CP</label>
                                 <span id="cp_error" class="text-danger"></span>
-                                <input type="text" class="form-control" id="cp" name="cp" placeholder="Codigo Postal">
+                                <select class="form-control" id="cp" name="cp">
+                                    <option></option>
+                                    <?php echo SelectOptions("callejero", "id", "cp"); ?>
+
+                                </select>
                             </div>
 
                             <div class="mb-3">
@@ -93,17 +108,17 @@
                         denominacion: {
                             required: true,
                             maxlength: 200,
-                            minlength: 3
+                            minlength: 0
                         },
                         nombre_literal: {
                             required: true,
                             maxlength: 200,
-                            minlength: 3
+                            minlength: 0
                         },
                         cp: {
                             required: true,
                             maxlength: 200,
-                            minlength: 3
+                            minlength: 0
                         }
                     },
                     messages: {
@@ -241,7 +256,23 @@
                         });
                     }
                 });
-            });
+                $("#id_provincias").change(function() {
+                    let id_provincias = $("#id_provincias").val();
+                    console.log(id_provincias);
+                    $.ajax({
+                        data: {
+                            id_provincias: id_provincias
+                        },
+                        method: "POST",
+                        url: "getLocalidadesProvincia.php",
+                        success: function(result) {
+                            $("#id_localidades").html(result);
+
+                        }
+                    });
+                });
+
+           });
         </script>
 </body>
 

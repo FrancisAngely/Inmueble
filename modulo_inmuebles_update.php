@@ -2,13 +2,13 @@
 include("controller.php");
 $tabla = "inmuebles";
 
-if($_FILES["file_evento"]["name"]!=""){
-    $target=conseguirValor($tabla,"foto",$_POST["id"]);
-   
-   borrarArchivo($target);
+if ($_FILES["foto"]["name"] != "") {
+    $target = conseguirValor($tabla, "foto", $_POST["id"]);
+
+    borrarArchivo($target);
 }
 
-$upload = UploadFile($_FILES["foto"], "inmuebles", "inmueble_" . $inmuebleId);
+$upload = UploadFile($_FILES["foto"], "inmuebles", "inmueble_" . $_POST["id"]);
 
 $datos["id"] = $_POST["id"];
 $datos["nombre"] = $_POST["nombre"];
@@ -36,7 +36,6 @@ $datos["updated_at"] = date('Y-m-d h:i:s');
 
 if ($upload != "error") {
     $datos["foto"] = $upload;
-    //echo updateById($tabla, $datos, $inmuebleId);
 } else {
     echo 0;
 }

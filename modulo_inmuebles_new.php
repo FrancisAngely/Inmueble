@@ -65,7 +65,7 @@
                                 <label for="direccion" class="form-label">Direccion</label>
                                 <span id="direccion_error" class="text-danger"></span>
                                 <select class="form-control" id="direccion" name="direccion">
-                                <option></option>
+                                    <option></option>
                                 </select>
                             </div>
 
@@ -424,11 +424,7 @@
                     submitHandler: function(form, event) {
                         event.preventDefault();
                         console.log("clic");
-
-
                         let nombre = $("#nombre").val();
-
-
                         let error = 0;
                         $.ajax({
                             data: {
@@ -582,8 +578,6 @@
 
 
             });
-
-            
         </script>
 </body>
 

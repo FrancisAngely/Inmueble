@@ -180,7 +180,8 @@
               <div class="mb-3">
                 <label for="foto" class="form-label">Foto</label>
                 <span id="foto_error" class="text-danger"></span>
-                <input type="file" class="form-control" id="foto" name="foto" value="<?php echo $inmuebles["foto"]; ?>">
+                <img src="<?php echo $inmuebles["foto"];?>" class="img-fluid">
+                <input type="file" class="form-control" id="foto" name="foto">
               </div>
 
               <div class="mb-3">
@@ -429,9 +430,16 @@
           },
         },
         submitHandler: function(form) {
+
+          let formData = new FormData($('#form1')[0]);
           $.ajax({
-            data: $("#form1").serialize(),
+            data: formData,
             method: "POST",
+            processData: false,
+            contentType: false,
+            cache: false,
+
+
             url: "modulo_inmuebles_update.php",
             success: function(result) {
               if (result == 1) {
