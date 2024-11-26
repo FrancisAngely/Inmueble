@@ -63,8 +63,7 @@
                 array_push($categorias, "'" . $Meses[$fila["mes"] - 1] . "'");
             }
         }*/
-
-        ?>
+                ?>
 
 
         <?php include("scripts.php"); ?>
