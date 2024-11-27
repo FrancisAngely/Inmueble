@@ -110,9 +110,13 @@
                     }
                 },
                 submitHandler: function(form) {
+                    let formData = new FormData($('#form1')[0]);
                     $.ajax({
-                        data: $("#form1").serialize(),
+                        data: formData,
                         method: "POST",
+                        processData: false,
+                        contentType: false,
+                        cache: false,
                         url: "modulo_localidades_update.php",
                         success: function(result) {
 

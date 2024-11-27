@@ -141,13 +141,13 @@
                                             <td>{$r['descripcion']}</td>
                                             <td>{$r['foto']}</td>
                                             <td>
-                <a href='modulo_inmuebles_edit.php?id={$r['id']}'><i class='fa-solid fa-pen-to-square fa-2x'></i></a>
-                &nbsp;&nbsp;
-                <a href='#' data-id='{$r['id']}' class='borrar'><i class='fa-solid fa-trash text-danger'></i></a>
-                &nbsp;&nbsp;
-                <a href='modulo_inmuebles_print.php?id={$r['id']}'><i class='fa-solid fa-print'></i></a>
-            </td>
-        </tr>";
+                                            <a href='modulo_inmuebles_edit.php?id={$r['id']}'><i class='fa-solid fa-pen-to-square fa-2x'></i></a>
+                                            &nbsp;&nbsp;
+                                            <a href='#' data-id='{$r['id']}' class='borrar'><i class='fa-solid fa-trash text-danger'></i></a>
+                                            &nbsp;&nbsp;
+                                            <a href='modulo_inmuebles_print.php?id={$r['id']}'><i class='fa-solid fa-print'></i></a>
+                                        </td>
+                                            </tr>";
                             ?>
                             <?php
                                     $excel .= '<tr>';
@@ -157,7 +157,7 @@
                                     $excel .= '<td>' . $r["id_localidades"] . '</td>';
                                     $excel .= '<td>' . $r["tipo_via"] . '</td>';
                                     $excel .= '<td>' . $r["direccion"] . '</td>';
-                                    $excel .= '<td>' . $r[""] . '</td>';
+                                    $excel .= '<td>' . $r["cp"] . '</td>';
                                     $excel .= '<td>' . $r["numero"] . '</td>';
                                     $excel .= '<td>' . $r["piso"] . '</td>';
                                     $excel .= '<td>' . $r["letra"] . '</td>';
