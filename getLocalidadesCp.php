@@ -1,6 +1,6 @@
 <?php
 include("controller.php");
-$id_localidades = $_POST["id_localidades"];
+$id = $_POST["id"];
 
 
-echo SelectOptionsByColumn("callejero", "id", "cp", "id_localidades", $id_localidades);
+echo SelectOptionsByColumnDistint("callejero", "id", "cp", "id", $id);

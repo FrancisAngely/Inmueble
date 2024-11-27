@@ -5,76 +5,53 @@
     <div class="admin_page">
         <!-- Start Content-->
         <div class="container-fluid">
+
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap  pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Callejero</h1>
-                &nbsp;<a href="modulo_callejero_new.php" class="btn btn-primary">Nuevo</a>
+                <h1 class="h2">Roles</h1>
+                &nbsp;<a href="modulo_roles_new.php" class="btn btn-primary">Nuevo</a>
                 &nbsp;&nbsp;
                 <a href="#" class="btn btn-success" id="exportar">Exportar&nbsp;<i
                         class="fa-regular fa-file-excel"></i></a>
             </div>
             <?php
-            $excel = ' <table>
-          <thead>
-          <tr>
-            <th>Id</th>
-            <th>Id Localidades</th>
-            <th>Tipo Via</th>
-            <th>Denominacion</th>
-            <th>Nombre Literal</th>
-            <th>Codigo Postal</th>
-          </tr>
-          </thead>
-          <tbody>';
+            $excel = ' <table><thead><tr><th>Id</th> <th>Role</th></tr></thead><tbody>';
             ?>
             <table class="table" id="tabla">
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Id Localidades</th>
-                        <th>Tipo Via</th>
-                        <th>Denominacion</th>
-                        <th>Nombre Literal</th>
-                        <th>Codigo Postal</th>
+                        <th>Role</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-
                     <?php
                     echo "<h3> User: " . $_SESSION["role"] . "</h3>";
-                    $callejero = getAllV("callejero");
+                    $roles = getAllV("roles");
 
-                    if (count($callejero) > 0) {
-                        foreach ($callejero as $r) {
+                    if (count($roles) > 0) {
+                        foreach ($roles as $r) {
                     ?>
                             <tr>
                                 <td><?php echo $r["id"]; ?></td>
-                                <td><?php echo $r["id_localidades"]; ?></td>
-                                <td><?php echo $r["tipo_via"]; ?></td>
-                                <td><?php echo $r["denominacion"]; ?></td>
-                                <td><?php echo $r["nombre_literal"]; ?></td>
-                                <td><?php echo $r["cp"]; ?></td>
-
-                                <td><a href="modulo_callejero_edit.php?id=<?php echo $r["id"]; ?>"><i
+                                <td><?php echo $r["role"]; ?></td>
+                                <td><a href="modulo_roles_edit.php?id=<?php echo $r["id"]; ?>"><i
                                             class="fa-solid fa-pen-to-square fa-2x"></i></a>
                                     &nbsp;&nbsp;
                                     <a href="#" data-id="<?php echo $r["id"]; ?>" class="borrar"><i
                                             class="fa-solid fa-trash text-danger"></i>
 
-                                        <a href="modulo_callejero_print.php?id=<?php echo $r["id"]; ?>"><i
+                                        <a href="modulo_roles_print.php?id=<?php echo $r["id"]; ?>"><i
                                                 class="fa-solid fa-print"></i></a>
                                         &nbsp;&nbsp;
                                     </a>
                                 </td>
                             </tr>
                     <?php
+
                             $excel .= '<tr>';
                             $excel .= '<td>' . $r["id"] . '</td>';
-                            $excel .= '<td>' . $r["id_localidades"] . '</td>';
-                            $excel .= '<td>' . $r["tipo_via"] . '</td>';
-                            $excel .= '<td>' . str_replace('"', "'", $r["denominacion"]) . '</td>';
-                            $excel .= '<td>' . str_replace('"', "'", $r["nombre_literal"]) . '</td>';
-                            $excel .= '<td>' . $r["cp"] . '</td>';
+                            $excel .= '<td>' . $r["role"] . '</td>';
                             $excel .= '</tr>';
                         }
                     }
@@ -83,14 +60,12 @@
             </table>
 
         </div> <!-- content -->
-
         <form action="ficheroExcel.php" method="post" enctype="multipart/form-data" id="formExportar">
-            <input type="hidden" value="calle" name="nombreFichero">
+            <input type="hidden" value="Roles" name="nombreFichero">
             <input type="hidden" value="<?php echo $excel; ?>" name="datos_a_enviar">
         </form>
 
         <?php include("scripts.php"); ?>
-
         <script>
             $(document).ready(function() {
 
@@ -126,7 +101,7 @@
                                 processData: false,
                                 contentType: false,
                                 cache: false,
-                                url: "modulo_callejero_importar.php",
+                                url: "modulo_roles_importar.php",
                                 success: function(result) {
                                     //alert(result);
                                     if (result == 1) {
@@ -146,11 +121,35 @@
                                 }
                             });
                         } else if (
+                            /* Read more about handling dismissals below */
                             result.dismiss === Swal.DismissReason.cancel
                         ) {}
                     });
                 });
 
+                $("#exportar2").click(function() {
+                    let nombreFichero = "Roles";
+                    let datos_a_enviar = '<?php echo $excel; ?>';
+                    $.ajax({
+                        data: {
+                            nombreFichero: nombreFichero,
+                            datos_a_enviar: datos_a_enviar
+                        },
+                        method: "POST",
+                        url: "ficheroExcel.php",
+                        success: function(result) {
+                            alert(result);
+                            WinId = window.open('ficheroExcel2.php', '_blank', '');
+                            // WinId.document.open('ficheroExcel2.php');
+                            WinId.document.write('<?php echo $excel; ?>');
+                            //WinId.document.close();
+                            //WinId.focus();
+                            WinId.print();
+                            //WinId.close();
+
+                        }
+                    });
+                });
 
                 $(".borrar").click(function() {
                     let id = $(this).attr('data-id');
@@ -163,7 +162,7 @@
                         buttonsStyling: false
                     });
                     swalWithBootstrapButtons.fire({
-                        title: "Desea eliminar la localidad?",
+                        title: "Desea eliminar el role?",
                         text: "no hay vuelta atrás!",
                         icon: "warning",
                         showCancelButton: true,
@@ -178,25 +177,26 @@
                                     id: id
                                 },
                                 method: "POST",
-                                url: "modulo_callejero_delete.php",
+                                url: "modulo_roles_delete.php",
                                 success: function(result) {
                                     if (result == 1) {
                                         swalWithBootstrapButtons.fire({
                                             title: "Eliminado!",
-                                            text: "Calle dada de baja",
+                                            text: "Rol dado de baja",
                                             icon: "success"
                                         });
                                         padre.hide();
                                     } else {
                                         swalWithBootstrapButtons.fire({
                                             title: "No Eliminado!",
-                                            text: "Calle NO dada de baja",
+                                            text: "Rol NO dado de baja",
                                             icon: "error"
                                         });
                                     }
                                 }
                             });
                         } else if (
+                            /* Read more about handling dismissals below */
                             result.dismiss === Swal.DismissReason.cancel
                         ) {}
                     });
@@ -230,7 +230,7 @@
                 });
             });
         </script>
-    </div>
+
 </body>
 
 </html>

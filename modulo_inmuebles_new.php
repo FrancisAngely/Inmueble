@@ -41,7 +41,8 @@
                                 <span id="id_provincias_error" class="text-danger"></span>
                                 <select class="form-control" id="id_provincias" name="id_provincias">
                                     <option></option>
-                                    <?php echo SelectOptions("provincias", "id", "provincia"); ?>
+                                    <?php
+                                    echo SelectOptionsByColumn("provincias", "id", "provincia", "activo", 1); ?>
                                 </select>
                             </div>
 
@@ -314,6 +315,11 @@
                             required: true,
                             maxlength: 200,
                             minlength: 3
+                        },
+                        foto: {
+                            required: true,
+                            maxlength: 200,
+                            minlength: 0
                         }
                     },
                     messages: {
@@ -528,12 +534,11 @@
                     });
                 });
 
-                $("#id_localidades").change(function() {
-                    let id_localidades = $("#id_localidades").val();
-                    console.log(id_localidades);
+                $("#direccion").change(function() {
+                    let direccion = $("#direccion").val();
                     $.ajax({
                         data: {
-                            id_localidades: id_localidades
+                            id: direccion,
                         },
                         method: "POST",
                         url: "getLocalidadesCp.php",
@@ -560,12 +565,14 @@
                     });
                 });
 
-                $("#id_localidades").change(function() {
+                $("#tipo_via").change(function() {
                     let id_localidades = $("#id_localidades").val();
-                    console.log(id_localidades);
+                    let tipo_via = $("#tipo_via").val();
+                    console.log(tipo_via);
                     $.ajax({
                         data: {
-                            id_localidades: id_localidades
+                            id_localidades: id_localidades,
+                            tipo_via: tipo_via
                         },
                         method: "POST",
                         url: "getLocalidadesDireccion.php",
@@ -575,8 +582,6 @@
                         }
                     });
                 });
-
-
             });
         </script>
 </body>

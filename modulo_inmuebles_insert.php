@@ -37,7 +37,7 @@ $upload = UploadFile($_FILES["foto"], "inmuebles", "inmueble_" . $inmuebleId);
 
 if ($upload != "error") {
     $datos["foto"] = $upload;
-    //echo updateById($tabla, $datos, $inmuebleId);
+    echo updateById($tabla, $datos, $inmuebleId);
 } else {
     echo 0;
 }

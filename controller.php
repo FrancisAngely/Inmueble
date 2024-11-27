@@ -929,6 +929,22 @@ function SelectOptionsByColumn($tabla, $value, $mostrar, $column, $valor)
     }
     return $options;
 }
+
+function SelectOptionsByColumnActive($tabla, $value, $mostrar, $column, $valor)
+{
+    include("db.php");
+    $options = "<option></option>";
+    $sql = "SELECT `" . $value . "`, `" . $mostrar . "` FROM `" . $tabla . "`";
+    $sql .= " WHERE `" . $column . "`='" . $valor . "' AND activo = 1";
+    $query = $mysqli->query($sql);
+    if ($query->num_rows > 0) {
+        while ($fila = $query->fetch_assoc()) {
+
+            $options .= '<option value="' . $fila[$value] . '">' . $fila[$mostrar] . '</option>';
+        }
+    }
+    return $options;
+}
 //Consulta para usar SELECT DISTINCT
 
 function SelectOptionsByColumnDistint($tabla, $value, $mostrar, $column, $valor)
@@ -938,6 +954,36 @@ function SelectOptionsByColumnDistint($tabla, $value, $mostrar, $column, $valor)
 
     $sql = "SELECT DISTINCT `" . $value . "`, `" . $mostrar . "` FROM `" . $tabla . "`";
     $sql .= " WHERE `" . $column . "` = '" . $valor . "'";
+
+    echo $sql;
+
+    $query = $mysqli->query($sql);
+
+    if ($query->num_rows > 0) {
+        while ($fila = $query->fetch_assoc()) {
+            $options .= '<option value="' . $fila[$value] . '">' . $fila[$mostrar] . '</option>';
+        }
+    }
+
+    return $options;
+}
+
+function SelectOptionsByManyConditions($tabla, $value, $mostrar, $conditions)
+{
+    include("db.php");
+    $options = "<option></option>";
+
+    $sql .= "SELECT DISTINCT `" . $value . "`, `" . $mostrar . "` FROM `" . $tabla . "` WHERE ";
+
+    $numItems = count((array)$conditions);
+    $i = 0;
+    foreach ($conditions as $index => $item) {
+        if (++$i === $numItems) {
+            $sql .= " `" . $index . "` = '" . $item . "' ";
+        } else {
+            $sql .= " `" . $index . "` = '" . $item . "' AND ";
+        }
+    }
 
     $query = $mysqli->query($sql);
 

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" data-bs-theme="light" data-menu-color="light" data-topbar-color="dark">
 
+
 <?php include("head.php"); ?>
 
 <body>

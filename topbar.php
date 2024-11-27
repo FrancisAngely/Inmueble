@@ -1,53 +1,55 @@
  <div class="navbar-custom">
-                <div class="topbar">
-                    <div class="topbar-menu d-flex align-items-center gap-lg-2 gap-1">
+     <div class="topbar">
+         <div class="topbar-menu d-flex align-items-center gap-lg-2 gap-1">
 
-                        <!-- Brand Logo -->
-                        <div class="logo-box">
-                            <!-- Brand Logo Light -->
-                            <a href="index.html" class="logo-light">
-                                <img src="assets/images/logo-light.png" alt="logo" class="logo-lg" height="32">
-                                <img src="assets/images/logo-light-sm.png" alt="small logo" class="logo-sm" height="32">
-                            </a>
+             <!-- Brand Logo -->
+             <div class="logo-box">
+                 <!-- Brand Logo Light -->
+                 <a href="index.html" class="logo-light">
+                     <img src="assets/images/logo-light.png" alt="logo" class="logo-lg" height="32">
+                     <img src="assets/images/logo-light-sm.png" alt="small logo" class="logo-sm" height="32">
+                 </a>
 
-                            <!-- Brand Logo Dark -->
-                            <a href="index.html" class="logo-dark">
-                                <img src="assets/images/logo-dark.png" alt="dark logo" class="logo-lg" height="32">
-                                <img src="assets/images/logo-dark-sm.png" alt="small logo" class="logo-sm" height="32">
-                            </a>
-                        </div>
+                 <!-- Brand Logo Dark -->
+                 <a href="index.html" class="logo-dark">
+                     <img src="assets/images/logo-dark.png" alt="dark logo" class="logo-lg" height="32">
+                     <img src="assets/images/logo-dark-sm.png" alt="small logo" class="logo-sm" height="32">
+                 </a>
+             </div>
 
-                        <!-- Sidebar Menu Toggle Button -->
-                        <button class="button-toggle-menu waves-effect waves-light rounded-circle">
-                            <i class="mdi mdi-menu"></i>
-                        </button>
-                    </div>
+             <!-- Sidebar Menu Toggle Button -->
+             <button class="button-toggle-menu waves-effect waves-light rounded-circle">
+                 <i class="mdi mdi-menu"></i>
+             </button>
+         </div>
 
-                    <ul class="topbar-menu d-flex align-items-center gap-2">
+         <ul class="topbar-menu d-flex align-items-center gap-2">
 
-                        <li class="d-none d-md-inline-block">
-                            <a class="nav-link waves-effect waves-light" href="#" data-bs-toggle="fullscreen">
-                                <i class="mdi mdi-fullscreen font-size-24"></i>
-                            </a>
-                        </li>
+             <li class="d-none d-md-inline-block">
+                 <a class="nav-link waves-effect waves-light" href="#" data-bs-toggle="fullscreen">
+                     <i class="mdi mdi-fullscreen font-size-24"></i>
+                 </a>
+             </li>
 
-                        <li class="dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-light arrow-none" data-bs-toggle="dropdown"
-                                href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                <i class="mdi mdi-magnify font-size-24"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-animated dropdown-menu-end dropdown-lg p-0">
-                                <form class="input-group p-3">
-                                    <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary rounded-start-0" type="submit"><i class="mdi mdi-magnify"></i></button>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
+             <li class="dropdown">
+                 <a class="nav-link dropdown-toggle waves-effect waves-light arrow-none" data-bs-toggle="dropdown"
+                     href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                     <i class="mdi mdi-magnify font-size-24"></i>
+                 </a>
+                 <div class="dropdown-menu dropdown-menu-animated dropdown-menu-end dropdown-lg p-0">
+                     <form class="input-group p-3">
+                         <input type="text" class="form-control" placeholder="Search ..."
+                             aria-label="Recipient's username">
+                         <div class="input-group-append">
+                             <button class="btn btn-primary rounded-start-0" type="submit"><i
+                                     class="mdi mdi-magnify"></i></button>
+                         </div>
+                     </form>
+                 </div>
+             </li>
 
 
-                        <!--<li class="dropdown d-none d-md-inline-block">
+             <!--<li class="dropdown d-none d-md-inline-block">
                             <a class="nav-link dropdown-toggle waves-effect waves-light arrow-none" data-bs-toggle="dropdown"
                                 href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                 <img src="assets/images/flags/us.jpg" alt="user-image" class="me-0 me-sm-1" height="18">
@@ -79,7 +81,7 @@
                             </div>
                         </li> -->
 
-                       <!-- <li class="dropdown notification-list">
+             <!-- <li class="dropdown notification-list">
                             <a class="nav-link dropdown-toggle waves-effect waves-light arrow-none" data-bs-toggle="dropdown"
                                 href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                 <i class="mdi mdi-bell font-size-24"></i>
@@ -223,22 +225,22 @@
                             </div>
                         </li> -->
 
-                        <li class="nav-link waves-effect waves-light" id="theme-mode">
-                            <i class="bx bx-moon font-size-24"></i>
-                        </li>
+             <li class="nav-link waves-effect waves-light" id="theme-mode">
+                 <i class="bx bx-moon font-size-24"></i>
+             </li>
 
-                        <li class="dropdown">
-                            <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown"
-                                href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                <img src="assets/images/users/user-12.png" alt="user-image" class="rounded-circle">
-                                <span class="ms-1 d-none d-md-inline-block">
-                                    User <i class="mdi mdi-chevron-down"></i>
-                                </span>
-                            </a>
+             <li class="dropdown">
+                 <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown"
+                     href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                     <img src="assets/images/users/user-12.png" alt="user-image" class="rounded-circle">
+                     <span class="ms-1 d-none d-md-inline-block">
+                         User <i class="mdi mdi-chevron-down"></i>
+                     </span>
+                 </a>
 
-                            <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
-                              
-                                <!--<div class="dropdown-header noti-title">
+                 <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
+
+                     <!--<div class="dropdown-header noti-title">
                                     <h6 class="text-overflow m-0">Welcome !</h6>
                                 </div>
 
@@ -262,15 +264,15 @@
 
                                 <div class="dropdown-divider"></div> -->
 
-                             
-                                <a href="pages-login.html" class="dropdown-item notify-item">
-                                    <i data-lucide="log-out" class="font-size-16 me-2"></i>
-                                    <span>Logout</span>
-                                </a>
 
-                            </div>
-                        </li>
+                     <a href="login.php" class="dropdown-item notify-item">
+                         <i data-lucide="log-out" class="font-size-16 me-2"></i>
+                         <span>Logout</span>
+                     </a>
 
-                    </ul>
-                </div>
-            </div>
+                 </div>
+             </li>
+
+         </ul>
+     </div>
+ </div>

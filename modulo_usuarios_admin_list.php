@@ -1,37 +1,23 @@
 <!DOCTYPE html>
 <html lang="es" data-bs-theme="light" data-menu-color="light" data-topbar-color="dark">
 
-<?php include("head.php"); ?>
-
 <body>
-  <div class="layout-wrapper">
+  <div class="admin_page">
 
-    <?php include("leftsidebar.php"); ?>
-
-
-    <div class="page-content">
+    <!-- Start Content-->
+    <div class="container-fluid">
 
 
-      <?php include("topbar.php"); ?>
-
-      <div class="px-3">
-
-        <!-- Start Content-->
-        <div class="container-fluid">
-
-
-          <?php include("breadcrumb.php"); ?>
-
-          <div
-            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Configuración</h1>
-            <a href="modulo_usuarios_new.php" class="btn btn-primary">Nuevo</a>
-            &nbsp;&nbsp;
-            <a href="#" class="btn btn-success" id="exportar">Exportar&nbsp;<i
-                class="fa-regular fa-file-excel"></i></a>
-          </div>
-          <?php
-          $excel = ' <table>
+      <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Configuración</h1>
+        <a href="modulo_usuarios_new.php" class="btn btn-primary">Nuevo</a>
+        &nbsp;&nbsp;
+        <a href="#" class="btn btn-success" id="exportar">Exportar&nbsp;<i
+            class="fa-regular fa-file-excel"></i></a>
+      </div>
+      <?php
+      $excel = ' <table>
           <thead>
           <tr>
                 <th>Id</th>
@@ -41,60 +27,54 @@
           </tr>
           </thead>
           <tbody>';
-          ?>
+      ?>
 
-          <table class="table" id="tabla">
-            <thead>
+      <table class="table" id="tabla">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Usuario</th>
+            <th>E-mail</th>
+            <th>Role</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <?php
+        echo "<h3> User: " . $_SESSION["role"] . "</h3>";
+        $usuarios = getAllVInner("usuarios", "roles", "id_roles", "id");
+
+        if (count($usuarios) > 0) {
+          foreach ($usuarios as $u) {
+        ?>
+            <tbody>
               <tr>
-                <th>Id</th>
-                <th>Usuario</th>
-                <th>E-mail</th>
-                <th>Role</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <?php
-            echo "<h3> User: " . $_SESSION["role"] . "</h3>";
-            $usuarios = getAllVInner("usuarios", "roles", "id_roles", "id");
+                <td><?php echo $u["id1"]; ?></td>
+                <td><?php echo $u["usuario"]; ?></td>
+                <td><?php echo $u["email"]; ?></td>
+                <td><?php echo $u["role"]; ?></td>
+                <td><a href="modulo_usuarios_edit.php?id=<?php echo $u["id1"]; ?>"><i
+                      class="fa-solid fa-pen-to-square fa-2x"></i></a>
+                  &nbsp;&nbsp;
+                  <a href="#" data-id="<?php echo $u["id1"]; ?>" class="borrar"><i
+                      class="fa-solid fa-trash text-danger"></i></a>
+                  <a href="modulo_usuarios_print.php?id=<?php echo $u["id1"]; ?>"><i
+                      class="fa-solid fa-print"></i></a>
+                  &nbsp;&nbsp;
+                </td>
+              </tr> <?php
+                    $excel .= '<tr>';
+                    $excel .= '<td>' . $u["id1"] . '</td>';
+                    $excel .= '<td>' . $u["usuario"] . '</td>';
+                    $excel .= '<td>' . $u["email"] . '</td>';
+                    $excel .= '<td>' . $u["role"] . '</td>';
+                    $excel .= '</tr>';
+                  }
+                }
+                    ?>
+            </tbody>
+      </table>
+    </div> <!-- content -->
 
-            if (count($usuarios) > 0) {
-              foreach ($usuarios as $u) {
-            ?>
-                <tbody>
-                  <tr>
-                    <td><?php echo $u["id1"]; ?></td>
-                    <td><?php echo $u["usuario"]; ?></td>
-                    <td><?php echo $u["email"]; ?></td>
-                    <td><?php echo $u["role"]; ?></td>
-                    <td><a href="modulo_usuarios_edit.php?id=<?php echo $u["id1"]; ?>"><i
-                          class="fa-solid fa-pen-to-square fa-2x"></i></a>
-                      &nbsp;&nbsp;
-                      <a href="#" data-id="<?php echo $u["id1"]; ?>" class="borrar"><i
-                          class="fa-solid fa-trash text-danger"></i></a>
-                      <a href="modulo_usuarios_print.php?id=<?php echo $u["id1"]; ?>"><i
-                          class="fa-solid fa-print"></i></a>
-                      &nbsp;&nbsp;
-                    </td>
-                  </tr> <?php
-                        $excel .= '<tr>';
-                        $excel .= '<td>' . $u["id1"] . '</td>';
-                        $excel .= '<td>' . $u["usuario"] . '</td>';
-                        $excel .= '<td>' . $u["email"] . '</td>';
-                        $excel .= '<td>' . $u["role"] . '</td>';
-                        $excel .= '</tr>';
-                      }
-                    }
-                        ?>
-                </tbody>
-          </table>
-
-        </div> <!-- container -->
-
-      </div> <!-- content -->
-
-      <?php include("footer.php"); ?>
-
-    </div>
   </div>
   <form action="ficheroExcel.php" method="post" enctype="multipart/form-data" id="formExportar">
     <input type="hidden" value="usuarios" name="nombreFichero">

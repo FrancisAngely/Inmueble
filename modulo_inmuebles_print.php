@@ -52,7 +52,7 @@ ob_start();
                     </tr>
                     <tr>
                     <tr>
-                        <th>Evento:</th>
+                        <th>nombre</th>
                         <td><?php echo $eventos["evento"]; ?></td>
                     </tr>
                     <tr>
@@ -61,38 +61,38 @@ ob_start();
                     </tr>
 
                     <th>Nombre:</th>
-                        <td><?php echo $participante["nombre"]; ?></td>
-                    </tr>
-                    <tr>
-                        <th>Apellidos:</th>
-                        <td><?php echo $participante["apellidos"]; ?></td>
-                    </tr>
-                    <tr>
-                        <th>E-mai:</th>
-                        <td><?php echo $participante["email"]; ?></td>
-                    </tr>
-                    <tr>
-                        <th>Apellidos:</th>
-                        <td><?php echo $participante["precio"]; ?></td>
-                    </tr>
-                    <tr>
-                        <th>Precio:</th>
-                        <td><?php echo $participante["fecha"]; ?></td>
-                    </tr>
-                    <tr>
-                        <th>Fecha:</th>
-                        <td><?php echo $participante["hora_comienzo"]; ?></td>
-                    </tr>
-                    <tr>
-                        <th>Hora:</th>
-                        <td><?php echo $participante["apellidos"]; ?></td>
-                    </tr>
+                    <td><?php echo $participante["nombre"]; ?></td>
+        </tr>
+        <tr>
+            <th>Apellidos:</th>
+            <td><?php echo $participante["apellidos"]; ?></td>
+        </tr>
+        <tr>
+            <th>E-mai:</th>
+            <td><?php echo $participante["email"]; ?></td>
+        </tr>
+        <tr>
+            <th>Apellidos:</th>
+            <td><?php echo $participante["precio"]; ?></td>
+        </tr>
+        <tr>
+            <th>Precio:</th>
+            <td><?php echo $participante["fecha"]; ?></td>
+        </tr>
+        <tr>
+            <th>Fecha:</th>
+            <td><?php echo $participante["hora_comienzo"]; ?></td>
+        </tr>
+        <tr>
+            <th>Hora:</th>
+            <td><?php echo $participante["apellidos"]; ?></td>
+        </tr>
 
-                </table>
+    </table>
 
-            </td>
-            </tr>
-        <?php include("files_dompdf/pie.php"); ?>
+    </td>
+    </tr>
+    <?php include("files_dompdf/pie.php"); ?>
     </table>
 
 

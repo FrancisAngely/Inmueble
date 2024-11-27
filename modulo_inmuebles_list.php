@@ -64,10 +64,10 @@
                                 <th>Id</th>
                                 <th>nombre</th>
                                 <th>Provincia</th>
-                                <th>id_localidades</th>
-                                <th>tipo_via</th>
-                                <th>direccion</th>
-                                <th>cp</th>
+                                <th>Localidades</th>
+                                <th>tipo Via</th>
+                                <th>Direccion</th>
+                                <th>Codigo Postal</th>
                                 <th>numero</th>
                                 <th>piso</th>
                                 <th>letra</th>
@@ -89,78 +89,66 @@
                         <tbody>
 
                             <?php
-                            echo "<h3> User: " . $_SESSION["role"] . "</h3>";
                             $inmuebles = getAllV("inmuebles");
                             $provincias = getAllV("provincias");
                             $localidades = getAllV("localidades");
                             $callejero = getAllV("callejero");
-                            $callejeros = getAllV("callejero");
 
-
-                           //print_r($callejeros);
+                            //print_r($callejeros);
+                            //print_r($inmuebles);
+                            // print_r($provincias);
+                            //print_r($localidades);
 
                             if (count($inmuebles) > 0) {
                                 foreach ($inmuebles as $r) {
+                                    // Verifica que todos los campos existen
+                                    $found_key = array_search($r["id_provincias"], array_column($provincias, 'id'));
+                                    $provinciaNombre = $found_key !== true ? $provincias[$found_key]['provincia'] : 'No disponible';
+
+                                    $key = array_search($r["id_localidades"], array_column($localidades, 'id'));
+                                    $localidadNombre = $key !== true ? $localidades[$key]['localidad'] : 'No disponible';
+
+                                    $key2 = array_search($r["id"], array_column($callejero, 'id'));
+                                    $tipoVia = $key2 !== true ? $callejero[$key2]['tipo_via'] : 'No disponible';
+
+                                    $key3 = array_search($r["id"], array_column($callejero, 'id'));
+                                    $direccion = $key3 !== true ? $callejero[$key3]['nombre_literal'] : 'No disponible';
+
+                                    $key4 = array_search($r["id"], array_column($callejero, 'id'));
+                                    $cp = $key4 !== true ? $callejero[$key4]['cp'] : 'No disponible';
+
+                                    echo "<tr>
+                                            <td>{$r['id']}</td>
+                                            <td>{$r['nombre']}</td>
+                                            <td>{$provinciaNombre}</td>
+                                            <td>{$localidadNombre}</td>
+                                            <td>{$tipoVia}</td>
+                                            <td>{$direccion}</td>
+                                            <td>{$cp}</td>
+                                            <td>{$r['numero']}</td>
+                                            <td>{$r['piso']}</td>
+                                            <td>{$r['letra']}</td>
+                                            <td>{$r['escalera']}</td>
+                                            <td>{$r['precio']}</td>
+                                            <td>{$r['habitaciones']}</td>
+                                            <td>{$r['metros_cuadrados']}</td>
+                                            <td>{$r['exterior']}</td>
+                                            <td>{$r['aseos']}</td>
+                                            <td>{$r['terraza']}</td>
+                                            <td>{$r['balcon']}</td>
+                                            <td>{$r['orientacion']}</td>
+                                            <td>{$r['ascensor']}</td>
+                                            <td>{$r['descripcion']}</td>
+                                            <td>{$r['foto']}</td>
+                                            <td>
+                <a href='modulo_inmuebles_edit.php?id={$r['id']}'><i class='fa-solid fa-pen-to-square fa-2x'></i></a>
+                &nbsp;&nbsp;
+                <a href='#' data-id='{$r['id']}' class='borrar'><i class='fa-solid fa-trash text-danger'></i></a>
+                &nbsp;&nbsp;
+                <a href='modulo_inmuebles_print.php?id={$r['id']}'><i class='fa-solid fa-print'></i></a>
+            </td>
+        </tr>";
                             ?>
-                                    <tr>
-                                        <td><?php echo $r["id"]; ?></td>
-                                        <td><?php echo $r["nombre"]; ?></td>
-                                        <td><?php
-                                            $found_key = array_search($r["id_provincias"], array_column($provincias, 'id'));
-                                            echo $provincias[$found_key]['provincia']; ?></td>
-
-                                        <td><?php
-                                            $key = array_search($r["id_localidades"], array_column($localidades, 'id'));
-                                            echo $localidades[$key]['localidad'];
-                                            ?>
-                                        </td>
-
-                                        <td><?php
-                                            $key2 = array_search($r["id_localidades"], array_column($callejero, 'id'));
-                                            echo $callejero[$key2]['tipo_via'];
-                                            ?>
-                                        </td>
-
-                                        <td><?php
-                                            $key3 = array_search($r["id_localidades"], array_column($callejeros, 'id_localidades'));
-                                            echo $callejeros[$key3]['nombre_literal'];
-                                            ?>
-                                        </td>
-                                        <td><?php
-                                            $key3 = array_search($r["id_localidades"], array_column($callejeros, 'id_localidades'));
-                                            echo $callejeros[$key3]['cp'];
-                                            ?>
-                                        </td>
-
-                                        <td><?php echo $r["cp"]; ?></td>
-                                        <td><?php echo $r["numero"]; ?></td>
-                                        <td><?php echo $r["piso"]; ?></td>
-                                        <td><?php echo $r["letra"]; ?></td>
-                                        <td><?php echo $r["escalera"]; ?></td>
-                                        <td><?php echo $r["precio"]; ?></td>
-                                        <td><?php echo $r["habitaciones"]; ?></td>
-                                        <td><?php echo $r["metros_cuadrados"]; ?></td>
-                                        <td><?php echo $r["exterior"]; ?></td>
-                                        <td><?php echo $r["aseos"]; ?></td>
-                                        <td><?php echo $r["terraza"]; ?></td>
-                                        <td><?php echo $r["balcon"]; ?></td>
-                                        <td><?php echo $r["orientacion"]; ?></td>
-                                        <td><?php echo $r["ascensor"]; ?></td>
-                                        <td><?php echo $r["descripcion"]; ?></td>
-                                        <td><?php echo $r["foto"]; ?></td>
-
-                                        <td><a href="modulo_inmuebles_edit.php?id=<?php echo $r["id"]; ?>"><i
-                                                    class="fa-solid fa-pen-to-square fa-2x"></i></a>
-                                            &nbsp;&nbsp;
-                                            <a href="#" data-id="<?php echo $r["id"]; ?>" class="borrar"><i
-                                                    class="fa-solid fa-trash text-danger"></i>
-
-                                                <a href="modulo_inmuebles_print.php?id=<?php echo $r["id"]; ?>"><i
-                                                        class="fa-solid fa-print"></i></a>
-                                                &nbsp;&nbsp;
-                                            </a>
-                                        </td>
-                                    </tr>
                             <?php
                                     $excel .= '<tr>';
                                     $excel .= '<td>' . $r["id"] . '</td>';
@@ -169,7 +157,7 @@
                                     $excel .= '<td>' . $r["id_localidades"] . '</td>';
                                     $excel .= '<td>' . $r["tipo_via"] . '</td>';
                                     $excel .= '<td>' . $r["direccion"] . '</td>';
-                                    $excel .= '<td>' . $r["cp"] . '</td>';
+                                    $excel .= '<td>' . $r[""] . '</td>';
                                     $excel .= '<td>' . $r["numero"] . '</td>';
                                     $excel .= '<td>' . $r["piso"] . '</td>';
                                     $excel .= '<td>' . $r["letra"] . '</td>';
@@ -318,32 +306,32 @@
                 });
             });
 
-         /*   $("#tabla").DataTable({
-                language: {
-                    "decimal": "",
-                    "emptyTable": "No hay información",
-                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-                    "infoPostFix": "",
-                    "thousands": ",",
-                    "lengthMenu": "Mostrar _MENU_ Entradas",
-                    "loadingRecords": "Cargando...",
-                    "processing": "Procesando...",
-                    "search": "Buscar:",
-                    "zeroRecords": "Sin resultados encontrados",
-                    "paginate": {
-                        "first": "Primero",
-                        "last": "Ultimo",
-                        previous: "<i class='mdi mdi-chevron-left'>",
-                        next: "<i class='mdi mdi-chevron-right'>"
-                    }
-                },
-                drawCallback: function() {
-                    $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
-                }
+            /*   $("#tabla").DataTable({
+                   language: {
+                       "decimal": "",
+                       "emptyTable": "No hay información",
+                       "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                       "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                       "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                       "infoPostFix": "",
+                       "thousands": ",",
+                       "lengthMenu": "Mostrar _MENU_ Entradas",
+                       "loadingRecords": "Cargando...",
+                       "processing": "Procesando...",
+                       "search": "Buscar:",
+                       "zeroRecords": "Sin resultados encontrados",
+                       "paginate": {
+                           "first": "Primero",
+                           "last": "Ultimo",
+                           previous: "<i class='mdi mdi-chevron-left'>",
+                           next: "<i class='mdi mdi-chevron-right'>"
+                       }
+                   },
+                   drawCallback: function() {
+                       $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
+                   }
 
-            });*/
+               });*/
         });
     </script>
     </div>
