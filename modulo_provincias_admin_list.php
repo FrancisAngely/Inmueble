@@ -1,11 +1,3 @@
-<div class="admin_page">
-
-
-    <!-- Start Content-->
-    <div class="container-fluid">
-        <?php include("breadcrumb.php"); ?>
-
-
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap  pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Provincias</h1>
             &nbsp;<a href="modulo_provincias_new.php" class="btn btn-primary">Nuevo</a>
@@ -63,14 +55,10 @@
                 ?>
             </tbody>
         </table>
-
-    </div> <!-- content -->
-
     <form action="ficheroExcel.php" method="post" enctype="multipart/form-data" id="formExportar">
         <input type="hidden" value="Provincias" name="nombreFichero">
         <input type="hidden" value="<?php echo $excel; ?>" name="datos_a_enviar">
     </form>
-    <?php include("scripts.php"); ?>
     <script>
         $(document).ready(function() {
 
@@ -210,7 +198,3 @@
             });
         });
     </script>
-</div>
-</body>
-
-</html>

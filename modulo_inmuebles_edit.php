@@ -27,7 +27,6 @@
             <h1 class="h2">Localidad - Editar</h1>
             <a href="modulo_inmuebles_list.php" class="btn btn-primary">Volver</a>
           </div>
-
           <?php $inmuebles = getById("inmuebles", $_GET["id"]); ?>
 
           <div class="col-4">
@@ -180,14 +179,13 @@
               <div class="mb-3">
                 <label for="foto" class="form-label">Foto</label>
                 <span id="foto_error" class="text-danger"></span>
-                <img src="<?php echo $inmuebles["foto"];?>" class="img-fluid">
+                <img src="<?php echo $inmuebles["foto"]; ?>" class="img-fluid">
                 <input type="file" class="form-control" id="foto" name="foto">
               </div>
 
               <div class="mb-3">
                 <input type="submit" class="form-control" value="Aceptar" id="btnform1">
               </div>
-
             </form>
           </div>
         </div> <!-- container -->

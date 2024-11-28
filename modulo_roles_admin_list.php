@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="es" data-bs-theme="light" data-menu-color="light" data-topbar-color="dark">
-
-<body>
-    <div class="admin_page">
-        <!-- Start Content-->
-        <div class="container-fluid">
-
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap  pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Roles</h1>
                 &nbsp;<a href="modulo_roles_new.php" class="btn btn-primary">Nuevo</a>
@@ -13,9 +5,11 @@
                 <a href="#" class="btn btn-success" id="exportar">Exportar&nbsp;<i
                         class="fa-regular fa-file-excel"></i></a>
             </div>
+
             <?php
             $excel = ' <table><thead><tr><th>Id</th> <th>Role</th></tr></thead><tbody>';
             ?>
+
             <table class="table" id="tabla">
                 <thead>
                     <tr>
@@ -58,14 +52,11 @@
                     ?>
                 </tbody>
             </table>
-
-        </div> <!-- content -->
+        
         <form action="ficheroExcel.php" method="post" enctype="multipart/form-data" id="formExportar">
             <input type="hidden" value="Roles" name="nombreFichero">
             <input type="hidden" value="<?php echo $excel; ?>" name="datos_a_enviar">
         </form>
-
-        <?php include("scripts.php"); ?>
         <script>
             $(document).ready(function() {
 
@@ -230,7 +221,3 @@
                 });
             });
         </script>
-
-</body>
-
-</html>

@@ -5,13 +5,13 @@
              <!-- Brand Logo -->
              <div class="logo-box">
                  <!-- Brand Logo Light -->
-                 <a href="index.html" class="logo-light">
+                 <a href="index.php" class="logo-light">
                      <img src="assets/images/logo-light.png" alt="logo" class="logo-lg" height="32">
                      <img src="assets/images/logo-light-sm.png" alt="small logo" class="logo-sm" height="32">
                  </a>
 
                  <!-- Brand Logo Dark -->
-                 <a href="index.html" class="logo-dark">
+                 <a href="index.php" class="logo-dark">
                      <img src="assets/images/logo-dark.png" alt="dark logo" class="logo-lg" height="32">
                      <img src="assets/images/logo-dark-sm.png" alt="small logo" class="logo-sm" height="32">
                  </a>
@@ -265,7 +265,7 @@
                                 <div class="dropdown-divider"></div> -->
 
 
-                     <a href="login.php" class="dropdown-item notify-item">
+                         <a href="login.php" class="dropdown-item notify-item">
                          <i data-lucide="log-out" class="font-size-16 me-2"></i>
                          <span>Logout</span>
                      </a>

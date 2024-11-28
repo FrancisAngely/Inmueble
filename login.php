@@ -30,11 +30,11 @@
                                 <div class="col-lg-7">
                                     <div class="p-5">
                                         <div class="text-center w-75 mx-auto auth-logo mb-4">
-                                            <a href="index.html" class="logo-dark">
+                                            <a href="index.php" class="logo-dark">
                                                 <span><img src="assets/images/logo-dark.png" alt="" height="32"></span>
                                             </a>
 
-                                            <a href="index.html" class="logo-light">
+                                            <a href="index.php" class="logo-light">
                                                 <span><img src="assets/images/logo-light.png" alt="" height="32"></span>
                                             </a>
                                         </div>
@@ -175,26 +175,6 @@
             }
 
         });
-
-        /*$("#username").change(function(){
-        let username=$("#username").val();  
-             $.ajax({
-                 data:{username:username},
-                 method:"POST",
-                 url: "verificarUser.php", 
-                 success: function(result){
-                     if(result==0){
-                        $("#username_error").html("usuario noexiste");
-                        $("#username").val(''); 
-                         $("#username").addClass("borderError");
-                     }else{
-                        $("#username").removeClass("borderError"); 
-                         $("#errorV").html("");
-                         //$("#username_error").html("");
-                     }
-                }
-             });
-            });*/
 
         $("#username").on('keyup', function() {
             $("#errorV").html("");

@@ -16,16 +16,16 @@
 
             <div class="px-3">
 
-                <!-- Start Content-->
                 <?php
+
                 if ($_SESSION["id_roles"] == "1") {
                     include("modulo_localidades_admin_list.php");
                 } else {
                     echo "<h1> Area restringida : SOLO ADMINS</h1>";
                 }
                 ?>
-            </div> <!-- content -->
 
+            </div> 
             <?php include("scripts.php"); ?>
 
             <?php include("footer.php"); ?>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" data-bs-theme="light" data-menu-color="light" data-topbar-color="dark">
-<?php include("head.php"); ?>
 
+<?php include("head.php"); ?>
 
 <body>
     <div class="layout-wrapper">
@@ -15,7 +15,7 @@
             <?php include("topbar.php"); ?>
 
             <div class="px-3">
-                <!-- Start Content-->
+
                 <?php
 
                 if ($_SESSION["id_roles"] == "1") {
@@ -25,8 +25,7 @@
                 }
                 ?>
 
-            </div> <!-- content -->
-
+            </div> 
             <?php include("scripts.php"); ?>
 
             <?php include("footer.php"); ?>

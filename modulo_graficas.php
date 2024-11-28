@@ -14,17 +14,16 @@
 
                     <?php include("breadcrumb.php"); ?>
 
-                    <div
-                        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Graficas</h1>
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Gráficas de Inmuebles</h1>
                     </div>
 
                     <div class="col-xl-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="header-title">Precio Promedio de Inmuebles</h4>
+                                <h4 class="header-title">Precio Promedio de Inmuebles por Dirección</h4>
 
-                                <canvas id="miGrafica" width="400" height="200"></canvas>
+                                <canvas id="graficaDireccion" width="400" height="200"></canvas>
                             </div> <!-- end card-body -->
                         </div> <!-- end card-->
                     </div> <!-- end col-->
@@ -37,27 +36,33 @@
         <?php include("db.php"); ?>
 
         <?php
-        $sqlGraph = "SELECT l.localidad AS localidad, AVG(i.precio) AS precio_promedio FROM inmuebles i JOIN localidades l ON i.id_localidades = l.id GROUP BY l.localidad;";
+        // Consulta para obtener el precio promedio por dirección
+        $sqlGraph = "
+        SELECT CONCAT(tipo_via, ' ', direccion) AS direccion, AVG(precio) AS precio_promedio 
+        FROM inmuebles 
+        GROUP BY direccion 
+        ORDER BY precio_promedio DESC;";
+        
         $query = $mysqli->query($sqlGraph);
-        $localidades = [];
+        $direcciones = [];
         $precios = [];
 
         if ($query->num_rows > 0) {
             while ($fila = $query->fetch_assoc()) {
-                $localidades[] = $fila['localidad'];
+                $direcciones[] = $fila['direccion'];
                 $precios[] = $fila['precio_promedio'];
             }
         }
         ?>
 
         <?php include("scripts.php"); ?>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Asegúrate de incluir Chart.js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
-            const ctx = document.getElementById('miGrafica').getContext('2d');
-            const miGrafica = new Chart(ctx, {
-                type: 'bar', // Tipo de gráfico
+            const ctx = document.getElementById('graficaDireccion').getContext('2d');
+            const graficaDireccion = new Chart(ctx, {
+                type: 'bar', 
                 data: {
-                    labels: <?php echo json_encode($localidades); ?>,
+                    labels: <?php echo json_encode($direcciones); ?>,
                     datasets: [{
                         label: 'Precio Promedio',
                         data: <?php echo json_encode($precios); ?>,

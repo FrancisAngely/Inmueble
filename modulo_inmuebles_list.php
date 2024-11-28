@@ -53,9 +53,9 @@
                         <th>ascensor</th>
                         <th>descripcion</th>
                         <th>foto</th>
-          </tr>
-          </thead>
-          <tbody>';
+                            </tr>
+                            </thead>
+                            <tbody>';
                     ?>
                     <table class="table" id="tabla">
 
@@ -68,22 +68,23 @@
                                 <th>tipo Via</th>
                                 <th>Direccion</th>
                                 <th>Codigo Postal</th>
-                                <th>numero</th>
-                                <th>piso</th>
-                                <th>letra</th>
-                                <th>escalera</th>
-                                <th>precio</th>
-                                <th>habitaciones</th>
-                                <th>metros_cuadrados</th>
-                                <th>exterior</th>
-                                <th>aseos</th>
-                                <th>terraza</th>
-                                <th>balcon</th>
-                                <th>orientacion</th>
-                                <th>ascensor</th>
                                 <th>descripcion</th>
                                 <th>foto</th>
                                 <th>Acciones</th>
+                                    <!-- <th>piso</th>
+                                    <th>numero</th>
+-->
+                                <!-- <th>letra</th> -->
+                                <!-- <th>escalera</th>-->
+                                <!-- <th>precio</th>-->
+                                <!-- <th>habitaciones</th>-->
+                                <!-- <th>metros_cuadrados</th>-->
+                                <!-- <th>exterior</th>-->
+                                <!-- <th>aseos</th>-->
+                                <!-- <th>terraza</th>-->
+                                <!-- <th>balcon</th>-->
+                                <!-- <th>orientacion</th>-->
+                                <!-- <th>ascensor</th>-->
                             </tr>
                         </thead>
                         <tbody>
@@ -101,15 +102,15 @@
 
                             if (count($inmuebles) > 0) {
                                 foreach ($inmuebles as $r) {
-                                    // Verifica que todos los campos existen
                                     $found_key = array_search($r["id_provincias"], array_column($provincias, 'id'));
                                     $provinciaNombre = $found_key !== true ? $provincias[$found_key]['provincia'] : 'No disponible';
 
                                     $key = array_search($r["id_localidades"], array_column($localidades, 'id'));
                                     $localidadNombre = $key !== true ? $localidades[$key]['localidad'] : 'No disponible';
 
-                                    $key2 = array_search($r["id"], array_column($callejero, 'id'));
-                                    $tipoVia = $key2 !== true ? $callejero[$key2]['tipo_via'] : 'No disponible';
+                                    $key2 = array_search($r["id"], array_column($inmuebles, 'id'));
+                                    $tipoVia = $key2 !== true ? $inmuebles[$key2]['tipo_via'] : 'No disponible';
+                                   
 
                                     $key3 = array_search($r["id"], array_column($callejero, 'id'));
                                     $direccion = $key3 !== true ? $callejero[$key3]['nombre_literal'] : 'No disponible';
@@ -124,20 +125,7 @@
                                             <td>{$localidadNombre}</td>
                                             <td>{$tipoVia}</td>
                                             <td>{$direccion}</td>
-                                            <td>{$cp}</td>
-                                            <td>{$r['numero']}</td>
-                                            <td>{$r['piso']}</td>
-                                            <td>{$r['letra']}</td>
-                                            <td>{$r['escalera']}</td>
-                                            <td>{$r['precio']}</td>
-                                            <td>{$r['habitaciones']}</td>
-                                            <td>{$r['metros_cuadrados']}</td>
-                                            <td>{$r['exterior']}</td>
-                                            <td>{$r['aseos']}</td>
-                                            <td>{$r['terraza']}</td>
-                                            <td>{$r['balcon']}</td>
-                                            <td>{$r['orientacion']}</td>
-                                            <td>{$r['ascensor']}</td>
+                                            <td>{$cp}</td>    
                                             <td>{$r['descripcion']}</td>
                                             <td>{$r['foto']}</td>
                                             <td>
@@ -149,6 +137,21 @@
                                         </td>
                                             </tr>";
                             ?>
+                            <!--
+                                            <td>{$r['numero']}</td>
+
+                                            <td>{$r['piso']}</td>
+                                            <td>{$r['letra']}</td>
+                                            <td>{$r['escalera']}</td>
+                                            <td>{$r['precio']}</td>
+                                            <td>{$r['habitaciones']}</td>
+                                            <td>{$r['metros_cuadrados']}</td>
+                                            <td>{$r['exterior']}</td>
+                                            <td>{$r['aseos']}</td>
+                                            <td>{$r['terraza']}</td>
+                                            <td>{$r['balcon']}</td>
+                                            <td>{$r['orientacion']}</td>
+                                            <td>{$r['ascensor']}</td> -->
                             <?php
                                     $excel .= '<tr>';
                                     $excel .= '<td>' . $r["id"] . '</td>';
