@@ -1,3 +1,7 @@
+<?php if($_SESSION["id_roles"]=="1")?>
+
+
+
 <div class="main-menu">
     <!-- Brand Logo -->
     <div class="logo-box">
@@ -47,14 +51,9 @@
                         Gráfica</span>
                 </a>
             </li>
-  <!-- <?php
 
-            if ($_SESSION["id_roles"] == "1") {
-                include("leftsidebar_admin.php.php");
-            }
-            ?>-->
 
-        <li class="menu-title">Configuración</li>
+            <li class="menu-title">Configuración</li>
 
             <li class="menu-item">
                 <a class="menu-link waves-effect" href="modulo_usuarios_list.php">

@@ -35,8 +35,8 @@
                                 <span id="id_localidades_error" class="text-danger"></span>
                                 <select class="form-control" id="id_localidades" name="id_localidades">
                                     <option></option>
-                                    <?php echo SelectOptions("callejero", "id", "id_localidades"); ?>
-
+                                    <?php
+                                    echo SelectOptionsByColumn("localidades", "id", "localidad", "activo", 1); ?>
                                 </select>
 
                             </div>
@@ -46,37 +46,26 @@
                                 <span id="tipo_via_error" class="text-danger"></span>
                                 <select class="form-control" id="tipo_via" name="tipo_via">
                                     <option></option>
-                                    <?php echo SelectOptions("callejero", "id", "tipo_via"); ?>
                                 </select>
                             </div>
 
                             <div class="mb-3">
                                 <label for="denominacion" class="form-label">Denominacion</label>
                                 <span id="denominacion_error" class="text-danger"></span>
-                                <select class="form-control" id="denominacion" name="denominacion">
-                                    <option></option>
-                                    <?php echo SelectOptions("callejero", "id", "denominacion"); ?>
-
-                                </select>
+                                <input type="text" class="form-control" id="denominacion" name="denominacion" />
                             </div>
 
                             <div class="mb-3">
                                 <label for="nombre_literal" class="form-label">Nombre Literal</label>
                                 <span id="nombre_literal_error" class="text-danger"></span>
-                                <select class="form-control" id="nombre_literal" name="nombre_literal">
-                                    <option></option>
-                                    <?php echo SelectOptions("callejero", "id", "nombre_literal"); ?>
-                                </select>
+                                <input type="text" class="form-control" id="nombre_literal" name="nombre_literal" />
                             </div>
 
                             <div class="mb-3">
                                 <label for="cp" class="form-label">CP</label>
                                 <span id="cp_error" class="text-danger"></span>
-                                <select class="form-control" id="cp" name="cp">
-                                    <option></option>
-                                    <?php echo SelectOptions("callejero", "id", "cp"); ?>
+                                <input type="text" class="form-control" id="cp" name="cp" />
 
-                                </select>
                             </div>
 
                             <div class="mb-3">
@@ -272,7 +261,73 @@
                     });
                 });
 
-           });
+                /*  $("#denominacion").change(function() {
+                      let direccion = $("#denominacion").val();
+                      $.ajax({
+                          data: {
+                              id: direccion,
+                          },
+                          method: "POST",
+                          url: "getLocalidadesCp.php",
+                          success: function(result) {
+                              $("#cp").html(result);
+
+                          }
+                      });
+                  });*/
+
+                $("#id_localidades").change(function() {
+                    let id_localidades = $("#id_localidades").val();
+                    console.log(id_localidades);
+                    $.ajax({
+                        data: {
+                            id_localidades: id_localidades
+                        },
+                        method: "POST",
+                        url: "getLocalidadesTipodeVia.php",
+                        success: function(result) {
+                            $("#tipo_via").html(result);
+
+                        }
+                    });
+                });
+
+                $("#tipo_via").change(function() {
+                    let id_localidades = $("#id_localidades").val();
+                    let tipo_via = $("#tipo_via").val();
+                    console.log(tipo_via);
+                    $.ajax({
+                        data: {
+                            id_localidades: id_localidades,
+                            tipo_via: tipo_via
+                        },
+                        method: "POST",
+                        url: "getLocalidadesDireccion.php",
+                        success: function(result) {
+                            $("#nombre_literal").html(result);
+
+                        }
+                    });
+                });
+
+                $("#tipo_via").change(function() {
+                    let id_localidades = $("#id_localidades").val();
+                    let tipo_via = $("#tipo_via").val();
+                    console.log(tipo_via);
+                    $.ajax({
+                        data: {
+                            id_localidades: id_localidades,
+                            tipo_via: tipo_via
+                        },
+                        method: "POST",
+                        url: "getLocalidadesDireccion.php",
+                        success: function(result) {
+                            $("#denominacion").html(result);
+
+                        }
+                    });
+                });
+            });
         </script>
 </body>
 

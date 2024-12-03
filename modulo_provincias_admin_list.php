@@ -26,6 +26,7 @@
                 <?php
                 echo "<h1>" . $_SESSION["role"] . "</h1>";
                 $provincias = getAllV("provincias");
+                //print_r($provincias); 
 
                 if (count($provincias) > 0) {
                     foreach ($provincias as $r) {

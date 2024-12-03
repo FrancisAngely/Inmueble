@@ -36,16 +36,21 @@
                     <?php
                     echo "<h3> User: " . $_SESSION["role"] . "</h3>";
                     $callejero = getAllV("callejero");
+                    $localidades = getAllV("localidades");
+
 
                     if (count($callejero) > 0) {
                         foreach ($callejero as $r) {
+
+                            $key = array_search($r["id_localidades"], array_column($localidades, 'id'));
+                            $localidadNombre = $key !== true ? $localidades[$key]['localidad'] : 'No disponible';
                     ?>
                             <tr>
                                 <td><?php echo $r["id"]; ?></td>
-                                <td><?php echo $r["id_localidades"]; ?></td>
+                                <td><?php echo $localidadNombre ?></td>
                                 <td><?php echo $r["tipo_via"]; ?></td>
                                 <td><?php echo $r["denominacion"]; ?></td>
-                                <td><?php echo $r["nombre_literal"]; ?></td>
+                                <td><?php echo $r["nombre_literal"];?></td>
                                 <td><?php echo $r["cp"]; ?></td>
 
                                 <td><a href="modulo_callejero_edit.php?id=<?php echo $r["id"]; ?>"><i

@@ -314,7 +314,7 @@
                         descripcion: {
                             required: true,
                             maxlength: 200,
-                            minlength: 3
+                            minlength: 0
                         },
                         foto: {
                             required: true,
