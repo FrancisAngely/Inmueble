@@ -55,6 +55,14 @@
                             </div>
 
                             <div class="mb-3">
+                                <label for="direccion" class="form-label">Direccion</label>
+                                <span id="direccion_error" class="text-danger"></span>
+                                <select class="form-control" id="direccion" name="direccion">
+                                    <option></option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="tipo_via" class="form-label">Tipo Via</label>
                                 <span id="tipo_via_error" class="text-danger"></span>
                                 <select class="form-control" id="tipo_via" name="tipo_via">
@@ -62,13 +70,7 @@
                                 </select>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="direccion" class="form-label">Direccion</label>
-                                <span id="direccion_error" class="text-danger"></span>
-                                <select class="form-control" id="direccion" name="direccion">
-                                    <option></option>
-                                </select>
-                            </div>
+           
 
                             <div class="mb-3">
                                 <label for="cp" class="form-label">CP</label>
@@ -538,12 +540,28 @@
                     let direccion = $("#direccion").val();
                     $.ajax({
                         data: {
-                            id: direccion,
+                            direccion: direccion,
                         },
                         method: "POST",
                         url: "getLocalidadesCp.php",
                         success: function(result) {
                             $("#cp").html(result);
+
+                        }
+                    });
+                });
+
+                $("#direccion").change(function() {
+                    let direccion = $("#direccion").val();
+                    console.log(direccion);
+                    $.ajax({
+                        data: {
+                            direccion: direccion
+                        },
+                        method: "POST",
+                        url: "getLocalidadesTipodeVia.php",
+                        success: function(result) {
+                            $("#tipo_via").html(result);
 
                         }
                     });
@@ -557,15 +575,15 @@
                             id_localidades: id_localidades
                         },
                         method: "POST",
-                        url: "getLocalidadesTipodeVia.php",
+                        url: "getLocalidadesDireccion.php",
                         success: function(result) {
-                            $("#tipo_via").html(result);
+                            $("#direccion").html(result);
 
                         }
                     });
                 });
 
-                $("#tipo_via").change(function() {
+            /*    $("#tipo_via").change(function() {
                     let id_localidades = $("#id_localidades").val();
                     let tipo_via = $("#tipo_via").val();
                     console.log(tipo_via);
@@ -581,7 +599,8 @@
 
                         }
                     });
-                });
+                });*/
+
             });
         </script>
 </body>

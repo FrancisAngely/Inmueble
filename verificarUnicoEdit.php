@@ -1,11 +1,11 @@
 <?php
-$id=$_POST["id"];
+
 $valor=$_POST["valor"];
 $tabla=$_POST["tabla"];
 $campo=$_POST["campo"];
 
 include("controller.php");
-
+$id=desencryptar($_POST["id"]);
 $registroAnt=getById($tabla,$id);
 $valorAnt=$registroAnt[$campo];
 

@@ -29,24 +29,39 @@
             </li>
             <li class="menu-title">Inmuebles</li>
             <li class="menu-item">
-                <a class="menu-link waves-effect" href="modulo_inmuebles_new.php">
+                <a class="menu-link waves-effect" href="modulo_proveedores_list.php">
                     <span class="menu-icon"><i class="fa-solid fa-newspaper"></i></span> <span class="menu-text">
-                        Nuevo</span>
+                        Proveedores</span>
                 </a>
             </li>
 
             <li class="menu-item">
-                <a class="menu-link waves-effect" href="modulo_inmuebles_list.php">
+                <a class="menu-link waves-effect" href="modulo_clientes_list.php">
                     <span class="menu-icon"><i class="fa-solid fa-list"></i></span> <span class="menu-text">
-                        Listado</span>
+                        Clientes</span>
                 </a>
             </li>
             <li class="menu-item">
+                <a class="menu-link waves-effect" href="modulo_productos_list.php">
+                    <span class="menu-icon"><i class="fa-solid fa-chart-simple"></i></span> <span class="menu-text">
+                        Productos</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a class="menu-link waves-effect" href="modulo_gestionllamadas_list.php">
+                    <span class="menu-icon"><i class="fa-solid fa-chart-simple"></i></span> <span class="menu-text">
+                    Gestión de llamadas </span>
+                </a>
+            </li>
+            <!-- <li class="menu-item">
                 <a class="menu-link waves-effect" href="modulo_graficas.php">
                     <span class="menu-icon"><i class="fa-solid fa-chart-simple"></i></span> <span class="menu-text">
                         Gráfica</span>
                 </a>
-            </li>
+            </li> -->
+
+
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'Administrador'): ?>
 
             <li class="menu-title">Configuración</li>
 
@@ -62,7 +77,7 @@
                     <span class="menu-icon"><i class="fa-solid fa-user-secret"></i></span> <span class="menu-text">
                         Roles</span>
                 </a>
-            </li>
+            <!-- </li>
             <li class="menu-item">
                 <a class="menu-link waves-effect" href="modulo_provincias_list.php">
                     <span class="menu-icon"><i class="fa-solid fa-street-view"></i></span> <span class="menu-text">
@@ -80,7 +95,8 @@
                     <span class="menu-icon"><i class="fa-solid fa-road"></i></span> <span class="menu-text">
                         Callejero </span>
                 </a>
-            </li>
+            </li> -->
+            <?php endif;?>
         </ul>
 
         <div class="help-box">

@@ -19,14 +19,14 @@
                 <?php
 
                 if ($_SESSION["id_roles"] == "1") {
-                    include("modulo_provincias_admin_list.php");
+                    include("modulo_clientes_admin_list.php");
                 } else {
                     echo "<h1> Area restringida : SOLO ADMINS</h1>";
                 }
                 ?>
 
             </div> 
-            <?php include("scripts.php"); ?>
+           <?php include("scripts.php"); ?>
 
             <?php include("footer.php"); ?>
 
