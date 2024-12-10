@@ -23,14 +23,12 @@
                     <?php include("breadcrumb.php"); ?>
                     <div
                         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Productos - Nuevo</h1>
+                        <h1 class="h2">Servicios - Nuevo</h1>
                         <a href="modulo_productos_list.php" class="btn btn-primary">Volver</a>
                     </div>
 
                     <div class="col-4">
                         <form action="#" method="post" enctype="multipart/form-data" id="form1">
-                            <h1>Servicios</h1>
-
                             <div class="mb-3">
                                 <label for="id_comercios" class="form-label">Id Comercios</label>
                                 <span id="id_comercios_error" class="text-danger"></span>

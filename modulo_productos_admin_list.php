@@ -1,6 +1,7 @@
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap  pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Productos</h1>
-            &nbsp;<a href="modulo_productos_new.php" class="btn btn-primary">Nuevo</a>
+            &nbsp;<a href="modulo_productos_new.php" class="btn btn-primary">Nuevo Productos</a>
+            &nbsp;<a href="modulo_productos_new_servicios.php" class="btn btn-primary">Nuevo Servicios</a>
             &nbsp;&nbsp;
             <a href="#" class="btn btn-success" id="exportar">Exportar&nbsp;<i class="fa-regular fa-file-excel"></i></a>
         </div>
